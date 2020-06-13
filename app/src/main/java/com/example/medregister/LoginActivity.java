@@ -1,6 +1,5 @@
 package com.example.medregister;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                             hideDialog();
                         }
                     });
@@ -90,44 +89,50 @@ public class LoginActivity extends AppCompatActivity {
         resendEmailVerification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ResendVerificationDialog dialog = new ResendVerificationDialog();
+                dialog.show(getSupportFragmentManager(), "dialog_resend_email_verification");
             }
         });
 
         hideSoftKeyboard();
     }
 
-    private boolean isEmpty(String string){
+    private boolean isEmpty(String string) {
         return string.equals("");
     }
 
 
-    private void showDialog(){
+    private void showDialog() {
         mProgressBar.setVisibility(View.VISIBLE);
 
     }
 
-    private void hideDialog(){
-        if(mProgressBar.getVisibility() == View.VISIBLE){
+    private void hideDialog() {
+        if (mProgressBar.getVisibility() == View.VISIBLE) {
             mProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void hideSoftKeyboard(){
+    private void hideSoftKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null){
-                    Log.d(TAG,"onAuthStateChanged: signed_in: " + user.getUid());
-                }
-                else{
-                    Log.d(TAG,"onAuthStateChanged: signed_out");
+                if (user != null) {
+                    if (user.isEmailVerified()) {
+                        Log.d(TAG, "onAuthStateChanged: signed_in: " + user.getUid());
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Check your Email Inbox for a Verification Link",
+                                Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
+                    }
+                } else {
+                    Log.d(TAG, "onAuthStateChanged: signed_out");
                 }
             }
         };
@@ -142,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(mAuthListener != null){
+        if (mAuthListener != null) {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
     }
