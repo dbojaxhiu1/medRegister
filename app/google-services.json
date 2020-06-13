@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "799997579506",
+    "firebase_url": "https://medregister-a7344.firebaseio.com",
+    "project_id": "medregister-a7344",
+    "storage_bucket": "medregister-a7344.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799997579506:android:012751665c1bea4557c06b",
+        "android_client_info": {
+          "package_name": "com.example.medregister"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799997579506-k183hc8ug297b90qutdu7vuh4jfmhghr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medregister",
+            "certificate_hash": "8e46cab0be3c1bc808cf80f089a8ab480ee9afcc"
+          }
+        },
+        {
+          "client_id": "799997579506-q25s4jchbgkc755toke5l4vegfk7i4b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBgEUBUHnxYK1czKiUyIu30LVawsspSQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799997579506-q25s4jchbgkc755toke5l4vegfk7i4b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
