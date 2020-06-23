@@ -8,7 +8,7 @@ The application provides the user with:
 * Track usage of medication
 * Reminders when to take the medications
 * Notes
-* To do's
+* To do
 * Tips
 
 ## Author
