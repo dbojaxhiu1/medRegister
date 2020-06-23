@@ -26,7 +26,6 @@
     <string name="this_week_s_initiatives">This week\'s initiatives</string>
     <string name="employee_schedule">Employee Schedule</string>
     <string name="company_culture">Company Culture</string>
-    <string name="tabian_consulting_sales_chart">Tabian Consulting Sales Chart</string>
     <string name="cancel">CANCEL</string>
     <string name="confirm">CONFIRM</string>
     <string name="reset_password">Reset Password</string>
@@ -35,5 +34,7 @@
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
+    <string name="save">Save</string>
+    <string name="change_password">Change Password</string>
 
 </resources>

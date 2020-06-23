@@ -6,4 +6,10 @@
         android:title="@string/sign_out"
         />
 
+    <item
+        android:id="@+id/optionAccountSettings"
+        android:title="@string/account_settings"
+        />
+
+
 </menu>

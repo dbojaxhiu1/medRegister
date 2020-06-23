@@ -1,7 +1,6 @@
 package com.example.medregister;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,70 +9,28 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
+
+import org.jetbrains.annotations.Nullable;
 
 public class SignedInActivity extends AppCompatActivity {
 
+    private static final String TAG = "SignedInActivity";
+
+    //Firebase
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signedin);
         Log.d(TAG, "onCreate: started.");
 
         setupFirebaseAuth();
-        getUserDetails();
-        //setUserDetails();
+
     }
 
-    private static final String TAG = "SignedInActivity";
-
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private void setUserDetails(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if(user != null){
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName("Diar Bojaxhi")
-                    .setPhotoUri(Uri.parse("https://www.123rf.com/photo_79457774_fresh-banana-on-a-table-stock-phooto.html"))
-                    .build();
-
-            user.updateProfile(profileUpdates)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Log.d(TAG,"onComplete: User profile updated.");
-
-                                getUserDetails();
-                            }
-                        }
-                    });
-        }
-    }
-
-    private void getUserDetails(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if(user != null){
-            String uid = user.getUid();
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-
-            String properties = "uid" + uid+ "\n"
-                    +"name" + name +"\n"
-                    +"email" + email +"\n"
-                    +"photoUrl" + photoUrl;
-
-            Log.d(TAG, "getUserDetails: properties: \n" + properties);
-
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -113,6 +70,10 @@ public class SignedInActivity extends AppCompatActivity {
             case R.id.optionSignOut:
                 signOut();
                 return true;
+            case R.id.optionAccountSettings:
+                Intent intent = new Intent(SignedInActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -126,9 +87,6 @@ public class SignedInActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
 
-    /*
-            ----------------------------- Firebase setup ---------------------------------
-         */
     private void setupFirebaseAuth(){
         Log.d(TAG, "setupFirebaseAuth: started.");
 
@@ -147,7 +105,6 @@ public class SignedInActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-                // ...
             }
         };
     }
@@ -165,6 +122,7 @@ public class SignedInActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
     }
+
 
 
 }
