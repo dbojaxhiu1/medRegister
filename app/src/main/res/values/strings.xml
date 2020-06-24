@@ -37,4 +37,11 @@
     <string name="save">Save</string>
     <string name="change_password">Change Password</string>
 
+    <!-- Strings for home fragment -->
+    <string name="register_pills">Register Pills</string>
+    <string name="schedule_pill">Schedule Pills</string>
+    <string name="notes">Notes</string>
+    <string name="to_do">To do</string>
+    <string name="healthy_tips">Healthy Tips</string>
+
 </resources>
