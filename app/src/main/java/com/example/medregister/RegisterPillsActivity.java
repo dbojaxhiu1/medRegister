@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.medregister.dialogs.RegisterPillDialog;
+
 public class RegisterPillsActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterPillsActivity";
@@ -22,15 +24,9 @@ public class RegisterPillsActivity extends AppCompatActivity {
         ImageButton mAddPill = (ImageButton) findViewById(R.id.addPillimageButton);
         mAddPill.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addPill();
+                RegisterPillDialog dialog = new RegisterPillDialog();
+                dialog.show(getSupportFragmentManager(), "dialog_registerpills");
             }
         });
     }
-
-
-    public void addPill() {
-
-    }
-
-
 }
