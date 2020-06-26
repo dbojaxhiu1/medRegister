@@ -21,7 +21,11 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".SignedInActivity"/>
         <activity android:name=".SettingsActivity"/>
-
+        <activity android:name=".RegisterPillsActivity"/>
+        <activity android:name=".SchedulePillsActivity"/>
+        <activity android:name=".NotesActivity"/>
+        <activity android:name=".ToDoActivity"/>
+        <activity android:name=".HealthyTipsActivity"/>
 
 
     </application>

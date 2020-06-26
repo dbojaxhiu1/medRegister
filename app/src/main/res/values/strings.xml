@@ -44,4 +44,10 @@
     <string name="to_do">To do</string>
     <string name="healthy_tips">Healthy Tips</string>
 
+    <!-- Strings for Register Pill activity -->
+    <string name="register_new_pill">Register new pill</string>
+    <string name="pill_name">Name of pill</string>
+    <string name="instruction">Instructions</string>
+    <string name="add_pill">ADD</string>
+    <string name="daily_usage">Daily Usage</string>
 </resources>
