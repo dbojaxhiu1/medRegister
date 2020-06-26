@@ -25,6 +25,7 @@
         android:hint="@string/pill_name"
         android:textSize="20sp" />
 
+
     <EditText
         android:id="@+id/instruction_pill"
         android:layout_width="match_parent"
@@ -32,6 +33,14 @@
         android:layout_marginTop="5dp"
         android:hint="@string/instruction"
         android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/numOfPillsInPackage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/numOfPillsInPackage"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/daily_usage"

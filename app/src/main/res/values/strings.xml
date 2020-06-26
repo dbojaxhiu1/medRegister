@@ -50,4 +50,5 @@
     <string name="instruction">Instructions</string>
     <string name="add_pill">ADD</string>
     <string name="daily_usage">Daily Usage</string>
+    <string name="numOfPillsInPackage">Number of pills on the package</string>
 </resources>

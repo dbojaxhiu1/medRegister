@@ -24,6 +24,7 @@ public class RegisterPillDialog extends DialogFragment {
     private EditText instructionOnPill;
     private Context mContext;
     private EditText dailyUsage;
+    private EditText numOfPills;
 
     @Nullable
     @Override
@@ -32,6 +33,7 @@ public class RegisterPillDialog extends DialogFragment {
         nameOfPill = (EditText) view.findViewById(R.id.pill_name);
         instructionOnPill = (EditText) view.findViewById(R.id.instruction_pill);
         dailyUsage = (EditText) view.findViewById(R.id.daily_usage);
+        numOfPills = (EditText) view.findViewById(R.id.numOfPillsInPackage);
         mContext = getActivity();
 
         TextView addPillDialog = (TextView) view.findViewById(R.id.dialogAdd);
@@ -41,8 +43,9 @@ public class RegisterPillDialog extends DialogFragment {
                 Log.d(TAG, "onClick: attempting to add pill");
                 if (!isEmpty(nameOfPill.getText().toString())
                         && !isEmpty(instructionOnPill.getText().toString())
-                        && !isEmpty(dailyUsage.getText().toString())) {
-                    //add pill function
+                        && !isEmpty(dailyUsage.getText().toString())
+                        && !isEmpty(numOfPills.getText().toString())) {
+                    //list the pills using recycler viewer
                 } else {
                     Toast.makeText(mContext, "all fields must be filled out", Toast.LENGTH_SHORT).show();
                 }
