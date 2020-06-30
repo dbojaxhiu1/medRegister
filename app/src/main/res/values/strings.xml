@@ -36,6 +36,11 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="save">Save</string>
     <string name="change_password">Change Password</string>
+    <string name="name_settings">Name</string>
+    <string name="phone_number_settings">Phone Number</string>
+    <string name="db_users">Node Users</string>
+    <string name="field_name">Field Name</string>
+    <string name="field_phone">Field Phone</string>
 
     <!-- Strings for home fragment -->
     <string name="register_pills">Register Pills</string>

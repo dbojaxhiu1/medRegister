@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -30,24 +34,58 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     //widgets
-    private EditText mEmail;
-    private ProgressBar mProgressBar;
-    private TextView mResetPasswordLink;
+    private EditText email, name, phone;
+    private ImageView profileImage;
+    private Button save;
+    private ProgressBar progressBar;
+    private TextView resetPasswordLink;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Log.d(TAG, "onCreate: started.");
-        mEmail = (EditText) findViewById(R.id.input_email);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mResetPasswordLink = (TextView) findViewById(R.id.change_password);
+        email = (EditText) findViewById(R.id.input_email);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        resetPasswordLink = (TextView) findViewById(R.id.change_password);
+        name = (EditText) findViewById(R.id.input_name);
+        phone = (EditText) findViewById(R.id.input_phonenumber);
+        profileImage = (ImageView) findViewById(R.id.user_image);
+        save = (Button) findViewById(R.id.save_settings);
+
 
         setupFirebaseAuth();
-
         setCurrentEmail();
+        inside();
+        hideSoftKeyboard();
+    }
 
-        mResetPasswordLink.setOnClickListener(new View.OnClickListener() {
+    private void inside() {
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: attempting to save settings.");
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+                if (!name.getText().toString().equals("")) {
+                    reference.child(getString(R.string.db_users))
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child(getString(R.string.field_name))
+                            .setValue(name.getText().toString());
+                }
+                if (!phone.getText().toString().equals("")) {
+                    reference.child(getString(R.string.db_users))
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child(getString(R.string.field_phone))
+                            .setValue(phone.getText().toString());
+                }
+
+                Toast.makeText(SettingsActivity.this, "saved", Toast.LENGTH_SHORT).show();
+            }
+        });
+        resetPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: sending password reset link");
@@ -56,9 +94,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sendResetPasswordLink();
             }
         });
-
-
-        hideSoftKeyboard();
     }
 
     private void sendResetPasswordLink() {
@@ -89,11 +124,11 @@ public class SettingsActivity extends AppCompatActivity {
         if (user != null) {
             Log.d(TAG, "setCurrentEmail: user is NOT null.");
 
-            String email = user.getEmail();
+            String email_user = user.getEmail();
 
-            Log.d(TAG, "setCurrentEmail: got the email: " + email);
+            Log.d(TAG, "setCurrentEmail: got the email: " + email_user);
 
-            mEmail.setText(email);
+            email.setText(email_user);
         }
     }
 
