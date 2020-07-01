@@ -56,4 +56,9 @@
     <string name="add_pill">ADD</string>
     <string name="daily_usage">Daily Usage</string>
     <string name="numOfPillsInPackage">Number of pills on the package</string>
+    <string name="db_pills">pills</string>
+    <string name="field_pill_name">field_pill_name</string>
+    <string name="field_pill_instruction">field_pill_instruction</string>
+    <string name="field_number_pills">field_number_pills</string>
+    <string name="field_daily_usage">field_daily_usage</string>
 </resources>
