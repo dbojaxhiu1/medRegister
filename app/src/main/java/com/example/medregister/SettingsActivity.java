@@ -15,12 +15,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.medregister.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -34,8 +39,8 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     //widgets
-    private EditText email, name, phone;
-    private ImageView profileImage;
+    private EditText mEmail, mName, mPhone;
+    private ImageView mProfileImage;
     private Button save;
     private ProgressBar progressBar;
     private TextView resetPasswordLink;
@@ -45,12 +50,12 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Log.d(TAG, "onCreate: started.");
-        email = (EditText) findViewById(R.id.input_email);
+        mEmail = (EditText) findViewById(R.id.input_email);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         resetPasswordLink = (TextView) findViewById(R.id.change_password);
-        name = (EditText) findViewById(R.id.input_name);
-        phone = (EditText) findViewById(R.id.input_phonenumber);
-        profileImage = (ImageView) findViewById(R.id.user_image);
+        mName = (EditText) findViewById(R.id.input_name);
+        mPhone = (EditText) findViewById(R.id.input_phonenumber);
+        mProfileImage = (ImageView) findViewById(R.id.user_image);
         save = (Button) findViewById(R.id.save_settings);
 
 
@@ -61,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void inside() {
-
+        getUserAccountData();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,17 +74,17 @@ public class SettingsActivity extends AppCompatActivity {
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-                if (!name.getText().toString().equals("")) {
+                if (!mName.getText().toString().equals("")) {
                     reference.child(getString(R.string.db_users))
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child(getString(R.string.field_name))
-                            .setValue(name.getText().toString());
+                            .setValue(mName.getText().toString());
                 }
-                if (!phone.getText().toString().equals("")) {
+                if (!mPhone.getText().toString().equals("")) {
                     reference.child(getString(R.string.db_users))
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child(getString(R.string.field_phone))
-                            .setValue(phone.getText().toString());
+                            .setValue(mPhone.getText().toString());
                 }
 
                 Toast.makeText(SettingsActivity.this, "saved", Toast.LENGTH_SHORT).show();
@@ -95,6 +100,36 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void getUserAccountData() {
+        Log.d(TAG, "getUserAccountsData: getting the users account information");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference.child(getString(R.string.db_users))
+                .orderByChild(getString(R.string.field_phone));
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    Log.d(TAG, "onDataChange: found user: " + user.toString());
+
+                    mName.setText(user.getName());
+                    mPhone.setText(user.getPhone());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+    }
+
 
     private void sendResetPasswordLink() {
         FirebaseAuth.getInstance().sendPasswordResetEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail())
@@ -128,7 +163,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             Log.d(TAG, "setCurrentEmail: got the email: " + email_user);
 
-            email.setText(email_user);
+            mEmail.setText(email_user);
         }
     }
 

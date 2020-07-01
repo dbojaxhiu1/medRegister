@@ -9,26 +9,16 @@ public class User {
     private String phone;
     private String profile_image;
     private String user_id;
-    private String security_level;
 
-    public User(String name, String phone, String profile_image, String user_id, String security_level) {
+    public User(String name, String phone, String profile_image, String user_id) {
         this.name = name;
         this.phone = phone;
         this.profile_image = profile_image;
         this.user_id = user_id;
-        this.security_level = security_level;
     }
 
     public User() {
 
-    }
-
-    public String getSecurity_level() {
-        return security_level;
-    }
-
-    public void setSecurity_level(String security_level) {
-        this.security_level = security_level;
     }
 
     public String getUser_id() {
@@ -71,7 +61,6 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", profile_image='" + profile_image + '\'' +
                 ", user_id='" + user_id + '\'' +
-                ", security_level='" + security_level + '\'' +
                 '}';
     }
 }

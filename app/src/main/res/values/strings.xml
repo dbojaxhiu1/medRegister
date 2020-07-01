@@ -38,9 +38,9 @@
     <string name="change_password">Change Password</string>
     <string name="name_settings">Name</string>
     <string name="phone_number_settings">Phone Number</string>
-    <string name="db_users">Node Users</string>
-    <string name="field_name">Field Name</string>
-    <string name="field_phone">Field Phone</string>
+    <string name="db_users">field_users</string>
+    <string name="field_name">name</string>
+    <string name="field_phone">phone</string>
 
     <!-- Strings for home fragment -->
     <string name="register_pills">Register Pills</string>
