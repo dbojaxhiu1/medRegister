@@ -9,15 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
             <RelativeLayout
                 android:id="@+id/relLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="20dp">
 
                 <TextView
@@ -35,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="70dp"
+                    android:src="@drawable/pill_logo"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <EditText
@@ -90,7 +86,6 @@
             </RelativeLayout>
 
 
-        </RelativeLayout>
     </ScrollView>
 
     <ProgressBar
