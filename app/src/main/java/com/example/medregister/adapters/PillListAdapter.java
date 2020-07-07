@@ -67,7 +67,7 @@ public class PillListAdapter extends ArrayAdapter<Pill> {
             holder = (ViewHolder) convertView.getTag();
         }
         try {
-            //set the chatroom name
+            //set the pill name
             holder.pillName.setText(getItem(position).getPill_name());
             holder.pillInstruction.setText(getItem(position).getPill_instruction());
             holder.pillNumberInPackage.setText(getItem(position).getPill_number_in_package());
@@ -83,12 +83,15 @@ public class PillListAdapter extends ArrayAdapter<Pill> {
                     for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
                         Log.d(TAG, "onDataChange: Found pill: ");
 
-                            //Problem should be here for listing pills
-                            String pill_name = "name of the pill is: " + singleSnapshot.getValue(Pill.class).getPill_name();
-                            holder.pillName.setText(pill_name);
-                            holder.pillInstruction.setText(singleSnapshot.getValue(Pill.class).getPill_instruction());
-                            holder.pillNumberInPackage.setText(singleSnapshot.getValue(Pill.class).getPill_number_in_package());
-                            holder.pillDailyUsage.setText(singleSnapshot.getValue(Pill.class).getPill_daily_usage());
+                        //Problem should be here for listing pills
+                        String pill_name = "Pill Name: " + singleSnapshot.getValue(Pill.class).getPill_name();
+                        holder.pillName.setText(pill_name);
+                        holder.pillInstruction.setText(singleSnapshot.getValue(Pill.class).getPill_instruction());
+                        String number_in_package = "Package contains: " + singleSnapshot.getValue(Pill.class).getPill_number_in_package() + " pills";
+                        holder.pillNumberInPackage.setText(number_in_package);
+                        String daily_usage = "Daily Usage: " + singleSnapshot.getValue(Pill.class).getPill_daily_usage();
+                        holder.pillDailyUsage.setText(daily_usage);
+
 
                     }
                 }
@@ -103,7 +106,7 @@ public class PillListAdapter extends ArrayAdapter<Pill> {
                 public void onClick(View v) {
                     if (getItem(position).getCreator_id().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                         Log.d(TAG, "onClick: asking for permission to delete icon.");
-                        //((ChatActivity)mContext).showDeleteChatroomDialog(getItem(position).getChatroom_id());
+                        //((ChatActivity)mContext).showDeletePillDialog(getItem(position).getPill_id());
                     } else {
                         Toast.makeText(mContext, "You didn't create this pill", Toast.LENGTH_SHORT).show();
                     }
