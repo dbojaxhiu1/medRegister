@@ -58,7 +58,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
             }
         });
     }
-    private void setupPillList(){
+    private void setupPillList() {
         Log.d(TAG, "setupPillList: setting up pill listview");
         mAdapter = new PillListAdapter(RegisterPillsActivity.this, R.layout.layout_pill_listitem, mPills);
         mListView.setAdapter(mAdapter);
@@ -96,7 +96,6 @@ public class RegisterPillsActivity extends AppCompatActivity {
                 }
                 setupPillList();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

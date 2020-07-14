@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillListAdapterWithRecyclerView.ViewHolder>{
+public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillListAdapterWithRecyclerView.ViewHolder> {
 
     private ArrayList<Pill> mPills = new ArrayList<>();
     private OnPillListener mOnNoteListener;
@@ -25,6 +25,7 @@ public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillLi
         this.mPills = mPills;
         this.mOnNoteListener = onPillListener;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,7 +36,7 @@ public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillLi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        try{
+        try {
 //            String month = mNotes.get(position).getTimestamp().substring(0, 2);
 //            month = Utility.getMonthFromNumber(month);
 //            String year = mNotes.get(position).getTimestamp().substring(3);
@@ -47,13 +48,13 @@ public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillLi
             holder.pill_name.setText(pillName);
             String pillInstruction = mPills.get(position).getPill_instruction();
             holder.pill_instruction.setText(pillInstruction);
-            String pillNumberInPakcage = mPills.get(position).getPill_name();
-            holder.pill_number_in_package.setText(pillNumberInPakcage);
+            String pillNumberInPackage = mPills.get(position).getPill_name();
+            holder.pill_number_in_package.setText(pillNumberInPackage);
             String pillDailyUsage = mPills.get(position).getPill_daily_usage();
             holder.pill_daily_usage.setText(pillDailyUsage);
 
-        }catch (NullPointerException e){
-            Log.e(TAG, "onBindViewHolder: Null Pointer: " + e.getMessage() );
+        } catch (NullPointerException e) {
+            Log.e(TAG, "onBindViewHolder: Null Pointer: " + e.getMessage());
         }
     }
 
@@ -64,7 +65,7 @@ public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillLi
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView pill_name, pill_instruction,pill_number_in_package,pill_daily_usage;
+        TextView pill_name, pill_instruction, pill_number_in_package, pill_daily_usage;
         OnPillListener mOnNoteListener;
 
         public ViewHolder(View itemView, OnPillListener onNoteListener) {
@@ -85,7 +86,7 @@ public class PillListAdapterWithRecyclerView extends RecyclerView.Adapter<PillLi
         }
     }
 
-    public interface OnPillListener{
+    public interface OnPillListener {
         void onPillClick(int position);
     }
 }
