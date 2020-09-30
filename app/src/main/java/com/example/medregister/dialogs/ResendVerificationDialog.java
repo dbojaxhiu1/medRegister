@@ -85,7 +85,7 @@ public class ResendVerificationDialog extends DialogFragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "onComplete: reauthenticate success.");
+                            Log.d(TAG, "onComplete: re-authenticate success.");
                             sendVerificationEmail();
                             FirebaseAuth.getInstance().signOut();
                             getDialog().dismiss();

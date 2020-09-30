@@ -58,7 +58,7 @@
                     android:layout_below="@+id/textHeader"
                     android:layout_marginTop="210dp"
                     android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress" />
+                    android:editable="false" />
 
 
                 <Button
