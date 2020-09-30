@@ -109,12 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Return true if the @param is null
-     *
-     * @param string
-     * @return
-     */
+    // return true if the string is null
     private boolean isEmpty(String string) {
         return string.equals("");
     }
@@ -134,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
     private void hideSoftKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
-
+    //for setting up firebase authentication
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 

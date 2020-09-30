@@ -53,11 +53,8 @@ public class PasswordResetDialog extends DialogFragment {
         return view;
     }
 
-    /**
-     * Send a password reset link to the email provided
-     *
-     * @param email
-     */
+
+     // Will send a password reset link to the email provided
     public void sendPasswordResetEmail(String email) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -77,12 +74,7 @@ public class PasswordResetDialog extends DialogFragment {
                 });
     }
 
-    /**
-     * Return true if the @param is null
-     *
-     * @param string
-     * @return
-     */
+    // return true if the string is null
     private boolean isEmpty(String string) {
         return string.equals("");
     }

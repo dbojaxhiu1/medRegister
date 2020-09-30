@@ -151,12 +151,9 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Returns True if the user's email contains '@gmail.com'
-     *
-     * @param email
-     * @return
-     */
+
+    // Returns True if the user's email contains '@gmail.com'
+
     private boolean isValidDomain(String email) {
         Log.d(TAG, "isValidDomain: verifying email has correct domain: " + email);
         String domain = email.substring(email.indexOf("@") + 1).toLowerCase();
@@ -164,9 +161,8 @@ public class RegisterActivity extends AppCompatActivity {
         return domain.equals(DOMAIN_NAME);
     }
 
-    /**
-     * Redirects the user to the login screen
-     */
+
+     //Redirects the user to the login screen
     private void redirectLoginScreen() {
         Log.d(TAG, "redirectLoginScreen: redirecting to login screen.");
 
@@ -175,23 +171,12 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    /**
-     * Return true if @param 's1' matches @param 's2'
-     *
-     * @param s1
-     * @param s2
-     * @return
-     */
+    // return true if strings match
     private boolean doStringsMatch(String s1, String s2) {
         return s1.equals(s2);
     }
 
-    /**
-     * Return true if the @param is null
-     *
-     * @param string
-     * @return
-     */
+    // return true if the string is null
     private boolean isEmpty(String string) {
         return string.equals("");
     }
