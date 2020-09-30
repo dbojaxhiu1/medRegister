@@ -54,7 +54,7 @@
     <string name="pill_name">Name of pill</string>
     <string name="instruction">Instructions</string>
     <string name="add_pill">ADD</string>
-    <string name="daily_usage">Daily Usage</string>
+    <string name="daily_usage">Daily Usage (in mg)</string>
     <string name="numOfPillsInPackage">Number of pills on the package</string>
     <string name="db_pills">pills</string>
     <string name="field_pill_id">pillid</string>
@@ -70,4 +70,5 @@
     <string name="dialog_delete">DELETE</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="intent_pill">intent_pill</string>
+    <string name="dialog_update_pill">Update</string>
 </resources>

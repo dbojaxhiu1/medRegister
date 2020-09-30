@@ -12,7 +12,7 @@ public class Pill implements Parcelable {
     private String pill_id;
     private String creator_id;
 
-    public Pill(String pill_name, String pill_instruction, String pill_number_in_package, String pill_daily_usage, String pill_id,String creator_id) {
+    public Pill(String pill_name, String pill_instruction, String pill_number_in_package, String pill_daily_usage, String pill_id, String creator_id) {
         this.pill_name = pill_name;
         this.pill_instruction = pill_instruction;
         this.pill_number_in_package = pill_number_in_package;

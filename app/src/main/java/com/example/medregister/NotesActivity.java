@@ -21,6 +21,7 @@ import java.util.List;
 public class NotesActivity extends AppCompatActivity {
 
     private static final String TAG = "NotesActivity";
+
     EditText editText;
     Button buttonAdd, buttonReset;
     RecyclerView recyclerView;
@@ -41,6 +42,7 @@ public class NotesActivity extends AppCompatActivity {
         buttonReset = findViewById(R.id.button_reset_note);
         recyclerView = findViewById(R.id.note_recycler_view);
 
+        //initialize database
         database = RoomDB.getInstance(this);
         noteList = database.mainNotesDao().getAll();
 

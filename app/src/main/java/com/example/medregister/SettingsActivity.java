@@ -100,6 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
     // Get user data, for account settings option
     private void getUserAccountData() {
         Log.d(TAG, "getUserAccountsData: getting the users account information");
@@ -150,6 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
     }
+
     // will set the email that is currently signed in, if there is one.
     private void setCurrentEmail() {
         Log.d(TAG, "setCurrentEmail: setting current email to EditText field");
@@ -195,6 +197,7 @@ public class SettingsActivity extends AppCompatActivity {
             Log.d(TAG, "checkAuthenticationState: user is authenticated.");
         }
     }
+
     //for setting up firebase authentication
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");

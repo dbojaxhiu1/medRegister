@@ -1,113 +1,80 @@
 package com.example.medregister;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medregister.adapters.PillListAdapter;
+import com.example.medregister.databases.PillRoomDB;
+import com.example.medregister.databases.PillsData;
 import com.example.medregister.dialogs.RegisterPillDialog;
-import com.example.medregister.models.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterPillsActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterPillsActivity";
 
+    //Initialize variable
     private ListView mListView;
-    private FloatingActionButton mFob;
+    private FloatingActionButton buttonAdd;
+    Button buttonEdit, buttonDelete;
+    RecyclerView recyclerView;
 
-    private ArrayList<Pill> mPills;
-   // private PillListAdapter mAdapter;
+    List<PillsData> pillList = new ArrayList<>();
+    LinearLayoutManager linearLayoutManager;
+    PillListAdapter adapter;
+    PillRoomDB database;
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerpills);
         Log.d(TAG, "onCreate: started.");
 
+
+        //Assign variable
         mListView = (ListView) findViewById(R.id.listView);
-        mFob = (FloatingActionButton) findViewById(R.id.fob);
+        buttonAdd = (FloatingActionButton) findViewById(R.id.fob);
+        buttonEdit = (Button) findViewById(R.id.edit_button);
+        buttonDelete = (Button) findViewById(R.id.delete_button);
+        recyclerView = findViewById(R.id.pill_recyclerView);
 
-        inClick();
-    }
+        //initialize database
+        database = PillRoomDB.getInstance(this);
+        //store database values in the pill list
+        pillList = database.mainPillsDao().getAll();
 
+        //initialize linear layout manager
+        linearLayoutManager = new LinearLayoutManager(this);
+        //set the layout
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-    public void inClick() {
+        adapter = new PillListAdapter(this,pillList);
+        //set the adapter
+        recyclerView.setAdapter(adapter);
 
-        getPills();
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
 
-        mFob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"Made it until here!!!!!!");
+
                 RegisterPillDialog dialog = new RegisterPillDialog();
                 dialog.show(getSupportFragmentManager(), getString(R.string.dialog_register_pill));
             }
         });
-    }
-    private void setupPillList() {
-        Log.d(TAG, "setupPillList: setting up pill listview");
-        //mAdapter = new PillListAdapter(RegisterPillsActivity.this, R.layout.layout_pill_listitem, mPills);
-        //mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, "onItemClick: selected pills: " + mPills.get(i).toString());
-
-            }
-        });
-
-    }
-
-    private void getPills() {
-        Log.d(TAG, "getPills: retrieving pills from firebase database.");
-        mPills = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
-        Query query = reference.child(getString(R.string.db_pills));
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
-                    Log.d(TAG, "onDataChange: found pill: "
-                            + singleSnapshot.getValue());
-                    Pill pill = new Pill();
-
-                    pill.setPill_id(getString(R.string.field_pill_id));
-                    pill.setPill_name(getString(R.string.field_pill_name));
-                    pill.setPill_instruction(getString(R.string.field_pill_instruction));
-                    pill.setPill_number_in_package(getString(R.string.field_number_pills));
-                    pill.setPill_daily_usage(getString(R.string.field_daily_usage));
-
-                    mPills.add(pill);
-                }
-                setupPillList();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-//    public void showDeleteChatroomDialog(String chatroomId){
-//        DeleteChatroomDialog dialog = new DeleteChatroomDialog();
-//        Bundle args = new Bundle();
-//        args.putString(getString(R.string.field_chatroom_id), chatroomId);
-//        dialog.setArguments(args);
-//        dialog.show(getSupportFragmentManager(), getString(R.string.dialog_delete_chatroom));
-//    }
     }
 }
