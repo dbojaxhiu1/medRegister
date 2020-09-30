@@ -81,6 +81,7 @@ public class SignedInActivity extends AppCompatActivity {
         checkAuthenticationState();
     }
 
+    //checks if the user is authenticated
     private void checkAuthenticationState() {
         Log.d(TAG, "checkAuthenticationState: checking authentication state.");
 
@@ -121,14 +122,13 @@ public class SignedInActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Sign out the current user
-     */
+
+     //sign out the current user
     private void signOut() {
         Log.d(TAG, "signOut: signing out");
         FirebaseAuth.getInstance().signOut();
     }
-
+    //for setting up firebase authentication
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 
@@ -137,10 +137,11 @@ public class SignedInActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-
+                    // user is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
                 } else {
+                    //user is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                     Intent intent = new Intent(SignedInActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -150,28 +151,28 @@ public class SignedInActivity extends AppCompatActivity {
             }
         };
     }
-
+    // will start register Pill activity
     private void registerPillsActivity() {
         Intent intent = new Intent(SignedInActivity.this, RegisterPillsActivity.class);
         startActivity(intent);
 
     }
-
+    // will start Schedule Pill activity
     private void schedulePillsActivity() {
         Intent intent = new Intent(SignedInActivity.this, SchedulePillsActivity.class);
         startActivity(intent);
     }
-
+    // will start Notes  activity
     private void notesActivity() {
         Intent intent = new Intent(SignedInActivity.this, NotesActivity.class);
         startActivity(intent);
     }
-
+    // will start to dos activity
     private void toDoActivity() {
         Intent intent = new Intent(SignedInActivity.this, ToDoActivity.class);
         startActivity(intent);
     }
-
+    // will start healthy tips activity
     private void healthyTipsActivity() {
         Intent intent = new Intent(SignedInActivity.this, HealthyTipsActivity.class);
         startActivity(intent);

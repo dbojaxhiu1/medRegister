@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.medregister.adapters.PillListAdapter;
 import com.example.medregister.dialogs.RegisterPillDialog;
 import com.example.medregister.models.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,7 +30,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
     private FloatingActionButton mFob;
 
     private ArrayList<Pill> mPills;
-    private PillListAdapter mAdapter;
+   // private PillListAdapter mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,8 +59,8 @@ public class RegisterPillsActivity extends AppCompatActivity {
     }
     private void setupPillList() {
         Log.d(TAG, "setupPillList: setting up pill listview");
-        mAdapter = new PillListAdapter(RegisterPillsActivity.this, R.layout.layout_pill_listitem, mPills);
-        mListView.setAdapter(mAdapter);
+        //mAdapter = new PillListAdapter(RegisterPillsActivity.this, R.layout.layout_pill_listitem, mPills);
+        //mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

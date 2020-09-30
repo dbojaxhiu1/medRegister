@@ -75,12 +75,8 @@ public class ResendVerificationDialog extends DialogFragment {
     }
 
 
-    /**
-     * reauthenticate so we can send a verification email again
-     *
-     * @param email
-     * @param password
-     */
+     // will re-authenticate so we can send a verification email again
+
     private void authenticateAndResendEmail(String email, String password) {
         AuthCredential credential = EmailAuthProvider
                 .getCredential(email, password);
@@ -104,9 +100,9 @@ public class ResendVerificationDialog extends DialogFragment {
         });
     }
 
-    /**
-     * sends an email verification link to the user
-     */
+
+     // sends an email verification link to the user
+
     public void sendVerificationEmail() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -124,7 +120,7 @@ public class ResendVerificationDialog extends DialogFragment {
                     });
         }
     }
-
+    // return true if the string is null
     private boolean isEmpty(String string) {
         return string.equals("");
     }

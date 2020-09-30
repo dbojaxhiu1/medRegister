@@ -23,7 +23,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:contentDescription="@string/pill_logo"
-                android:src="@drawable/pill_logo" />
+                android:src="@drawable/circle_cropped" />
 
             <EditText
                 android:id="@+id/email"
