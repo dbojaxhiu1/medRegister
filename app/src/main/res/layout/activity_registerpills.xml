@@ -1,40 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".RegisterPillsActivity">
 
-    <FrameLayout
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_pill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerView"
-            android:orientation="vertical"
-            android:padding="5dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-    </FrameLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listView"
-        android:divider="@null">
-    </ListView>
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/list_row_pills" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fob_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabSize="normal"
-        app:elevation="10dp"
-        app:backgroundTint="@color/blue3"
-        android:src="@drawable/add_pill_icon"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:id="@+id/fob"/>
+        android:foregroundGravity="bottom"
+        android:layout_margin="32dp"
+        android:src="@drawable/add_pill_icon"
+        app:backgroundTint="@color/blue3" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

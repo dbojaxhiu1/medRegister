@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.medregister.R;
-import com.example.medregister.RegisterPillsActivity;
 import com.example.medregister.models.Pill;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -74,7 +73,7 @@ public class RegisterPillDialog extends DialogFragment {
                             .child(pillId)
                             .setValue(pill);
 
-                    ((RegisterPillsActivity)getActivity()).inClick();
+                   // ((RegisterPillsActivity)getActivity()).inClick();
                     getDialog().dismiss();
 
                 } else {
