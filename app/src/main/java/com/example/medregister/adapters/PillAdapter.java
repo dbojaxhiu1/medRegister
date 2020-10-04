@@ -44,6 +44,10 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
         notifyDataSetChanged();
     }
 
+    public Pill getPillAt(int position) {
+        return pills.get(position);
+    }
+
     class PillHolder extends RecyclerView.ViewHolder {
         private TextView viewPillName;
         private TextView viewPillInstruction;
