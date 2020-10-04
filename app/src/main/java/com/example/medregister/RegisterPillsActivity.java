@@ -3,6 +3,9 @@ package com.example.medregister;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -94,6 +97,25 @@ public class RegisterPillsActivity extends AppCompatActivity {
             Toast.makeText(this, "Pill saved", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Pill not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.register_pill_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_pills:
+                pillViewModel.deleteAllPills();
+                Toast.makeText(this, "All pills deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -33,8 +33,8 @@ public class PillViewModel extends AndroidViewModel {
         pillRepository.delete(pill);
     }
 
-    public void deleteAllPills(Pill pill) {
-        pillRepository.deleteAllPills(pill);
+    public void deleteAllPills() {
+        pillRepository.deleteAllPills();
     }
 
     public LiveData<List<Pill>> getAllPills() {

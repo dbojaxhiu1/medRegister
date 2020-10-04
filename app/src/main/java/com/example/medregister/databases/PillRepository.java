@@ -30,7 +30,7 @@ public class PillRepository {
 
     }
 
-    public void deleteAllPills(Pill pill) {
+    public void deleteAllPills() {
         new DeleteAllPillAsyncTask(pillDao).execute();
     }
 
