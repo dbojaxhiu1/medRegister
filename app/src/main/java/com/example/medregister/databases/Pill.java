@@ -16,10 +16,13 @@ public class Pill {
 
     private int usage;
 
-    public Pill(String name, String instruction, int usage) {
+    private int packageContains;
+
+    public Pill(String name, String instruction, int usage, int packageContains) {
         this.name = name;
         this.instruction = instruction;
         this.usage = usage;
+        this.packageContains = packageContains;
     }
 
     public int getId() {
@@ -40,5 +43,13 @@ public class Pill {
 
     public int getUsage() {
         return usage;
+    }
+
+    public int getPackageContains() {
+        return packageContains;
+    }
+
+    public void setPackageContains(int packageContains) {
+        this.packageContains = packageContains;
     }
 }

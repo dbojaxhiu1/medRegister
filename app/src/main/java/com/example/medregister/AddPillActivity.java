@@ -19,10 +19,12 @@ public class AddPillActivity extends AppCompatActivity {
     public static final String extra_name = "com.example.medregister.EXTRA_NAME";
     public static final String extra_instruction = "com.example.medregister.EXTRA_INSTRUCTION";
     public static final String extra_usage = "com.example.medregister.EXTRA_USAGE";
+    public static final String extra_package_contains = "com.example.medregister.EXTRA_PACKAGE_CONTAINS";
 
     private EditText editTextPillName;
     private EditText editTextPillInstruction;
     private NumberPicker numberPickerUsage;
+    private NumberPicker numberPickerPackage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,13 @@ public class AddPillActivity extends AppCompatActivity {
         editTextPillName = findViewById(R.id.edit_pill_name);
         editTextPillInstruction = findViewById(R.id.edit_pill_instruction);
         numberPickerUsage = findViewById(R.id.number_picker_usage);
+        numberPickerPackage = findViewById(R.id.number_picker_number_in_package);
 
         numberPickerUsage.setMinValue(1);
         numberPickerUsage.setMaxValue(5);
+
+        numberPickerPackage.setMinValue(1);
+        numberPickerPackage.setMaxValue(50);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Add Pill");
@@ -44,6 +50,7 @@ public class AddPillActivity extends AppCompatActivity {
         String name = editTextPillName.getText().toString();
         String instruction = editTextPillInstruction.getText().toString();
         int usage = numberPickerUsage.getValue();
+        int packageContains = numberPickerPackage.getValue();
 
         if (name.trim().isEmpty() || instruction.trim().isEmpty()) {
             Toast.makeText(this, "Please insert the pill name and instruction", Toast.LENGTH_SHORT).show();
@@ -53,6 +60,7 @@ public class AddPillActivity extends AppCompatActivity {
         data.putExtra(extra_name, name);
         data.putExtra(extra_instruction, instruction);
         data.putExtra(extra_usage, usage);
+        data.putExtra(extra_package_contains, packageContains);
         setResult(RESULT_OK, data);
         finish();
     }

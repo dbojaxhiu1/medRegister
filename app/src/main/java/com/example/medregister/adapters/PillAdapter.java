@@ -29,9 +29,12 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
     @Override
     public void onBindViewHolder(@NonNull PillHolder holder, int position) {
         Pill currentPill = pills.get(position);
+        String packageString = "Package Contains: " + currentPill.getPackageContains() +" pills";
+        String usage = "Daily usage: " + currentPill.getUsage();
         holder.viewPillName.setText(currentPill.getName());
         holder.viewPillInstruction.setText(currentPill.getInstruction());
-        holder.viewPillUsage.setText(String.valueOf(currentPill.getUsage()));
+        holder.viewPillUsage.setText(usage);
+        holder.viewPackageContains.setText(packageString);
     }
 
     @Override
@@ -52,13 +55,14 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
         private TextView viewPillName;
         private TextView viewPillInstruction;
         private TextView viewPillUsage;
+        private TextView viewPackageContains;
 
         public PillHolder(@NonNull View itemView) {
             super(itemView);
             viewPillName = itemView.findViewById(R.id.view_pill_name);
             viewPillInstruction = itemView.findViewById(R.id.view_instruction);
             viewPillUsage = itemView.findViewById(R.id.view_usage);
+            viewPackageContains = itemView.findViewById(R.id.view_package_contains);
         }
-
     }
 }

@@ -90,8 +90,9 @@ public class RegisterPillsActivity extends AppCompatActivity {
             String name = data.getStringExtra(AddPillActivity.extra_name);
             String instruction = data.getStringExtra(AddPillActivity.extra_instruction);
             int usage = data.getIntExtra(AddPillActivity.extra_usage, 1);
+            int packageContains = data.getIntExtra(AddPillActivity.extra_package_contains,1);
 
-            Pill pill = new Pill(name, instruction, usage);
+            Pill pill = new Pill(name, instruction, usage,packageContains);
             pillViewModel.insert(pill);
 
             Toast.makeText(this, "Pill saved", Toast.LENGTH_SHORT).show();
