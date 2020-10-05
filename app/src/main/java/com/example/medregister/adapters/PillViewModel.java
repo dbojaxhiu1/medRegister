@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.medregister.databases.PillRepository;
-import com.example.medregister.databases.Pill;
+import com.example.medregister.models.Pill;
 
 import java.util.List;
 

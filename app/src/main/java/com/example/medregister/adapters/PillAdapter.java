@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
-import com.example.medregister.databases.Pill;
+import com.example.medregister.models.Pill;
 
 public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
 

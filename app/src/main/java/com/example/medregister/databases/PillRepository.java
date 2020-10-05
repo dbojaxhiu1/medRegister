@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.medregister.models.Pill;
+
 import java.util.List;
 
 public class PillRepository {

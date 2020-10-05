@@ -22,9 +22,9 @@ public interface MainNotesDao {
     @Delete
     void reset(List<NotesData> notesData);
 
-    @Query("UPDATE table_name SET text = :sText WHERE id =:sid")
+    @Query("UPDATE notes_table SET text = :sText WHERE id =:sid")
     void update(int sid, String sText);
 
-    @Query("SELECT * FROM table_name")
+    @Query("SELECT * FROM notes_table")
     List<NotesData> getAll();
 }

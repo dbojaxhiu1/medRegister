@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.adapters.PillAdapter;
 import com.example.medregister.adapters.PillViewModel;
-import com.example.medregister.databases.Pill;
+import com.example.medregister.models.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
