@@ -38,6 +38,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerpills);
         Log.d(TAG, "onCreate: started.");
+        setTitle("Register Pills");
 
         //create a floating action button variable
         FloatingActionButton fob_add_pill = findViewById(R.id.fob_add);
