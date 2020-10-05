@@ -65,7 +65,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
         pillViewModel.getAllPills().observe(this, new Observer<List<Pill>>() {
             @Override
             public void onChanged(List<Pill> pills) {
-                pillAdapter.setPills(pills);
+                pillAdapter.submitList(pills);
             }
         });
 

@@ -42,7 +42,7 @@ public class NotesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.note_recycler_view);
 
         database = NoteDatabase.getInstance(this);
-        noteList = database.mainNotesDao().getAll();
+        noteList = database.NoteDao().getAll();
 
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -57,11 +57,11 @@ public class NotesActivity extends AppCompatActivity {
                     //checking when its empty
                     NotesData notesData = new NotesData();
                     notesData.setText(noteText);
-                    database.mainNotesDao().insert(notesData);
+                    database.NoteDao().insert(notesData);
 
                     editText.setText("");
                     noteList.clear();
-                    noteList.addAll(database.mainNotesDao().getAll());
+                    noteList.addAll(database.NoteDao().getAll());
                     noteAdapter.notifyDataSetChanged();
 
                 }
@@ -71,9 +71,9 @@ public class NotesActivity extends AppCompatActivity {
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.mainNotesDao().reset(noteList);
+                database.NoteDao().reset(noteList);
                 noteList.clear();
-                noteList.addAll(database.mainNotesDao().getAll());
+                noteList.addAll(database.NoteDao().getAll());
                 noteAdapter.notifyDataSetChanged();
             }
         });

@@ -74,9 +74,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                     public void onClick(View v) {
                         dialog.dismiss();
                         String updateText = editText.getText().toString().trim();
-                        database.mainNotesDao().update(noteId, updateText);
+                        database.NoteDao().update(noteId, updateText);
                         notesDataList.clear();
-                        notesDataList.addAll(database.mainNotesDao().getAll());
+                        notesDataList.addAll(database.NoteDao().getAll());
                         notifyDataSetChanged();
                     }
                 });
@@ -86,7 +86,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 NotesData d = notesDataList.get(holder.getAdapterPosition());
-                database.mainNotesDao().delete(d);
+                database.NoteDao().delete(d);
                 int position = holder.getAdapterPosition();
                 notesDataList.remove(position);
                 notifyItemRemoved(position);

@@ -6,18 +6,35 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
 import com.example.medregister.databases.Pill;
 
-import java.util.ArrayList;
-import java.util.List;
+public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
 
-public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
-
-    private List<Pill> pills = new ArrayList<>();
     private OnItemClickListener listener;
+
+    public PillAdapter() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<Pill> DIFF_CALLBACK = new DiffUtil.ItemCallback<Pill>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Pill oldItem, @NonNull Pill newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Pill oldItem, @NonNull Pill newItem) {
+            return oldItem.getName().equals(newItem.getName()) &&
+                    oldItem.getInstruction().equals(newItem.getInstruction()) &&
+                    oldItem.getUsage() == newItem.getUsage() &&
+                    oldItem.getPackageContains() == newItem.getPackageContains();
+        }
+    };
 
     @NonNull
     @Override
@@ -29,7 +46,7 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PillHolder holder, int position) {
-        Pill currentPill = pills.get(position);
+        Pill currentPill = getItem(position);
         String packageString = "Package Contains: " + currentPill.getPackageContains() + " pills";
         String usage = "Daily usage: " + currentPill.getUsage();
         holder.viewPillName.setText(currentPill.getName());
@@ -38,18 +55,8 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
         holder.viewPackageContains.setText(packageString);
     }
 
-    @Override
-    public int getItemCount() {
-        return pills.size();
-    }
-
-    public void setPills(List<Pill> pills) {
-        this.pills = pills;
-        notifyDataSetChanged();
-    }
-
     public Pill getPillAt(int position) {
-        return pills.get(position);
+        return getItem(position);
     }
 
     class PillHolder extends RecyclerView.ViewHolder {
@@ -71,7 +78,7 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
                     int position = getAdapterPosition();
                     //to avoid crash check for listener, and to make sure we don't click on item with invalid position. NO_POSITION = -1
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(pills.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });
