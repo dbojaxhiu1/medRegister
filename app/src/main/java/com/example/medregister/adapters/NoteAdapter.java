@@ -15,18 +15,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
+import com.example.medregister.databases.NoteDatabase;
 import com.example.medregister.databases.NotesData;
-import com.example.medregister.databases.RoomDB;
 
 import java.util.List;
 
-public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private List<NotesData> notesDataList;
     private Activity context;
-    private RoomDB database;
+    private NoteDatabase database;
 
-    public NoteListAdapter(Activity context, List<NotesData> notesDataList) {
+    public NoteAdapter(Activity context, List<NotesData> notesDataList) {
         this.context = context;
         this.notesDataList = notesDataList;
         notifyDataSetChanged();
@@ -45,7 +45,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         NotesData notes = notesDataList.get(position);
-        database = RoomDB.getInstance(context);
+        database = NoteDatabase.getInstance(context);
         holder.textView.setText(notes.getText());
 
         holder.buttonEdit.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
                 dialog.getWindow().setLayout(width, height);
                 dialog.show();
 
-                final EditText editText = dialog.findViewById(R.id.edit_text);
+                final EditText editText = dialog.findViewById(R.id.edit_text_note);
                 Button buttonUpdate = dialog.findViewById(R.id.button_update);
 
                 editText.setText(noteText);

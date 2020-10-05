@@ -11,22 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".AddEditPillActivity"
+            android:parentActivityName=".RegisterPillsActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".SignedInActivity"/>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".RegisterPillsActivity"/>
-        <activity android:name=".SchedulePillsActivity"/>
-        <activity android:name=".NotesActivity"/>
-        <activity android:name=".ToDoActivity"/>
-        <activity android:name=".HealthyTipsActivity"/>
-
-
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SignedInActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".RegisterPillsActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".SchedulePillsActivity" />
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".ToDoActivity" />
+        <activity android:name=".HealthyTipsActivity" />
     </application>
+
 </manifest>

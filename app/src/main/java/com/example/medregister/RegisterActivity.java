@@ -162,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-     //Redirects the user to the login screen
+    //Redirects the user to the login screen
     private void redirectLoginScreen() {
         Log.d(TAG, "redirectLoginScreen: redirecting to login screen.");
 

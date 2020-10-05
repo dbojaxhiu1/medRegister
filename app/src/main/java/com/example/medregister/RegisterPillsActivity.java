@@ -1,113 +1,152 @@
 package com.example.medregister;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medregister.dialogs.RegisterPillDialog;
-import com.example.medregister.models.Pill;
+import com.example.medregister.adapters.PillAdapter;
+import com.example.medregister.adapters.PillViewModel;
+import com.example.medregister.databases.Pill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterPillsActivity extends AppCompatActivity {
+    public static final int ADD_PILL_REQUEST = 1;
+    public static final int EDIT_PILL_REQUEST = 2;
 
     private static final String TAG = "RegisterPillsActivity";
 
-    private ListView mListView;
-    private FloatingActionButton mFob;
-
-    private ArrayList<Pill> mPills;
-   // private PillListAdapter mAdapter;
+    private PillViewModel pillViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerpills);
         Log.d(TAG, "onCreate: started.");
+        setTitle("Register Pills");
 
-        mListView = (ListView) findViewById(R.id.listView);
-        mFob = (FloatingActionButton) findViewById(R.id.fob);
-
-        inClick();
-    }
-
-
-    public void inClick() {
-
-        getPills();
-
-        mFob.setOnClickListener(new View.OnClickListener() {
+        //create a floating action button variable
+        FloatingActionButton fob_add_pill = findViewById(R.id.fob_add);
+        fob_add_pill.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                RegisterPillDialog dialog = new RegisterPillDialog();
-                dialog.show(getSupportFragmentManager(), getString(R.string.dialog_register_pill));
-            }
-        });
-    }
-    private void setupPillList() {
-        Log.d(TAG, "setupPillList: setting up pill listview");
-        //mAdapter = new PillListAdapter(RegisterPillsActivity.this, R.layout.layout_pill_listitem, mPills);
-        //mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, "onItemClick: selected pills: " + mPills.get(i).toString());
-
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterPillsActivity.this, AddEditPillActivity.class);
+                startActivityForResult(intent, ADD_PILL_REQUEST);
             }
         });
 
-    }
+        //reference Recycler View
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_pill);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //call recycler view
+        recyclerView.setHasFixedSize(true);
 
-    private void getPills() {
-        Log.d(TAG, "getPills: retrieving pills from firebase database.");
-        mPills = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        //adapter
+        final PillAdapter pillAdapter = new PillAdapter();
+        //pass adapter to recycler view
+        recyclerView.setAdapter(pillAdapter);
 
-        Query query = reference.child(getString(R.string.db_pills));
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        pillViewModel = ViewModelProviders.of(this).get(PillViewModel.class);
+        pillViewModel.getAllPills().observe(this, new Observer<List<Pill>>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
-                    Log.d(TAG, "onDataChange: found pill: "
-                            + singleSnapshot.getValue());
-                    Pill pill = new Pill();
-
-                    pill.setPill_id(getString(R.string.field_pill_id));
-                    pill.setPill_name(getString(R.string.field_pill_name));
-                    pill.setPill_instruction(getString(R.string.field_pill_instruction));
-                    pill.setPill_number_in_package(getString(R.string.field_number_pills));
-                    pill.setPill_daily_usage(getString(R.string.field_daily_usage));
-
-                    mPills.add(pill);
-                }
-                setupPillList();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onChanged(List<Pill> pills) {
+                pillAdapter.setPills(pills);
             }
         });
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
 
-//    public void showDeleteChatroomDialog(String chatroomId){
-//        DeleteChatroomDialog dialog = new DeleteChatroomDialog();
-//        Bundle args = new Bundle();
-//        args.putString(getString(R.string.field_chatroom_id), chatroomId);
-//        dialog.setArguments(args);
-//        dialog.show(getSupportFragmentManager(), getString(R.string.dialog_delete_chatroom));
-//    }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                pillViewModel.delete(pillAdapter.getPillAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(RegisterPillsActivity.this, "Pill Deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+
+        pillAdapter.setOnItemClickListener(new PillAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Pill pill) {
+                Intent intent = new Intent(RegisterPillsActivity.this, AddEditPillActivity.class);
+                intent.putExtra(AddEditPillActivity.extra_id, pill.getId());
+                intent.putExtra(AddEditPillActivity.extra_name, pill.getName());
+                intent.putExtra(AddEditPillActivity.extra_instruction, pill.getInstruction());
+                intent.putExtra(AddEditPillActivity.extra_usage, pill.getUsage());
+                intent.putExtra(AddEditPillActivity.extra_package_contains, pill.getPackageContains());
+                startActivityForResult(intent, EDIT_PILL_REQUEST);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_PILL_REQUEST && resultCode == RESULT_OK) {
+            String name = data.getStringExtra(AddEditPillActivity.extra_name);
+            String instruction = data.getStringExtra(AddEditPillActivity.extra_instruction);
+            int usage = data.getIntExtra(AddEditPillActivity.extra_usage, 1);
+            int packageContains = data.getIntExtra(AddEditPillActivity.extra_package_contains, 1);
+
+            Pill pill = new Pill(name, instruction, usage, packageContains);
+            pillViewModel.insert(pill);
+
+            Toast.makeText(this, "Pill saved", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == EDIT_PILL_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(AddEditPillActivity.extra_id, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Pill couldn't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String name = data.getStringExtra(AddEditPillActivity.extra_name);
+            String instruction = data.getStringExtra(AddEditPillActivity.extra_instruction);
+            int usage = data.getIntExtra(AddEditPillActivity.extra_usage, 1);
+            int packageContains = data.getIntExtra(AddEditPillActivity.extra_package_contains, 1);
+
+            Pill pill = new Pill(name, instruction, usage, packageContains);
+            pill.setId(id);
+            pillViewModel.update(pill);
+            Toast.makeText(this, "Pill updated", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Pill not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.register_pill_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_pills:
+                pillViewModel.deleteAllPills();
+                Toast.makeText(this, "All pills deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

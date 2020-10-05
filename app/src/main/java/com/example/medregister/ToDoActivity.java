@@ -15,5 +15,6 @@ public class ToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
         Log.d(TAG, "onCreate: started.");
+        setTitle("To Do Activities");
     }
 }

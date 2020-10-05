@@ -16,5 +16,6 @@ public class SchedulePillsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_pills);
         Log.d(TAG, "onCreate: started.");
+        setTitle("Schedule Pills");
     }
 }
