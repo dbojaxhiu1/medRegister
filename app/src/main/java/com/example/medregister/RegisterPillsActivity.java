@@ -27,6 +27,7 @@ import java.util.List;
 
 public class RegisterPillsActivity extends AppCompatActivity {
     public static final int ADD_PILL_REQUEST = 1;
+    public static final int EDIT_PILL_REQUEST = 2;
 
     private static final String TAG = "RegisterPillsActivity";
 
@@ -43,7 +44,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
         fob_add_pill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterPillsActivity.this, AddPillActivity.class);
+                Intent intent = new Intent(RegisterPillsActivity.this, AddEditPillActivity.class);
                 startActivityForResult(intent, ADD_PILL_REQUEST);
             }
         });
@@ -80,6 +81,19 @@ public class RegisterPillsActivity extends AppCompatActivity {
                 Toast.makeText(RegisterPillsActivity.this, "Pill Deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        pillAdapter.setOnItemClickListener(new PillAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Pill pill) {
+                Intent intent = new Intent(RegisterPillsActivity.this, AddEditPillActivity.class);
+                intent.putExtra(AddEditPillActivity.extra_id, pill.getId());
+                intent.putExtra(AddEditPillActivity.extra_name, pill.getName());
+                intent.putExtra(AddEditPillActivity.extra_instruction, pill.getInstruction());
+                intent.putExtra(AddEditPillActivity.extra_usage, pill.getUsage());
+                intent.putExtra(AddEditPillActivity.extra_package_contains, pill.getPackageContains());
+                startActivityForResult(intent, EDIT_PILL_REQUEST);
+            }
+        });
     }
 
     @Override
@@ -87,15 +101,30 @@ public class RegisterPillsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_PILL_REQUEST && resultCode == RESULT_OK) {
-            String name = data.getStringExtra(AddPillActivity.extra_name);
-            String instruction = data.getStringExtra(AddPillActivity.extra_instruction);
-            int usage = data.getIntExtra(AddPillActivity.extra_usage, 1);
-            int packageContains = data.getIntExtra(AddPillActivity.extra_package_contains,1);
+            String name = data.getStringExtra(AddEditPillActivity.extra_name);
+            String instruction = data.getStringExtra(AddEditPillActivity.extra_instruction);
+            int usage = data.getIntExtra(AddEditPillActivity.extra_usage, 1);
+            int packageContains = data.getIntExtra(AddEditPillActivity.extra_package_contains, 1);
 
-            Pill pill = new Pill(name, instruction, usage,packageContains);
+            Pill pill = new Pill(name, instruction, usage, packageContains);
             pillViewModel.insert(pill);
 
             Toast.makeText(this, "Pill saved", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == EDIT_PILL_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(AddEditPillActivity.extra_id, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Pill couldn't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String name = data.getStringExtra(AddEditPillActivity.extra_name);
+            String instruction = data.getStringExtra(AddEditPillActivity.extra_instruction);
+            int usage = data.getIntExtra(AddEditPillActivity.extra_usage, 1);
+            int packageContains = data.getIntExtra(AddEditPillActivity.extra_package_contains, 1);
+
+            Pill pill = new Pill(name, instruction, usage, packageContains);
+            pill.setId(id);
+            pillViewModel.update(pill);
+            Toast.makeText(this, "Pill updated", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Pill not saved", Toast.LENGTH_SHORT).show();
         }

@@ -54,7 +54,7 @@ public class PasswordResetDialog extends DialogFragment {
     }
 
 
-     // Will send a password reset link to the email provided
+    // Will send a password reset link to the email provided
     public void sendPasswordResetEmail(String email) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -46,14 +46,14 @@ public class NotesActivity extends AppCompatActivity {
 
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        noteAdapter = new NoteAdapter(NotesActivity.this,noteList);
+        noteAdapter = new NoteAdapter(NotesActivity.this, noteList);
         recyclerView.setAdapter(noteAdapter);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String noteText = editText.getText().toString().trim();
-                if(!noteText.equals("")){
+                if (!noteText.equals("")) {
                     //checking when its empty
                     NotesData notesData = new NotesData();
                     notesData.setText(noteText);

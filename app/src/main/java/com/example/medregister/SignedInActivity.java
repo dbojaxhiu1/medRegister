@@ -123,11 +123,12 @@ public class SignedInActivity extends AppCompatActivity {
     }
 
 
-     //sign out the current user
+    //sign out the current user
     private void signOut() {
         Log.d(TAG, "signOut: signing out");
         FirebaseAuth.getInstance().signOut();
     }
+
     //for setting up firebase authentication
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
@@ -151,27 +152,32 @@ public class SignedInActivity extends AppCompatActivity {
             }
         };
     }
+
     // will start register Pill activity
     private void registerPillsActivity() {
         Intent intent = new Intent(SignedInActivity.this, RegisterPillsActivity.class);
         startActivity(intent);
 
     }
+
     // will start Schedule Pill activity
     private void schedulePillsActivity() {
         Intent intent = new Intent(SignedInActivity.this, SchedulePillsActivity.class);
         startActivity(intent);
     }
+
     // will start Notes  activity
     private void notesActivity() {
         Intent intent = new Intent(SignedInActivity.this, NotesActivity.class);
         startActivity(intent);
     }
+
     // will start to dos activity
     private void toDoActivity() {
         Intent intent = new Intent(SignedInActivity.this, ToDoActivity.class);
         startActivity(intent);
     }
+
     // will start healthy tips activity
     private void healthyTipsActivity() {
         Intent intent = new Intent(SignedInActivity.this, HealthyTipsActivity.class);

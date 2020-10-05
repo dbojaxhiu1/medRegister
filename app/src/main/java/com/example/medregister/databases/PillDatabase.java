@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Pill.class}, version = 1,exportSchema = false)
+@Database(entities = {Pill.class}, version = 1, exportSchema = false)
 public abstract class PillDatabase extends RoomDatabase {
 
     private static PillDatabase instance;
@@ -44,9 +44,9 @@ public abstract class PillDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            pillDao.insert(new Pill("Name 1", "Instruction 1", 1,6));
-            pillDao.insert(new Pill("Name 2", "Instruction 2", 2,7));
-            pillDao.insert(new Pill("Name 3", "Instruction 3", 3,8));
+            pillDao.insert(new Pill("Name 1", "Instruction 1", 1, 6));
+            pillDao.insert(new Pill("Name 2", "Instruction 2", 2, 7));
+            pillDao.insert(new Pill("Name 3", "Instruction 3", 3, 8));
             return null;
         }
     }

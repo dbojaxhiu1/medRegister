@@ -13,13 +13,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddPillActivity extends AppCompatActivity {
-    private static final String TAG = "AddPillActivity";
+public class AddEditPillActivity extends AppCompatActivity {
+    private static final String TAG = "AddEditPillActivity";
 
     public static final String extra_name = "com.example.medregister.EXTRA_NAME";
     public static final String extra_instruction = "com.example.medregister.EXTRA_INSTRUCTION";
     public static final String extra_usage = "com.example.medregister.EXTRA_USAGE";
     public static final String extra_package_contains = "com.example.medregister.EXTRA_PACKAGE_CONTAINS";
+    public static final String extra_id = "com.example.medregister.EXTRA_ID";
 
     private EditText editTextPillName;
     private EditText editTextPillInstruction;
@@ -43,7 +44,7 @@ public class AddPillActivity extends AppCompatActivity {
         numberPickerPackage.setMaxValue(50);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Pill");
+        addEditNoteActivity();
     }
 
     private void savePill() {
@@ -61,6 +62,11 @@ public class AddPillActivity extends AppCompatActivity {
         data.putExtra(extra_instruction, instruction);
         data.putExtra(extra_usage, usage);
         data.putExtra(extra_package_contains, packageContains);
+
+        int id = getIntent().getIntExtra(extra_id, -1);
+        if (id != -1) {
+            data.putExtra(extra_id, id);
+        }
         setResult(RESULT_OK, data);
         finish();
     }
@@ -80,6 +86,20 @@ public class AddPillActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addEditNoteActivity() {
+        Intent intent = getIntent();
+        if (intent.hasExtra(extra_id)) {
+            //will be triggered only if its an update situation
+            setTitle("Edit Pill");
+            editTextPillName.setText(intent.getStringExtra(extra_name));
+            editTextPillInstruction.setText(intent.getStringExtra(extra_instruction));
+            numberPickerUsage.setValue(intent.getIntExtra(extra_usage, 1));
+            numberPickerPackage.setValue(intent.getIntExtra(extra_package_contains, 1));
+        } else {
+            setTitle("Add Pill");
         }
     }
 }

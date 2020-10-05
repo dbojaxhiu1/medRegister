@@ -17,6 +17,7 @@ import java.util.List;
 public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
 
     private List<Pill> pills = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -29,7 +30,7 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
     @Override
     public void onBindViewHolder(@NonNull PillHolder holder, int position) {
         Pill currentPill = pills.get(position);
-        String packageString = "Package Contains: " + currentPill.getPackageContains() +" pills";
+        String packageString = "Package Contains: " + currentPill.getPackageContains() + " pills";
         String usage = "Daily usage: " + currentPill.getUsage();
         holder.viewPillName.setText(currentPill.getName());
         holder.viewPillInstruction.setText(currentPill.getInstruction());
@@ -63,6 +64,25 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.PillHolder> {
             viewPillInstruction = itemView.findViewById(R.id.view_instruction);
             viewPillUsage = itemView.findViewById(R.id.view_usage);
             viewPackageContains = itemView.findViewById(R.id.view_package_contains);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    //to avoid crash check for listener, and to make sure we don't click on item with invalid position. NO_POSITION = -1
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(pills.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Pill pill);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
