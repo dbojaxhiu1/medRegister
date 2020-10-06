@@ -1,10 +1,12 @@
-package com.example.medregister.databases;
+package com.example.medregister.data.dao;
 
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.example.medregister.data.NotesData;
 
 import java.util.List;
 

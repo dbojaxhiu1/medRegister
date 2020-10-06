@@ -73,4 +73,5 @@
 
     <!-- strings for To do activity -->
     <string name="edit_text">Add new reminder</string>
+    <string name="edit_reminder">Reminder</string>
 </resources>

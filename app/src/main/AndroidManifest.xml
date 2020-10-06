@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AddReminderActivity"
+            android:parentActivityName=".ToDoActivity" />
+        <activity
             android:name=".AddEditPillActivity"
-            android:parentActivityName=".RegisterPillsActivity"></activity>
+            android:parentActivityName=".RegisterPillsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +32,9 @@
             android:launchMode="singleTop" />
         <activity android:name=".SchedulePillsActivity" />
         <activity android:name=".NotesActivity" />
-        <activity android:name=".ToDoActivity" />
+        <activity
+            android:name=".ToDoActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".HealthyTipsActivity" />
     </application>
 

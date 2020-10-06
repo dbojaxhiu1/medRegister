@@ -1,4 +1,4 @@
-package com.example.medregister.databases;
+package com.example.medregister.data;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,9 +10,10 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.medregister.data.dao.ReminderDao;
 import com.example.medregister.models.Reminder;
 
-@Database(entities = {Reminder.class}, version = 1, exportSchema = false)
+@Database(entities = {Reminder.class}, version = 7, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class ReminderDatabase extends RoomDatabase {
 
@@ -24,8 +25,7 @@ public abstract class ReminderDatabase extends RoomDatabase {
     public static synchronized ReminderDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    ReminderDatabase.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
+                    ReminderDatabase.class, DATABASE_NAME).allowMainThreadQueries()
                    // .addCallback(roomCallback)
                     .build();
         }
@@ -49,7 +49,7 @@ public abstract class ReminderDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            reminderDao.insert(new Reminder("New reminder 1", "01-01-2020"));
+            reminderDao.insert(new Reminder("New reminder 1", "2000/02/02"));
             //reminderDao.insert(new Reminder("New reminder 2", new Date(2010, 1, 3)));
             //reminderDao.insert(new Reminder("New reminder 3", new Date(2020, 02, 03)));
             return null;

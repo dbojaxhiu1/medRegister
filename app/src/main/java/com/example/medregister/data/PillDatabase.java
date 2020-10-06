@@ -1,4 +1,4 @@
-package com.example.medregister.databases;
+package com.example.medregister.data;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,9 +9,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.medregister.data.dao.PillDao;
 import com.example.medregister.models.Pill;
 
-@Database(entities = {Pill.class}, version = 2, exportSchema = false)
+@Database(entities = {Pill.class}, version = 9, exportSchema = false)
 public abstract class PillDatabase extends RoomDatabase {
 
     private static PillDatabase database;
@@ -22,8 +23,7 @@ public abstract class PillDatabase extends RoomDatabase {
     public static synchronized PillDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    PillDatabase.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
+                    PillDatabase.class, DATABASE_NAME).allowMainThreadQueries()  //.fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }

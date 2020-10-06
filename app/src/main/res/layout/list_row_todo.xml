@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -10,6 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/view_reminder"
@@ -22,12 +33,12 @@
             android:text="@string/edit_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <EditText
-            android:id="@+id/date_and_time"
+        <TextView
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view_reminder"
-            android:text="Date and Time"
+            android:text="Date"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </RelativeLayout>

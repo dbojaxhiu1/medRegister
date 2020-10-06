@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.medregister.databases.ReminderRepository;
+import com.example.medregister.data.ReminderRepository;
 import com.example.medregister.models.Reminder;
 
 import java.util.List;

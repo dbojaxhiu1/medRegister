@@ -15,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
-import com.example.medregister.databases.NoteDatabase;
-import com.example.medregister.databases.NotesData;
+import com.example.medregister.data.NoteDatabase;
+import com.example.medregister.data.NotesData;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.medregister.databases;
+package com.example.medregister.data.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

@@ -1,10 +1,8 @@
 package com.example.medregister.adapters;
 
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,8 +30,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
     public void onBindViewHolder(@NonNull ReminderHolder holder, int position) {
         Reminder currentReminder = reminders.get(position);
         holder.textViewReminder.setText(currentReminder.getText());
-        //holder.editDateTime.setText(currentReminder.getDate()); --there might be a problem here
-        holder.editDateTime.setInputType(InputType.TYPE_NULL);
+        holder.textEditDate.setText(currentReminder.getDate());
     }
 
     @Override
@@ -41,19 +38,19 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
         return reminders.size();
     }
 
-    public void setReminders(List<Reminder> reminders){
+    public void setReminders(List<Reminder> reminders) {
         this.reminders = reminders;
         notifyDataSetChanged();
     }
 
     class ReminderHolder extends RecyclerView.ViewHolder {
         private TextView textViewReminder;
-        private EditText editDateTime;
+        private TextView textEditDate;
 
         public ReminderHolder(@NonNull View itemView) {
             super(itemView);
             textViewReminder = itemView.findViewById(R.id.view_reminder);
-            editDateTime = itemView.findViewById(R.id.date_and_time);
+            textEditDate = itemView.findViewById(R.id.date);
         }
     }
 }
