@@ -51,11 +51,11 @@
 
     <!-- Strings for Register Pill activity -->
     <string name="register_new_pill">Register new pill</string>
-    <string name="pill_name">Name of pill</string>
-    <string name="instruction">Instructions</string>
+    <string name="pill_name">Pill Name</string>
+    <string name="instruction">Pill Instruction</string>
     <string name="add_pill">ADD</string>
-    <string name="daily_usage">Daily Usage</string>
-    <string name="numOfPillsInPackage">Number of pills on the package</string>
+    <string name="daily_usage">Daily usage: </string>
+    <string name="numOfPillsInPackage">Number of pills in package:</string>
     <string name="db_pills">pills</string>
     <string name="field_pill_id">pillid</string>
     <string name="field_pill_name">pillname</string>
@@ -70,4 +70,7 @@
     <string name="dialog_delete">DELETE</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="intent_pill">intent_pill</string>
+
+    <!-- strings for To do activity -->
+    <string name="edit_text">Add new reminder</string>
 </resources>

@@ -12,21 +12,21 @@
         android:id="@+id/edit_pill_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pill Name"
+        android:hint="@string/pill_name"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/edit_pill_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pill Instruction"
+        android:hint="@string/instruction"
         android:inputType="textMultiLine" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Daily usage: "
+        android:text="@string/daily_usage"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <NumberPicker
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Number of pills in package:"
+        android:text="@string/numOfPillsInPackage"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <NumberPicker
