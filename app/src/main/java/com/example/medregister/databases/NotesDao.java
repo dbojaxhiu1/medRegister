@@ -11,7 +11,7 @@ import java.util.List;
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
-public interface MainNotesDao {
+public interface NotesDao {
     @Insert(onConflict = REPLACE)
     void insert(NotesData notesData);
 

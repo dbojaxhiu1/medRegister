@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.medregister.models.Pill;
 
-@Database(entities = {Pill.class}, version = 1, exportSchema = false)
+@Database(entities = {Pill.class}, version = 2, exportSchema = false)
 public abstract class PillDatabase extends RoomDatabase {
 
     private static PillDatabase database;

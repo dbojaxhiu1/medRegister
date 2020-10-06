@@ -64,7 +64,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 dialog.getWindow().setLayout(width, height);
                 dialog.show();
 
-                final EditText editText = dialog.findViewById(R.id.edit_text_note);
+                final EditText editText = dialog.findViewById(R.id.update_edit_text);
                 Button buttonUpdate = dialog.findViewById(R.id.button_update);
 
                 editText.setText(noteText);

@@ -36,7 +36,7 @@ public class NotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
         Log.d(TAG, "onCreate: started.");
         setTitle("Notes");
-        editText = findViewById(R.id.edit_text);
+        editText = findViewById(R.id.edit_text_note);
         buttonAdd = findViewById(R.id.button_add_note);
         buttonReset = findViewById(R.id.button_reset_note);
         recyclerView = findViewById(R.id.note_recycler_view);
