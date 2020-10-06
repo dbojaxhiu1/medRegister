@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity(tableName = "reminders_table")
@@ -48,7 +50,10 @@ public class Reminder {
         this.text = text;
     }
 
-    public Date getDate() {
+    public Date getDate() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = df.parse("2014-09-13");
+        df.applyPattern("dd/MM/yyyy");
         return date;
     }
 

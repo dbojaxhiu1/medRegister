@@ -12,8 +12,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.medregister.models.Reminder;
 
-import java.util.Date;
-
 @Database(entities = {Reminder.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class ReminderDatabase extends RoomDatabase {
@@ -51,7 +49,7 @@ public abstract class ReminderDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            reminderDao.insert(new Reminder("New reminder 1", new Date()));
+            reminderDao.insert(new Reminder("New reminder 1", "01-01-2020"));
             //reminderDao.insert(new Reminder("New reminder 2", new Date(2010, 1, 3)));
             //reminderDao.insert(new Reminder("New reminder 3", new Date(2020, 02, 03)));
             return null;
