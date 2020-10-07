@@ -75,4 +75,5 @@
     <string name="edit_text">Add new reminder</string>
     <string name="edit_reminder">Reminder</string>
     <string name="date">Date</string>
+    <string name="delete_all_reminders">Delete all reminders</string>
 </resources>

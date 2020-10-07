@@ -100,6 +100,7 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        datePickerDialog.setMinDate(Calendar.getInstance());
         datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
 

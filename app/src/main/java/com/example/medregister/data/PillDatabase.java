@@ -23,7 +23,7 @@ public abstract class PillDatabase extends RoomDatabase {
     public static synchronized PillDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    PillDatabase.class, DATABASE_NAME).allowMainThreadQueries()  //.fallbackToDestructiveMigration()
+                    PillDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }

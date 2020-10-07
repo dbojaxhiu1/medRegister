@@ -3,13 +3,18 @@ package com.example.medregister;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,9 +62,22 @@ public class ToDoActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Reminder> reminders) {
                 reminderAdapter.setReminders(reminders);
-                Toast.makeText(ToDoActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                reminderViewModel.delete(reminderAdapter.getReminderAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(ToDoActivity.this, "Reminder deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -76,6 +94,25 @@ public class ToDoActivity extends AppCompatActivity {
             Toast.makeText(this, "Reminder saved", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Reminder not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.to_do_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_reminders:
+                reminderViewModel.deleteAllReminders();
+                Toast.makeText(this, "All reminders deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

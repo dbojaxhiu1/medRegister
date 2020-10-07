@@ -12,15 +12,23 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <RadioButton
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:orientation="vertical"
+            android:layout_alignParentRight="true">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </RadioGroup>
 
         <TextView
             android:id="@+id/view_reminder"

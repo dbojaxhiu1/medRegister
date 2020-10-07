@@ -34,7 +34,7 @@ public class ReminderViewModel extends AndroidViewModel {
         reminderRepository.delete(reminder);
     }
 
-    public void deleteAllPills() {
+    public void deleteAllReminders() {
         reminderRepository.deleteAllReminders();
     }
 
