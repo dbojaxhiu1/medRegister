@@ -19,6 +19,8 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date and Time" />
+        android:clickable="true"
+        android:editable="false"
+        android:hint="@string/date" />
 
 </LinearLayout>

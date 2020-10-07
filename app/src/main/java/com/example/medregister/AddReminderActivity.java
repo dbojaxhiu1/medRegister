@@ -2,9 +2,11 @@ package com.example.medregister;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,9 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddReminderActivity extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = "AddReminderActivity";
@@ -34,17 +34,27 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
+
         editTextReminderName = findViewById(R.id.edit_reminder_name);
         editTextDate = findViewById(R.id.date);
 
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //sDate = sdf.format(new Date());
+        //editTextDate.setText(sDate);
+
+        editTextDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Setting the date");
+                setDate();
+            }
+        });
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Add Reminder");
     }
 
     private void saveReminder() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        sDate = sdf.format(new Date());
-        editTextDate.setText(sDate);
+
         String textReminder = editTextReminderName.getText().toString();
         String textDate = editTextDate.getText().toString();
 
@@ -84,13 +94,13 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
 
     public void setDate() {
         Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
+        DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
                 this,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
-        dpd.show(getFragmentManager(), "Datepickerdialog");
+        datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
 
 
@@ -104,13 +114,4 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
         Toast.makeText(this, sDate, Toast.LENGTH_SHORT).show();
         editTextDate.setText(sDate);
     }
-    /*
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.date:
-                setDate();
-                break;
-
-        }*/
 }

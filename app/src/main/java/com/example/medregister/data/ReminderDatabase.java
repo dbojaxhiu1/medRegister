@@ -25,7 +25,7 @@ public abstract class ReminderDatabase extends RoomDatabase {
     public static synchronized ReminderDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    ReminderDatabase.class, DATABASE_NAME).allowMainThreadQueries()
+                    ReminderDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration()
                    // .addCallback(roomCallback)
                     .build();
         }
