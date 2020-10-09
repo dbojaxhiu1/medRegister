@@ -76,4 +76,8 @@
     <string name="edit_reminder">Reminder</string>
     <string name="date">Date</string>
     <string name="delete_all_reminders">Delete all reminders</string>
+
+    <string name="app_information">About</string>
+    <string name="version_code">Version Code</string>
+    <string name="version_name">Version Name</string>
 </resources>

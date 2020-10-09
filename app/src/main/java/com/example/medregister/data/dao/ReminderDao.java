@@ -27,6 +27,6 @@ public interface ReminderDao {
     @Query("DELETE FROM reminders_table")
     void deleteAllReminders();
 
-    @Query("SELECT * FROM reminders_table ORDER BY date DESC")
+    @Query("SELECT * FROM reminders_table ORDER BY date ASC")
     LiveData<List<Reminder>> getAllReminders();
 }
