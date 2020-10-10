@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class ToDoActivity extends AppCompatActivity {
     public static final int ADD_REMINDER_REQUEST = 1;
 
     private ReminderViewModel reminderViewModel;
+    private RadioButton radioButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_todo);
         Log.d(TAG, "onCreate: started.");
         setTitle("To Do Activities");
-
+        //radioButton = findViewById(R.id.radio_button_reminder);
         FloatingActionButton buttonAddReminder = findViewById(R.id.fob_add_reminder);
         buttonAddReminder.setOnClickListener(new View.OnClickListener() {
             @Override

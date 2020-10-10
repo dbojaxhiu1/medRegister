@@ -3,6 +3,8 @@ package com.example.medregister.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,18 +44,27 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
         this.reminders = reminders;
         notifyDataSetChanged();
     }
-    public Reminder getReminderAt(int position){
+
+    public Reminder getReminderAt(int position) {
         return reminders.get(position);
     }
 
     class ReminderHolder extends RecyclerView.ViewHolder {
         private TextView textViewReminder;
         private TextView textEditDate;
+        private RadioGroup radioGroup;
+        private RadioButton radioButton;
 
         public ReminderHolder(@NonNull View itemView) {
             super(itemView);
             textViewReminder = itemView.findViewById(R.id.view_reminder);
             textEditDate = itemView.findViewById(R.id.date);
+            //radioGroup = itemView.findViewById(R.id.radioGroup);
+            //radioButton = itemView.findViewById(R.id.radio_button_reminder);
         }
     }
 }
+
+
+//radioButton = (RadioButton) group.findViewById(checkedId);
+//textViewReminder.setPaintFlags(textViewReminder.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
