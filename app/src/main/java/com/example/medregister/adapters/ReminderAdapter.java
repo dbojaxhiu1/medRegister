@@ -8,18 +8,33 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
 import com.example.medregister.models.Reminder;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ReminderAdapter extends ListAdapter<Reminder, ReminderAdapter.ReminderHolder> {
 
-public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ReminderHolder> {
-
-    private List<Reminder> reminders = new ArrayList<>();
     private OnItemClickListener listener;
+
+    public ReminderAdapter() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<Reminder> DIFF_CALLBACK = new DiffUtil.ItemCallback<Reminder>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Reminder oldItem, @NonNull Reminder newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Reminder oldItem, @NonNull Reminder newItem) {
+            return oldItem.getText().equals(newItem.getText()) &&
+                    oldItem.getDate().equals(newItem.getDate());
+        }
+    };
 
     @NonNull
     @Override
@@ -31,23 +46,14 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
 
     @Override
     public void onBindViewHolder(@NonNull ReminderHolder holder, int position) {
-        Reminder currentReminder = reminders.get(position);
+        Reminder currentReminder = getItem(position);
         holder.textViewReminder.setText(currentReminder.getText());
         holder.textEditDate.setText(currentReminder.getDate());
     }
 
-    @Override
-    public int getItemCount() {
-        return reminders.size();
-    }
-
-    public void setReminders(List<Reminder> reminders) {
-        this.reminders = reminders;
-        notifyDataSetChanged();
-    }
 
     public Reminder getReminderAt(int position) {
-        return reminders.get(position);
+        return getItem(position);
     }
 
     class ReminderHolder extends RecyclerView.ViewHolder {
@@ -69,7 +75,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                     int position = getAdapterPosition();
                     //to not click in an item with no position, avoids crash
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(reminders.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });

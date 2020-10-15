@@ -64,7 +64,7 @@ public class ToDoActivity extends AppCompatActivity {
         reminderViewModel.getAllReminders().observe(this, new Observer<List<Reminder>>() {
             @Override
             public void onChanged(List<Reminder> reminders) {
-                reminderAdapter.setReminders(reminders);
+                reminderAdapter.submitList(reminders);
             }
         });
 
