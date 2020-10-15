@@ -6,7 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.medregister.data.NotesData;
+import com.example.medregister.models.Note;
 
 import java.util.List;
 
@@ -15,18 +15,18 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface NotesDao {
     @Insert(onConflict = REPLACE)
-    void insert(NotesData notesData);
+    void insert(Note notesData);
 
     @Delete
-    void delete(NotesData notesData);
+    void delete(Note notesData);
 
     //delete all queries
     @Delete
-    void reset(List<NotesData> notesData);
+    void reset(List<Note> notesData);
 
     @Query("UPDATE notes_table SET text = :sText WHERE id =:sid")
     void update(int sid, String sText);
 
     @Query("SELECT * FROM notes_table")
-    List<NotesData> getAll();
+    List<Note> getAll();
 }

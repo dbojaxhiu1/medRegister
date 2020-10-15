@@ -31,6 +31,7 @@ public class ToDoActivity extends AppCompatActivity {
     private static final String TAG = "ToDoActivity";
 
     public static final int ADD_REMINDER_REQUEST = 1;
+    public static final int EDIT_REMINDER_REQUEST = 2;
 
     private ReminderViewModel reminderViewModel;
     private RadioButton radioButton;
@@ -46,7 +47,7 @@ public class ToDoActivity extends AppCompatActivity {
         buttonAddReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ToDoActivity.this, AddReminderActivity.class);
+                Intent intent = new Intent(ToDoActivity.this, AddEditReminderActivity.class);
                 startActivityForResult(intent, ADD_REMINDER_REQUEST);
 
             }
@@ -80,6 +81,17 @@ public class ToDoActivity extends AppCompatActivity {
                 Toast.makeText(ToDoActivity.this, "Reminder deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        reminderAdapter.setOnItemClickListener(new ReminderAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Reminder reminder) {
+                Intent intent = new Intent(ToDoActivity.this, AddEditReminderActivity.class);
+                intent.putExtra(AddEditReminderActivity.extra_id, reminder.getId());
+                intent.putExtra(AddEditReminderActivity.extra_reminder_name, reminder.getText());
+                intent.putExtra(AddEditReminderActivity.extra_date, reminder.getDate());
+                startActivityForResult(intent, EDIT_REMINDER_REQUEST);
+            }
+        });
     }
 
     @Override
@@ -87,13 +99,26 @@ public class ToDoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_REMINDER_REQUEST && resultCode == RESULT_OK) {
-            String reminderText = data.getStringExtra(AddReminderActivity.extra_reminder_name);
-            String reminderDate = data.getStringExtra(AddReminderActivity.extra_date);
+            String reminderText = data.getStringExtra(AddEditReminderActivity.extra_reminder_name);
+            String reminderDate = data.getStringExtra(AddEditReminderActivity.extra_date);
 
             Reminder reminder = new Reminder(reminderText, reminderDate);
             reminderViewModel.insert(reminder);
 
             Toast.makeText(this, "Reminder saved", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == EDIT_REMINDER_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(AddEditReminderActivity.extra_id, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Reminder couldn't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String reminderText = data.getStringExtra(AddEditReminderActivity.extra_reminder_name);
+            String reminderDate = data.getStringExtra(AddEditReminderActivity.extra_date);
+
+            Reminder reminder = new Reminder(reminderText,reminderDate);
+            reminder.setId(id);
+            reminderViewModel.update(reminder);
+            Toast.makeText(this, "Reminder updated ", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Reminder not saved", Toast.LENGTH_SHORT).show();
         }

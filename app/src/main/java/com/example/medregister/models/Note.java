@@ -1,4 +1,4 @@
-package com.example.medregister.data;
+package com.example.medregister.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "notes_table")
-public class NotesData implements Serializable {
+public class Note implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

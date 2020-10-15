@@ -18,11 +18,14 @@ public class Pill {
 
     private int packageContains;
 
+    //private Date creationDate;
+
     public Pill(String name, String instruction, int usage, int packageContains) {
         this.name = name;
         this.instruction = instruction;
         this.usage = usage;
         this.packageContains = packageContains;
+        //this.creationDate = new Date();
     }
 
     public int getId() {

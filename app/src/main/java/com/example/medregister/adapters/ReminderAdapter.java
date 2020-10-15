@@ -19,6 +19,7 @@ import java.util.List;
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ReminderHolder> {
 
     private List<Reminder> reminders = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -61,7 +62,26 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
             textEditDate = itemView.findViewById(R.id.date);
             //radioGroup = itemView.findViewById(R.id.radioGroup);
             //radioButton = itemView.findViewById(R.id.radio_button_reminder);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    //to not click in an item with no position, avoids crash
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(reminders.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Reminder reminder);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
 

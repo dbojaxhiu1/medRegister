@@ -16,17 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.R;
 import com.example.medregister.data.NoteDatabase;
-import com.example.medregister.data.NotesData;
+import com.example.medregister.models.Note;
 
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private List<NotesData> notesDataList;
+    private List<Note> notesDataList;
     private Activity context;
     private NoteDatabase database;
 
-    public NoteAdapter(Activity context, List<NotesData> notesDataList) {
+    public NoteAdapter(Activity context, List<Note> notesDataList) {
         this.context = context;
         this.notesDataList = notesDataList;
         notifyDataSetChanged();
@@ -44,14 +44,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        NotesData notes = notesDataList.get(position);
+        Note notes = notesDataList.get(position);
         database = NoteDatabase.getInstance(context);
         holder.textView.setText(notes.getText());
 
         holder.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotesData d = notesDataList.get(holder.getAdapterPosition());
+                Note d = notesDataList.get(holder.getAdapterPosition());
                 final int noteId = d.getId();
                 String noteText = d.getText();
 
@@ -85,7 +85,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotesData d = notesDataList.get(holder.getAdapterPosition());
+                Note d = notesDataList.get(holder.getAdapterPosition());
                 database.NoteDao().delete(d);
                 int position = holder.getAdapterPosition();
                 notesDataList.remove(position);

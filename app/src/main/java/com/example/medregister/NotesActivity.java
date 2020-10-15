@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medregister.adapters.NoteAdapter;
 import com.example.medregister.data.NoteDatabase;
-import com.example.medregister.data.NotesData;
+import com.example.medregister.models.Note;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class NotesActivity extends AppCompatActivity {
     Button buttonAdd, buttonReset;
     RecyclerView recyclerView;
 
-    List<NotesData> noteList = new ArrayList<>();
+    List<Note> noteList = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
     NoteDatabase database;
     NoteAdapter noteAdapter;
@@ -55,7 +55,7 @@ public class NotesActivity extends AppCompatActivity {
                 String noteText = editText.getText().toString().trim();
                 if (!noteText.equals("")) {
                     //checking when its empty
-                    NotesData notesData = new NotesData();
+                    Note notesData = new Note();
                     notesData.setText(noteText);
                     database.NoteDao().insert(notesData);
 

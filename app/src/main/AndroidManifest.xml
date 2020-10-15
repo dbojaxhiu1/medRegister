@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AppInformationActivity" />
         <activity
-            android:name=".AddReminderActivity"
+            android:name=".AddEditReminderActivity"
             android:parentActivityName=".ToDoActivity" />
         <activity
             android:name=".AddEditPillActivity"

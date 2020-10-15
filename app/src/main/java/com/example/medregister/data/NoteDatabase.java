@@ -7,9 +7,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.medregister.data.dao.NotesDao;
+import com.example.medregister.models.Note;
 
 //Database entities
-@Database(entities = {NotesData.class}, version = 4, exportSchema = false)
+@Database(entities = {Note.class}, version = 4, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
     //database instances
     private static NoteDatabase database;

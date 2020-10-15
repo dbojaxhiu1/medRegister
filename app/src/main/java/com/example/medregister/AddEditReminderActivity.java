@@ -17,7 +17,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 
-public class AddReminderActivity extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class AddEditReminderActivity extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = "AddReminderActivity";
 
     public static final String extra_reminder_name = "com.example.medregister.EXTRA_REMINDER_NAME";
@@ -50,7 +50,7 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
             }
         });
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Reminder");
+        addEditReminderActivity();
     }
 
     private void saveReminder() {
@@ -65,6 +65,7 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
         Intent data = new Intent();
         data.putExtra(extra_reminder_name, textReminder);
         data.putExtra(extra_date, textDate);
+        
 
         int id = getIntent().getIntExtra(extra_id, -1);
         if (id != -1) {
@@ -89,6 +90,18 @@ public class AddReminderActivity extends AppCompatActivity implements com.wdulla
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addEditReminderActivity() {
+        Intent intent = getIntent();
+        if (intent.hasExtra(extra_id)) {
+            setTitle("Edit Reminder");
+            editTextReminderName.setText(intent.getStringExtra(extra_reminder_name));
+            editTextDate.setText(intent.getStringExtra(extra_date));
+        } else {
+            setTitle("Add Reminder");
+
         }
     }
 
