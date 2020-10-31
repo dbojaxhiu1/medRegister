@@ -38,10 +38,6 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
         editTextReminderName = findViewById(R.id.edit_reminder_name);
         editTextDate = findViewById(R.id.date);
 
-        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        //sDate = sdf.format(new Date());
-        //editTextDate.setText(sDate);
-
         editTextDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +61,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
         Intent data = new Intent();
         data.putExtra(extra_reminder_name, textReminder);
         data.putExtra(extra_date, textDate);
-        
+
 
         int id = getIntent().getIntExtra(extra_id, -1);
         if (id != -1) {
