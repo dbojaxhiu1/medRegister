@@ -1,10 +1,11 @@
-package com.example.medregister.data;
+package com.example.medregister.data.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.medregister.data.ReminderDatabase;
 import com.example.medregister.data.dao.ReminderDao;
 import com.example.medregister.models.Reminder;
 
