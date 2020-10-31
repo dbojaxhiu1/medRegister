@@ -7,14 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.medregister.data.dao.ReminderDao;
 import com.example.medregister.models.Reminder;
 
 @Database(entities = {Reminder.class}, version = 7, exportSchema = false)
-@TypeConverters(DateConverter.class)
 public abstract class ReminderDatabase extends RoomDatabase {
 
     private static ReminderDatabase database;

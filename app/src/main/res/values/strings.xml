@@ -80,4 +80,5 @@
     <string name="app_information">About</string>
     <string name="version_code">Version Code</string>
     <string name="version_name">Version Name</string>
+    <string name="note">Note</string>
 </resources>
