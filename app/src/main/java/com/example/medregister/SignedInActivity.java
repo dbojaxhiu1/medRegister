@@ -117,6 +117,9 @@ public class SignedInActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignedInActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.optionAppInformation:
+                Intent intent_information = new Intent(SignedInActivity.this, AppInformationActivity.class);
+                startActivity(intent_information);
             default:
                 return super.onOptionsItemSelected(item);
         }

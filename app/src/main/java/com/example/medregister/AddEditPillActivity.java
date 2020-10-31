@@ -44,7 +44,7 @@ public class AddEditPillActivity extends AppCompatActivity {
         numberPickerPackage.setMaxValue(50);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        addEditNoteActivity();
+        addEditPillActivity();
     }
 
     private void savePill() {
@@ -89,7 +89,7 @@ public class AddEditPillActivity extends AppCompatActivity {
         }
     }
 
-    private void addEditNoteActivity() {
+    private void addEditPillActivity() {
         Intent intent = getIntent();
         if (intent.hasExtra(extra_id)) {
             //will be triggered only if its an update situation

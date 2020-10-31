@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_text"
+        android:id="@+id/update_edit_text"
         android:hint="Enter text"
         android:padding="12dp"
         android:lines="4"

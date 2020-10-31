@@ -1,4 +1,4 @@
-package com.example.medregister.databases;
+package com.example.medregister.data;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,29 +9,32 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Pill.class}, version = 1, exportSchema = false)
+import com.example.medregister.data.dao.PillDao;
+import com.example.medregister.models.Pill;
+
+@Database(entities = {Pill.class}, version = 9, exportSchema = false)
 public abstract class PillDatabase extends RoomDatabase {
 
-    private static PillDatabase instance;
+    private static PillDatabase database;
+    private static String DATABASE_NAME = "database";
 
     public abstract PillDao pillDao();
 
     public static synchronized PillDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    PillDatabase.class, "pill_database")
-                    .fallbackToDestructiveMigration()
+        if (database == null) {
+            database = Room.databaseBuilder(context.getApplicationContext(),
+                    PillDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }
-        return instance;
+        return database;
     }
 
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PopulateDBAsyncTask(instance).execute();
+            new PopulateDBAsyncTask(database).execute();
         }
     };
 
