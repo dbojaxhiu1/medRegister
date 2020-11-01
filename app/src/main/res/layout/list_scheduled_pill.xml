@@ -24,12 +24,20 @@
             android:paddingBottom="16dp">
 
             <TextView
-                android:id="@+id/tv_med_time"
+                android:id="@+id/med_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#4d4d4d"
                 android:textSize="30sp"
                 tools:text="23:20" />
+
+            <TextView
+                android:id="@+id/med_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#4d4d4d"
+                android:textSize="15sp"
+                tools:text="11/11/2011" />
 
         </LinearLayout>
 
@@ -56,7 +64,7 @@
                 android:padding="4dp">
 
                 <TextView
-                    android:id="@+id/medicine_name"
+                    android:id="@+id/med_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#4d4d4d"

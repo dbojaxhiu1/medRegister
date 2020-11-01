@@ -14,18 +14,15 @@ public class SchedulePill {
 
     private String dateScheduled;
 
-    private int hour;
+   private String time;
 
-    private int minute;
+    private int dose;
 
-    private int usage;
-
-    public SchedulePill(String pillName, String dateScheduled, int usage, int hour, int minute) {
+    public SchedulePill(String pillName, String dateScheduled, String time,int dose) {
         this.pillName = pillName;
         this.dateScheduled = dateScheduled;
-        this.usage = usage;
-        this.hour = hour;
-        this.minute = minute;
+        this.dose = dose;
+        this.time = time;
     }
 
     public void setPillName(String pillName) {
@@ -36,24 +33,16 @@ public class SchedulePill {
         this.dateScheduled = dateScheduled;
     }
 
-    public void setUsage(int usage) {
-        this.usage = usage;
+    public void setDose(int dose) {
+        this.dose = dose;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
+    public String getTime() {
+        return time;
     }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
-
-    public int getHour() {
-        return hour;
-    }
-
-    public int getMinute() {
-        return minute;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setId(int id) {
@@ -72,7 +61,7 @@ public class SchedulePill {
         return dateScheduled;
     }
 
-    public int getUsage() {
-        return usage;
+    public int getDose() {
+        return dose;
     }
 }

@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".AddScheduledPillActivity"
+            android:parentActivityName=".SchedulePillsActivity" />
         <activity android:name=".AppInformationActivity" />
         <activity
             android:name=".AddEditReminderActivity"
@@ -31,7 +34,9 @@
         <activity
             android:name=".RegisterPillsActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".SchedulePillsActivity" />
+        <activity
+            android:name=".SchedulePillsActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".NotesActivity" />
         <activity
             android:name=".ToDoActivity"

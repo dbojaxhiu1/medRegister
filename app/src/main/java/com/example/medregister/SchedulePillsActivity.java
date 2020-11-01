@@ -10,7 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medregister.adapters.SchedulePillAdapter;
 import com.example.medregister.adapters.SchedulePillViewModel;
 import com.example.medregister.models.SchedulePill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,12 +42,39 @@ public class SchedulePillsActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_schedule_pill);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        final SchedulePillAdapter adapter = new SchedulePillAdapter();
+        recyclerView.setAdapter(adapter);
+
+
         schedulePillViewModel = ViewModelProviders.of(this).get(SchedulePillViewModel.class);
         schedulePillViewModel.getAllScheduledPills().observe(this, new Observer<List<SchedulePill>>() {
             @Override
             public void onChanged(List<SchedulePill> schedulePills) {
-                Toast.makeText(SchedulePillsActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                adapter.setScheduledPills(schedulePills);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_SCHEDULE_PILL_REQUEST && resultCode == RESULT_OK) {
+            String name = data.getStringExtra(AddScheduledPillActivity.EXTRA_NAME);
+            String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
+            String time = data.getStringExtra(AddScheduledPillActivity.EXTRA_TIME);
+            int dose = data.getIntExtra(AddScheduledPillActivity.EXTRA_DOSE, 1);
+
+            SchedulePill schedulePill = new SchedulePill(name, date, time, dose);
+            schedulePillViewModel.insert(schedulePill);
+
+            Toast.makeText(this, "Pill scheduled", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Pill not scheduled", Toast.LENGTH_SHORT).show();
+        }
     }
 }
