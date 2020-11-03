@@ -3,6 +3,9 @@
     package="com.example.medregister">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data
+        android:name="firebase_crashlytics_collection_enabled"
+        android:value="false" />
 
     <application
         android:allowBackup="true"
@@ -43,6 +46,6 @@
             android:name=".ToDoActivity"
             android:launchMode="singleTop" />
         <activity android:name=".HealthyTipsActivity" />
-    </application>
 
+    </application>
 </manifest>
