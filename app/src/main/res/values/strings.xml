@@ -73,7 +73,7 @@
 
     <!-- strings for To do activity -->
     <string name="edit_text">Add new reminder</string>
-    <string name="edit_reminder">Reminder</string>
+    <string name="edit_title">Reminder</string>
     <string name="date">Date</string>
     <string name="delete_all_reminders">Delete all reminders</string>
 
@@ -81,4 +81,6 @@
     <string name="version_code">Version Code</string>
     <string name="version_name">Version Name</string>
     <string name="note">Note</string>
+
+    <string name="schedule_pill_extended_fob">Schedule Pill</string>
 </resources>

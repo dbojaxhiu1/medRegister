@@ -6,9 +6,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -27,11 +26,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(androidx.test.ext.junit.runners.AndroidJUnit4.class)
 public class LoginActivityTest {
 
     @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
+    public ActivityScenarioRule<LoginActivity> mActivityTestRule = new ActivityScenarioRule<>(LoginActivity.class);
 
     @Test
     public void loginActivityTest() {

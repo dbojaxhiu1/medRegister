@@ -34,6 +34,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
     private EditText editTextTime;
     private EditText editTextDose;
     private String sDate;
+    String timeToNotify;
     private int mHour, mYear, mMonth, mMinute, mDay;
 
     @Override
@@ -47,7 +48,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Setting the date");
-                setDate();
+                setTime();
             }
         });
         editTextTime = findViewById(R.id.edit_text_time);
@@ -59,7 +60,6 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             }
         });
         editTextDose = findViewById(R.id.edit_text_dose);
-
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Schedule pill");
     }
@@ -74,7 +74,6 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             Toast.makeText(this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
             return;
         }
-
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
         data.putExtra(EXTRA_DATE, date);
@@ -116,6 +115,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
     }
 
     private void setTime() {
+        setDate();
         Calendar mCurrentTime = Calendar.getInstance();
         mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         mMinute = mCurrentTime.get(Calendar.MINUTE);
@@ -125,7 +125,9 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 mHour = selectedHour;
                 mMinute = selectedMinute;
+                timeToNotify = selectedHour + ":" + selectedMinute;
                 editTextTime.setText(String.format(Locale.getDefault(), "%d:%d", selectedHour, selectedMinute));
+                //set alarm here
             }
         }, mHour, mMinute, false);//No 24 hour time
         mTimePicker.setTitle("Select Time");
@@ -142,4 +144,5 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
         Toast.makeText(this, sDate, Toast.LENGTH_SHORT).show();
         editTextDate.setText(sDate);
     }
+
 }

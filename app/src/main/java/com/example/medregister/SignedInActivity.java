@@ -6,10 +6,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +32,7 @@ public class SignedInActivity extends AppCompatActivity {
 
         setupFirebaseAuth();
 
-        TextView registerPills = (TextView) findViewById(R.id.textView7);
+        ConstraintLayout registerPills = (ConstraintLayout) findViewById(R.id.registerPillButton);
         registerPills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +40,7 @@ public class SignedInActivity extends AppCompatActivity {
             }
         });
 
-        TextView schedulePills = (TextView) findViewById(R.id.textView8);
+        ConstraintLayout schedulePills = (ConstraintLayout) findViewById(R.id.schedulePillButton);
         schedulePills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class SignedInActivity extends AppCompatActivity {
             }
         });
 
-        TextView notes = (TextView) findViewById(R.id.textView9);
+        ConstraintLayout notes = (ConstraintLayout) findViewById(R.id.notesButton);
         notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,14 +56,14 @@ public class SignedInActivity extends AppCompatActivity {
             }
         });
 
-        TextView toDo = (TextView) findViewById(R.id.textView10);
+        ConstraintLayout toDo = (ConstraintLayout) findViewById(R.id.toDoButton);
         toDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toDoActivity();
             }
         });
-        TextView healthyTips = (TextView) findViewById(R.id.textView11);
+        ConstraintLayout healthyTips = (ConstraintLayout) findViewById(R.id.healthyTipsButton);
         healthyTips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

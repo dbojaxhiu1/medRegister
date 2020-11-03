@@ -30,10 +30,12 @@ public class SchedulePillAdapter extends RecyclerView.Adapter<SchedulePillAdapte
     @Override
     public void onBindViewHolder(@NonNull SchedulePillHolder holder, int position) {
         SchedulePill currentPill = scheduledPills.get(position);
+
+        final String dose = currentPill.getDose() + " mg";
         holder.textViewTime.setText(currentPill.getTime());
         holder.textViewDate.setText(currentPill.getDateScheduled());
         holder.textViewName.setText(currentPill.getPillName());
-        holder.textViewDose.setText(String.valueOf(currentPill.getDose()));
+        holder.textViewDose.setText(dose);
     }
 
     @Override
@@ -41,7 +43,7 @@ public class SchedulePillAdapter extends RecyclerView.Adapter<SchedulePillAdapte
         return scheduledPills.size();
     }
 
-    public void setScheduledPills(List<SchedulePill> scheduledPills){
+    public void setScheduledPills(List<SchedulePill> scheduledPills) {
         this.scheduledPills = scheduledPills;
         notifyDataSetChanged();
     }
