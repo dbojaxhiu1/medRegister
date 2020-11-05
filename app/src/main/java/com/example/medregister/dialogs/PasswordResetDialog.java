@@ -49,6 +49,13 @@ public class PasswordResetDialog extends DialogFragment {
 
             }
         });
+        TextView cancelDialog = (TextView) view.findViewById(R.id.dialogCancel);
+        cancelDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
 
         return view;
     }

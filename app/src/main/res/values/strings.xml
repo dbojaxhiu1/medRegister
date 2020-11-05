@@ -83,4 +83,7 @@
     <string name="note">Note</string>
 
     <string name="schedule_pill_extended_fob">Schedule Pill</string>
+
+    <string name="notification_title">MedRegister</string>
+    <string name="notification_text">Don\'t forget to take pills!</string>
 </resources>

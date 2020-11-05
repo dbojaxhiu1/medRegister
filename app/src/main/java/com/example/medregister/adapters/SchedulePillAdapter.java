@@ -47,6 +47,9 @@ public class SchedulePillAdapter extends RecyclerView.Adapter<SchedulePillAdapte
         this.scheduledPills = scheduledPills;
         notifyDataSetChanged();
     }
+    public SchedulePill getScheduledPillAt(int position){
+        return scheduledPills.get(position);
+    }
 
 
     class SchedulePillHolder extends RecyclerView.ViewHolder {

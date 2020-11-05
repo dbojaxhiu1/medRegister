@@ -1,5 +1,7 @@
 package com.example.medregister;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -86,12 +89,12 @@ public class SignedInActivity extends AppCompatActivity {
         Log.d(TAG, "checkAuthenticationState: checking authentication state.");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         if (user == null) {
             Log.d(TAG, "checkAuthenticationState: user is null, navigating back to login screen.");
 
             Intent intent = new Intent(SignedInActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
             startActivity(intent);
             finish();
         } else {
@@ -103,7 +106,6 @@ public class SignedInActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_menu, menu);
-
         return true;
     }
 
@@ -111,7 +113,7 @@ public class SignedInActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.optionSignOut:
-                signOut();
+                signOut(this);
                 return true;
             case R.id.optionAccountSettings:
                 Intent intent = new Intent(SignedInActivity.this, SettingsActivity.class);
@@ -120,6 +122,7 @@ public class SignedInActivity extends AppCompatActivity {
             case R.id.optionAppInformation:
                 Intent intent_information = new Intent(SignedInActivity.this, AppInformationActivity.class);
                 startActivity(intent_information);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -127,9 +130,25 @@ public class SignedInActivity extends AppCompatActivity {
 
 
     //sign out the current user
-    private void signOut() {
+    private void signOut(final Activity activity) {
         Log.d(TAG, "signOut: signing out");
-        FirebaseAuth.getInstance().signOut();
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Sign out");
+        builder.setMessage("Are you sure you want to sign out ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activity.finishAffinity();
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
     //for setting up firebase authentication
@@ -143,7 +162,6 @@ public class SignedInActivity extends AppCompatActivity {
                 if (user != null) {
                     // user is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
                 } else {
                     //user is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
