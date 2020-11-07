@@ -1,5 +1,8 @@
 package com.example.medregister;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,6 +73,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 schedulePillViewModel.delete(adapter.getScheduledPillAt(viewHolder.getAdapterPosition()));
+                cancelAlarm();
                 Toast.makeText(SchedulePillsActivity.this, "Scheduled activity deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
@@ -92,5 +96,12 @@ public class SchedulePillsActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Pill not scheduled", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
     }
 }

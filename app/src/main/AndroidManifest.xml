@@ -48,9 +48,7 @@
         <activity android:name=".HealthyTipsActivity" />
 
         <receiver
-            android:name=".AlarmReceiver"
-            android:enabled="true"
-            android:exported="false">
-        </receiver>
+            android:name=".AlarmReceiver"/>
+
     </application>
 </manifest>

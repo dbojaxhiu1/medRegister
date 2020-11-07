@@ -1,18 +1,24 @@
 package com.example.medregister;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -34,8 +40,8 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
     private EditText editTextTime;
     private EditText editTextDose;
     private String sDate;
-    String timeToNotify;
     private int mHour, mYear, mMonth, mMinute, mDay;
+    final int id = (int) System.currentTimeMillis();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +65,29 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
                 setTime();
             }
         });
+
+        Button buttonCancelAlarm = findViewById(R.id.cancel_scheduled_pill);
+        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelAlarm();
+                finish();
+            }
+        });
+
         editTextDose = findViewById(R.id.edit_text_dose);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        if (getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         setTitle("Schedule pill");
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelAlarm();
+        finish();
     }
 
     private void saveScheduledPill() {
@@ -116,18 +142,26 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
 
     private void setTime() {
         setDate();
-        Calendar mCurrentTime = Calendar.getInstance();
+        final Calendar mCurrentTime = Calendar.getInstance();
         mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         mMinute = mCurrentTime.get(Calendar.MINUTE);
+
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                mHour = selectedHour;
-                mMinute = selectedMinute;
-                timeToNotify = selectedHour + ":" + selectedMinute;
-                editTextTime.setText(String.format(Locale.getDefault(), "%d:%d", selectedHour, selectedMinute));
-                //set alarm here
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                mHour = hourOfDay;
+                mMinute = minute;
+
+                editTextTime.setText(String.format(Locale.getDefault(), "%d:%d", hourOfDay, minute));
+
+                Calendar c = Calendar.getInstance();
+
+                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                c.set(Calendar.MINUTE, minute);
+                c.set(Calendar.SECOND, 0);
+                startAlarm(c);
+
             }
         }, mHour, mMinute, false);//No 24 hour time
         mTimePicker.setTitle("Select Time");
@@ -143,6 +177,28 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
         sDate = dayOfMonth + "/" + monthOfYear + "/" + year;
         Toast.makeText(this, sDate, Toast.LENGTH_SHORT).show();
         editTextDate.setText(sDate);
+    }
+
+    public void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        }
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.cancel(pendingIntent);
     }
 
 }
