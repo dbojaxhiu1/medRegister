@@ -55,7 +55,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
         String textDate = editTextDate.getText().toString();
 
         if (textReminder.trim().isEmpty()) {
-            Toast.makeText(this, "Please insert reminder", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.insert_reminder, Toast.LENGTH_SHORT).show();
             return;
         }
         Intent data = new Intent();
@@ -92,12 +92,11 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
     private void addEditReminderActivity() {
         Intent intent = getIntent();
         if (intent.hasExtra(extra_id)) {
-            setTitle("Edit Reminder");
+            setTitle(R.string.edit_reminder);
             editTextReminderName.setText(intent.getStringExtra(extra_reminder_name));
             editTextDate.setText(intent.getStringExtra(extra_date));
         } else {
-            setTitle("Add Reminder");
-
+            setTitle(R.string.add_reminder);
         }
     }
 

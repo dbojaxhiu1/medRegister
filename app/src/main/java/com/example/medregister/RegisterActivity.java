@@ -55,21 +55,21 @@ public class RegisterActivity extends AppCompatActivity {
                         && !isEmpty(mPassword.getText().toString())
                         && !isEmpty(mConfirmPassword.getText().toString())) {
 
-                    //check if user has a company email address
+                    //check if user has a valid(@gmail.com) email address
                     if (isValidDomain(mEmail.getText().toString())) {
 
                         //check if passwords match
                         if (doStringsMatch(mPassword.getText().toString(), mConfirmPassword.getText().toString())) {
                             registerNewEmail(mEmail.getText().toString(), mPassword.getText().toString());
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Passwords do not Match", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Please Register with correct Email", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, R.string.register_with_correct_email, Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "You must fill out all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -88,10 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Sent Verification Email",
+                                Toast.makeText(RegisterActivity.this, R.string.sent_verification_email,
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(RegisterActivity.this, "Could'nt Send Verification Email",
+                                Toast.makeText(RegisterActivity.this, R.string.couldnt_send_verification_email,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RegisterActivity.this, "something went wrong.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, R.string.something_wrong, Toast.LENGTH_SHORT).show();
                                     FirebaseAuth.getInstance().signOut();
 
                                     //redirect the user to the login screen
@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                         if (!task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Unable to Register",
+                            Toast.makeText(RegisterActivity.this, R.string.unable_to_register,
                                     Toast.LENGTH_SHORT).show();
                         }
                         hideDialog();

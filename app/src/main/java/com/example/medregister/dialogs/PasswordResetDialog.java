@@ -69,11 +69,11 @@ public class PasswordResetDialog extends DialogFragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: Password Reset Email sent.");
-                            Toast.makeText(mContext, "Password Reset Link Sent to Email",
+                            Toast.makeText(mContext, R.string.password_reset_link_sent,
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
-                            Toast.makeText(mContext, "No User is Associated with that Email",
+                            Toast.makeText(mContext, R.string.no_user_associated_with_email,
                                     Toast.LENGTH_SHORT).show();
 
                         }

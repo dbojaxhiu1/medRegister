@@ -54,7 +54,7 @@ public class AddEditPillActivity extends AppCompatActivity {
         int packageContains = numberPickerPackage.getValue();
 
         if (name.trim().isEmpty() || instruction.trim().isEmpty()) {
-            Toast.makeText(this, "Please insert the pill name and instruction", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.insert_pill_name_instruction, Toast.LENGTH_SHORT).show();
             return;
         }
         Intent data = new Intent();
@@ -93,13 +93,13 @@ public class AddEditPillActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(extra_id)) {
             //will be triggered only if its an update situation
-            setTitle("Edit Pill");
+            setTitle(getString(R.string.edit_pill));
             editTextPillName.setText(intent.getStringExtra(extra_name));
             editTextPillInstruction.setText(intent.getStringExtra(extra_instruction));
             numberPickerUsage.setValue(intent.getIntExtra(extra_usage, 1));
             numberPickerPackage.setValue(intent.getIntExtra(extra_package_contains, 1));
         } else {
-            setTitle("Add Pill");
+            setTitle(getString(R.string.add_pill));
         }
     }
 }

@@ -133,16 +133,16 @@ public class SignedInActivity extends AppCompatActivity {
     private void signOut(final Activity activity) {
         Log.d(TAG, "signOut: signing out");
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Sign out");
-        builder.setMessage("Are you sure you want to sign out ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.dialog_sign_out);
+        builder.setMessage(R.string.dialog_sign_out_message);
+        builder.setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 activity.finishAffinity();
                 FirebaseAuth.getInstance().signOut();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

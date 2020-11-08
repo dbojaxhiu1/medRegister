@@ -38,7 +38,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerpills);
         Log.d(TAG, "onCreate: started.");
-        setTitle("Register Pills");
+        setTitle(R.string.register_pills_title);
 
         //create a floating action button variable
         FloatingActionButton fob_add_pill = findViewById(R.id.fob_add);
@@ -79,7 +79,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 pillViewModel.delete(pillAdapter.getPillAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(RegisterPillsActivity.this, "Pill Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterPillsActivity.this, R.string.pill_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -110,11 +110,11 @@ public class RegisterPillsActivity extends AppCompatActivity {
             Pill pill = new Pill(name, instruction, usage, packageContains);
             pillViewModel.insert(pill);
 
-            Toast.makeText(this, "Pill saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.pill_saved, Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_PILL_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(AddEditPillActivity.extra_id, -1);
             if (id == -1) {
-                Toast.makeText(this, "Pill couldn't be updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.pill_couldnt_update, Toast.LENGTH_SHORT).show();
                 return;
             }
             String name = data.getStringExtra(AddEditPillActivity.extra_name);
@@ -125,9 +125,9 @@ public class RegisterPillsActivity extends AppCompatActivity {
             Pill pill = new Pill(name, instruction, usage, packageContains);
             pill.setId(id);
             pillViewModel.update(pill);
-            Toast.makeText(this, "Pill updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.pill_updated, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Pill not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.pill_not_saved, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -143,7 +143,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.delete_all_pills:
                 pillViewModel.deleteAllPills();
-                Toast.makeText(this, "All pills deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.all_pills_deleted, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

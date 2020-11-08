@@ -1,18 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">medRegister</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to login, register new account, reset password, account settings -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
     <string name="resend_verification_email">Resend Verification Email</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="register">Register</string>
@@ -22,11 +15,7 @@
     <string name="email_registration">Email Registration</string>
     <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="employee_dashboard">Medication Register</string>
-    <string name="this_week_s_initiatives">This week\'s initiatives</string>
-    <string name="employee_schedule">Employee Schedule</string>
-    <string name="company_culture">Company Culture</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="confirm">CONFIRM</string>
     <string name="reset_password">Reset Password</string>
     <string name="sign_out">Sign out</string>
@@ -53,15 +42,9 @@
     <string name="register_new_pill">Register new pill</string>
     <string name="pill_name">Pill Name</string>
     <string name="instruction">Pill Instruction</string>
-    <string name="add_pill">ADD</string>
+    <string name="add">ADD</string>
     <string name="daily_usage">Daily usage: </string>
     <string name="numOfPillsInPackage">Number of pills in package:</string>
-    <string name="db_pills">pills</string>
-    <string name="field_pill_id">pillid</string>
-    <string name="field_pill_name">pillname</string>
-    <string name="field_pill_instruction">pillinstruction</string>
-    <string name="field_number_pills">numberofpills</string>
-    <string name="field_daily_usage">dailyusage</string>
 
     <!-- Dialog strings -->
     <string name="dialog_register_pill">RegisterPillDialog</string>
@@ -77,13 +60,95 @@
     <string name="date">Date</string>
     <string name="delete_all_reminders">Delete all reminders</string>
 
+    <!-- strings for App Information activity -->
     <string name="app_information">About</string>
     <string name="version_code">Version Code</string>
     <string name="version_name">Version Name</string>
-    <string name="note">Note</string>
 
+    <!-- strings for Schedule Pill  activity -->
     <string name="schedule_pill_extended_fob">Schedule Pill</string>
+    <string name="med_name">Medication name</string>
+    <string name="every_day">Every day</string>
+    <string name="monday">M</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">T</string>
+    <string name="friday">F</string>
+    <string name="saturday">S</string>
+    <string name="sunday">S</string>
+    <string name="time_scheduled">Time</string>
+    <string name="dose_scheduled">Dose (in mg)</string>
 
+    <!-- strings for Notes activity -->
+    <string name="new_note">Enter new note</string>
+    <string name="add_note">Add</string>
+    <string name="reset_all_notes">Reset</string>
+    <string name="enter_text">Enter text</string>
+    <string name="update_text">Update</string>
+
+
+    <!-- strings for notifications -->
     <string name="notification_title">MedRegister</string>
-    <string name="notification_text">Don\'t forget to take pills!</string>
+    <string name="notification_text">It\'s time to take the medication!</string>
+
+
+    <!-- strings for toast messages -->
+    <string name="to_do_activity_title">To Do Activity</string>
+    <string name="reminder_deleted">Reminder deleted</string>
+    <string name="reminder_saved">Reminder saved</string>
+    <string name="reminder_couldnt_update">Reminder couldn\'t be updated</string>
+    <string name="reminder_updated">Reminder updated</string>
+    <string name="reminder_not_saved">Reminder not saved</string>
+    <string name="all_reminders_deleted">All reminders deleted</string>
+    <string name="insert_reminder">Please insert reminder</string>
+    <string name="edit_reminder">Edit Reminder</string>
+    <string name="add_reminder">Add Reminder</string>
+
+    <string name="dialog_sign_out">Sign out</string>
+    <string name="dialog_sign_out_message">Are you sure you want to sign out ?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+
+    <string name="saved">Saved</string>
+    <string name="sent_reset_password_link">Sent Password Reset Link to Email</string>
+    <string name="no_user_with_this_email">No User Associated with that Email</string>
+    <string name="signed_out">Signed out</string>
+
+    <string name="schedule_pills_title">Schedule Pills</string>
+    <string name="pill_scheduled">Pill scheduled</string>
+    <string name="pill_not_scheduled">Pill not scheduled</string>
+    <string name="scheduled_pill_deleted">Scheduled pill intake deleted</string>
+
+    <string name="register_pills_title">Register Pills</string>
+    <string name="pill_deleted">Pill Deleted</string>
+    <string name="pill_saved">Pill saved</string>
+    <string name="pill_couldnt_update">Pill couldn\'t be updated</string>
+    <string name="pill_updated">Pill updated</string>
+    <string name="pill_not_saved">Pill not saved</string>
+    <string name="all_pills_deleted">All pills deleted</string>
+
+    <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="register_with_correct_email">Please Register with correct Email</string>
+    <string name="fill_all_fields">Please fill all the necessary fields</string>
+    <string name="sent_verification_email">Sent Verification Email</string>
+    <string name="couldnt_send_verification_email">Could\'nt Send Verification Email</string>
+    <string name="something_wrong">Something went wrong.</string>
+    <string name="unable_to_register">Unable to Register</string>
+
+    <string name="notes_title">Notes</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="authenticated_with">Authenticated with: </string>
+    <string name="email_not_verified">Email is not Verified\nCheck your Inbox</string>
+    <string name="healthy_tips_title">Healthy Tips</string>
+    <string name="about_app_info">About</string>
+
+    <string name="insert_pill_name_instruction">Please insert the pill name and instruction</string>
+    <string name="edit_pill">Edit Pill</string>
+    <string name="add_pill">Add Pill</string>
+
+    <string name="invalid_credentials">Invalid Credentials.\nReset your password and try again</string>
+    <string name="password_reset_link_sent">Password Reset Link Sent to Email</string>
+    <string name="no_user_associated_with_email">No User is Associated with that Email</string>
+
+    <string name="select_time">Select time</string>
 </resources>

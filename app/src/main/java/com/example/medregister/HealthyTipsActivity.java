@@ -15,6 +15,6 @@ public class HealthyTipsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_healthytips);
         Log.d(TAG, "onCreate: started.");
-        setTitle("Healthy Tips");
+        setTitle(getString(R.string.healthy_tips_title));
     }
 }

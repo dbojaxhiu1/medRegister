@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "pill_table")
 public class Pill {
 
-        @PrimaryKey(autoGenerate = true)
-        private int id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String name;
 

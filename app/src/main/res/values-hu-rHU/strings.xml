@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">medRegister</string>
+
+    <!-- Strings related to login, register new account, reset password, account settings -->
+    <string name="prompt_email">Email</string>
+    <string name="action_sign_in">Jelentkezzen be vagy regisztráljon</string>
+    <string name="action_sign_in_short">Bejelentkezés</string>
+
+    <string name="resend_verification_email">Igazoló e-mail újraküldése</string>
+    <string name="forgot_password">Elfelejtette a jelszavát</string>
+    <string name="register">Regisztráció</string>
+    <string name="sign_in">Bejelentkezés</string>
+    <string name="password">Jelszó</string>
+    <string name="email_registration">Email Regisztráció</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Jelszó megerősítése</string>
+    <string name="cancel" > Megszünteti</string>
+    <string name="confirm">Megerősít</string>
+    <string name="reset_password">Jelszó visszaállítása</string>
+    <string name="sign_out">Kijelentkezés</string>
+    <string name="account_settings">Fiók beállítások</string>
+    <string name="current_password">Jelenlegi jelszó</string>
+    <string name="new_password">új jelszó</string>
+    <string name="confirm_new_password">Erősítsd meg az új jelszót</string>
+    <string name="save">Megment</string>
+    <string name="change_password">Jelszó módosítása</string>
+    <string name="name_settings">Név</string>
+    <string name="phone_number_settings">Telefonszám</string>
+    <string name="pill_logo">pill Logo</string>
+    <string name="db_users">field_users</string>
+    <string name="field_name">name</string>
+    <string name="field_phone">phone</string>
+
+
+
+    <!-- Strings for home fragment -->
+    <string name="register_pills">Tabletták regisztrálása</string>
+    <string name="schedule_pill">Tabletták ütemezése</string>
+    <string name="notes">Megjegyzések</string>
+    <string name="to_do">Csinálni</string>
+    <string name="healthy_tips">Egészséges tippek</string>
+
+    <!-- Strings for Register Pill activity -->
+    <string name="register_new_pill">Regisztráljon új tablettát</string>
+    <string name="pill_name">Tabletta neve</string>
+    <string name="instruction">Tabletta utasítás</string>
+    <string name="add">Hozzáadás</string>
+    <string name="daily_usage">Napi használat: </string>
+    <string name="numOfPillsInPackage">A csomagban lévő tabletták száma:</string>
+
+    <!-- Dialog strings -->
+    <string name="dialog_register_pill">RegisterPillDialog</string>
+
+
+    <string name="dialog_delete">TÖRÖL</string>
+    <string name="dialog_cancel">Megszünteti</string>
+    <string name="intent_pill">intent_pill</string>
+
+    <!-- strings for To do activity -->
+    <string name="edit_text">Új emlékeztető hozzáadása</string>
+    <string name="edit_title">Emlékeztető</string>
+    <string name="date">Dátum</string>
+    <string name="delete_all_reminders">Az összes emlékeztető törlése</string>
+
+    <!-- strings for App Information activity -->
+    <string name="app_information">Az infóról</string>
+    <string name="version_code">Verziókód</string>
+    <string name="version_name">Verzió neve</string>
+
+    <!-- strings for Schedule Pill  activity -->
+    <string name="schedule_pill_extended_fob">Menetrend tabletta</string>
+    <string name="med_name">Gyógyszer neve</string>
+    <string name="every_day">Minden nap</string>
+    <string name="monday">H</string>
+    <string name="tuesday">K</string>
+    <string name="wednesday">S</string>
+    <string name="thursday">C</string>
+    <string name="friday">P</string>
+    <string name="saturday">S</string>
+    <string name="sunday">V</string>
+    <string name="time_scheduled">Idő</string>
+    <string name="dose_scheduled">Dózis (mg-ban)</string>
+
+    <!-- strings for Notes activity -->
+    <string name="new_note">Írjon be új jegyzetet</string>
+    <string name="add_note">Hozzáadás</string>
+    <string name="reset_all_notes">Visszaállítás</string>
+    <string name="enter_text">Írjon be szöveget</string>
+    <string name="update_text">Frissítés</string>
+
+
+    <!-- strings for notifications -->
+    <string name="notification_title">MedRegister</string>
+    <string name="notification_text">Ideje bevenni a gyógyszert!</string>
+
+
+    <!-- strings for toast messages -->
+    <string name="to_do_activity_title">Tevékenység végzése</string>
+    <string name="reminder_deleted">Az emlékeztető törölve</string>
+    <string name="reminder_saved">Az emlékeztető mentve</string>
+    <string name="reminder_couldnt_update">Az emlékeztető nem frissíthető</string>
+    <string name="reminder_updated">Az emlékeztető frissítve</string>
+    <string name="reminder_not_saved">Az emlékeztető mentése nem sikerült</string>
+    <string name="all_reminders_deleted">Minden emlékeztető törölve</string>
+    <string name="insert_reminder">Kérjük, illessze be az emlékeztetőt</string>
+    <string name="edit_reminder">Emlékeztető szerkesztése</string>
+    <string name="add_reminder">Emlékeztető hozzáadása</string>
+
+    <string name="dialog_sign_out">Kijelentkezés</string>
+    <string name="dialog_sign_out_message">Biztosan kijelentkezik ?</string>
+    <string name="dialog_yes">Igen</string>
+    <string name="dialog_no">Nem</string>
+
+    <string name="saved">Mentett</string>
+    <string name="sent_reset_password_link">Elküldött jelszó visszaállítása link e-mailhez</string>
+    <string name="no_user_with_this_email">Nincs az e-mailhez társított felhasználó</string>
+    <string name="signed_out">Kijelentkezett</string>
+
+    <string name="schedule_pills_title">Tabletták ütemezése</string>
+    <string name="pill_scheduled">Pill ütemezve</string>
+    <string name="pill_not_scheduled">A tabletta nincs ütemezve</string>
+    <string name="scheduled_pill_deleted">Az ütemezett pirulabevitel törölve</string>
+
+    <string name="register_pills_title">Tabletták regisztrálása</string>
+    <string name="pill_deleted">Tabletta törölve</string>
+    <string name="pill_saved">Tabletta mentve</string>
+    <string name="pill_couldnt_update">A tabletta nem frissíthető</string>
+    <string name="pill_updated">Tabletta frissítve</string>
+    <string name="pill_not_saved">A tabletta nincs mentve</string>
+    <string name="all_pills_deleted">Minden tabletta törölve</string>
+
+    <string name="passwords_dont_match">A jelszavak nem egyeznek</string>
+    <string name="register_with_correct_email">Kérjük, regisztráljon a megfelelő e-mail címmel</string>
+    <string name="fill_all_fields">Kérjük, töltse ki az összes szükséges mezőt</string>
+    <string name="sent_verification_email">Elküldött ellenőrző e-mail</string>
+    <string name="couldnt_send_verification_email">Nem sikerült elküldeni az ellenőrző e-mailt</string>
+    <string name="something_wrong">Valami elromlott.</string>
+    <string name="unable_to_register">Nem lehet regisztrálni</string>
+
+    <string name="notes_title">Megjegyzések</string>
+    <string name="authentication_failed">Hitelesítés nem sikerült</string>
+    <string name="authenticated_with">Hitelesítve ezzel:: </string>
+    <string name="email_not_verified">Az e-mail nincs ellenőrizve. Ellenőrizze postaládáját</string>
+    <string name="healthy_tips_title">Egészséges tippek</string>
+    <string name="about_app_info">Ról ről</string>
+
+    <string name="insert_pill_name_instruction">Kérjük, írja be a tabletta nevét és utasításait</string>
+    <string name="edit_pill">Pill szerkesztése</string>
+    <string name="add_pill">Adj hozzá tablettát</string>
+
+    <string name="invalid_credentials">Érvénytelen hitelesítő adatok. \nÁllítsa vissza a jelszavát, és próbálja újra</string>
+    <string name="password_reset_link_sent">Jelszó visszaállítása Elküldött e-mail link</string>
+    <string name="no_user_associated_with_email">Nincs felhasználó társítva az e-mailhez</string>
+
+    <string name="select_time">Válassza ki az időt</string>
+</resources>

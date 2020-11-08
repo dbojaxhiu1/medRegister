@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,82 +8,78 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/relLayout1"
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/textHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="@string/account_settings"
+                android:textColor="@color/Black"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="70dp"
+                android:src="@drawable/pill_logo"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <EditText
+                android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:layout_below="@+id/textHeader"
+                android:layout_marginTop="130dp"
+                android:hint="@string/name_settings"
+                android:inputType="textEmailAddress" />
 
-                <TextView
-                    android:id="@+id/textHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:text="@string/account_settings"
-                    android:textColor="@color/Black"
-                    android:textSize="25sp" />
+            <EditText
+                android:id="@+id/input_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textHeader"
+                android:layout_marginTop="170dp"
+                android:hint="@string/phone_number_settings"
+                android:inputType="number" />
 
-                <ImageView
-                    android:id="@+id/user_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="70dp"
-                    android:src="@drawable/pill_logo"
-                    tools:srcCompat="@tools:sample/avatars" />
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textHeader"
+                android:layout_marginTop="210dp"
+                android:editable="false"
+                android:hint="@string/prompt_email" />
 
-                <EditText
-                    android:id="@+id/input_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textHeader"
-                    android:layout_marginTop="130dp"
-                    android:hint="@string/name_settings"
-                    android:inputType="textEmailAddress" />
+            <Button
+                android:id="@+id/save_settings"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="340dp"
+                android:background="@drawable/blue_button"
+                android:text="@string/save"
+                android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/input_phonenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textHeader"
-                    android:layout_marginTop="170dp"
-                    android:hint="@string/phone_number_settings"
-                    android:inputType="number" />
+            <Button
+                android:id="@+id/change_password"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="400dp"
+                android:background="@color/white"
+                android:text="@string/change_password"
+                android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/input_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textHeader"
-                    android:layout_marginTop="210dp"
-                    android:hint="@string/prompt_email"
-                    android:editable="false" />
-
-
-                <Button
-                    android:id="@+id/save_settings"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="340dp"
-                    android:background="@drawable/blue_button"
-                    android:text="@string/save"
-                    android:textStyle="bold" />
-
-
-                <Button
-                    android:id="@+id/change_password"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="400dp"
-                    android:background="@color/white"
-                    android:text="@string/change_password"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
+        </RelativeLayout>
 
     </ScrollView>
 

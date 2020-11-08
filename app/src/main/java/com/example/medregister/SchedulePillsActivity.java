@@ -9,12 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,13 +28,14 @@ public class SchedulePillsActivity extends AppCompatActivity {
     private static final String TAG = "SchedulePillsActivity";
     public static final int ADD_SCHEDULE_PILL_REQUEST = 1;
     private SchedulePillViewModel schedulePillViewModel;
+    final int id = (int) System.currentTimeMillis();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_pills);
         Log.d(TAG, "onCreate: started.");
-        setTitle("Schedule Pills");
+        setTitle(R.string.schedule_pills_title);
 
         FloatingActionButton fob_schedule_pill = findViewById(R.id.fob_schedule_pill);
         fob_schedule_pill.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +61,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
                 adapter.setScheduledPills(schedulePills);
             }
         });
-
+        /* when I delete it doesn't cancel alarm, request ID is the problem here
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -74,9 +73,10 @@ public class SchedulePillsActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 schedulePillViewModel.delete(adapter.getScheduledPillAt(viewHolder.getAdapterPosition()));
                 cancelAlarm();
-                Toast.makeText(SchedulePillsActivity.this, "Scheduled activity deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SchedulePillsActivity.this, R.string.scheduled_pill_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+   */
     }
 
     @Override
@@ -92,16 +92,16 @@ public class SchedulePillsActivity extends AppCompatActivity {
             SchedulePill schedulePill = new SchedulePill(name, date, time, dose);
             schedulePillViewModel.insert(schedulePill);
 
-            Toast.makeText(this, "Pill scheduled", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.pill_scheduled, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Pill not scheduled", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.pill_not_scheduled, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.cancel(pendingIntent);
     }
 }

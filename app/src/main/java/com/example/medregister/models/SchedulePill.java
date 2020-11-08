@@ -14,16 +14,23 @@ public class SchedulePill {
 
     private String dateScheduled;
 
-   private String time;
+    private String time;
 
     private int dose;
 
-    public SchedulePill(String pillName, String dateScheduled, String time,int dose) {
+    private static int requestId = (int) System.currentTimeMillis();
+
+    public SchedulePill(String pillName, String dateScheduled, String time, int dose) {
         this.pillName = pillName;
         this.dateScheduled = dateScheduled;
         this.dose = dose;
         this.time = time;
     }
+
+    public static int getRequestId() {
+        return requestId;
+    }
+
 
     public void setPillName(String pillName) {
         this.pillName = pillName;

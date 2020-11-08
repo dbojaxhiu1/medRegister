@@ -19,7 +19,7 @@ public class AppInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_information);
         Log.d(TAG, "onCreate: started.");
-        setTitle("About");
+        setTitle(getString(R.string.about_app_info));
 
         //assign variables
         textViewVersionCode = findViewById(R.id.v_code);

@@ -41,8 +41,8 @@ public class ToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
         Log.d(TAG, "onCreate: started.");
-        setTitle("To Do Activities");
-        //radioButton = findViewById(R.id.radio_button_reminder);
+        setTitle(R.string.to_do_activity_title);
+        radioButton = findViewById(R.id.radio_button_reminder);
         FloatingActionButton buttonAddReminder = findViewById(R.id.fob_add_reminder);
         buttonAddReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class ToDoActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 reminderViewModel.delete(reminderAdapter.getReminderAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(ToDoActivity.this, "Reminder deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ToDoActivity.this, R.string.reminder_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -105,22 +105,22 @@ public class ToDoActivity extends AppCompatActivity {
             Reminder reminder = new Reminder(reminderText, reminderDate);
             reminderViewModel.insert(reminder);
 
-            Toast.makeText(this, "Reminder saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.reminder_saved, Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_REMINDER_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(AddEditReminderActivity.extra_id, -1);
             if (id == -1) {
-                Toast.makeText(this, "Reminder couldn't be updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.reminder_couldnt_update, Toast.LENGTH_SHORT).show();
                 return;
             }
             String reminderText = data.getStringExtra(AddEditReminderActivity.extra_reminder_name);
             String reminderDate = data.getStringExtra(AddEditReminderActivity.extra_date);
 
-            Reminder reminder = new Reminder(reminderText,reminderDate);
+            Reminder reminder = new Reminder(reminderText, reminderDate);
             reminder.setId(id);
             reminderViewModel.update(reminder);
-            Toast.makeText(this, "Reminder updated ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.reminder_updated, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Reminder not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.reminder_not_saved, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -136,10 +136,25 @@ public class ToDoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.delete_all_reminders:
                 reminderViewModel.deleteAllReminders();
-                Toast.makeText(this, "All reminders deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.all_reminders_deleted, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    /* add in XML layout also:   android:onClick="onRadioButtonClicked"
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.radio_button_reminder:
+                if (checked) {
+                    radioButton.setChecked(true);
+                    Toast.makeText(this, "Radio Button checked", Toast.LENGTH_SHORT).show();
+                } else {
+                    radioButton.setChecked(false);
+                    Toast.makeText(this, "Radio button unchecked", Toast.LENGTH_SHORT).show();
+                }
+        }
+    }*/
 }
