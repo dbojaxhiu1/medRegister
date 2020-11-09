@@ -46,92 +46,22 @@
             android:orientation="vertical">
 
 
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/every_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/every_day" />
-
-            <LinearLayout
-                android:id="@+id/checkbox_layout"
+            <EditText
+                android:id="@+id/edit_text_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="7">
+                android:clickable="true"
+                android:hint="@string/date" />
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/sunday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/sunday" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/monday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/monday" />
+            <EditText
+                android:id="@+id/edit_text_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="@string/time_scheduled" />
 
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/tuesday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/tuesday" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/wednesday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/wednesday" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/thursday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/thursday" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/friday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/friday" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/saturday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/saturday" />
-            </LinearLayout>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -147,13 +77,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edit_text_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:editable="false"
-                android:hint="@string/time_scheduled" />
 
             <EditText
                 android:id="@+id/edit_text_dose"
@@ -170,6 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:text="@string/cancel" />
+        android:text="schedule" />
 
 </LinearLayout>

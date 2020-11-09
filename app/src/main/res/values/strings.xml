@@ -44,6 +44,8 @@
     <string name="instruction">Pill Instruction</string>
     <string name="add">ADD</string>
     <string name="daily_usage">Daily usage: </string>
+    <string name="package_contains">Package Contains: </string>
+    <string name="nr_pills"> pills</string>
     <string name="numOfPillsInPackage">Number of pills in package:</string>
 
     <!-- Dialog strings -->
@@ -131,7 +133,7 @@
     <string name="register_with_correct_email">Please Register with correct Email</string>
     <string name="fill_all_fields">Please fill all the necessary fields</string>
     <string name="sent_verification_email">Sent Verification Email</string>
-    <string name="couldnt_send_verification_email">Could\'nt Send Verification Email</string>
+    <string name="couldnt_send_verification_email">Couldn\'t Send Verification Email</string>
     <string name="something_wrong">Something went wrong.</string>
     <string name="unable_to_register">Unable to Register</string>
 
@@ -151,4 +153,14 @@
     <string name="no_user_associated_with_email">No User is Associated with that Email</string>
 
     <string name="select_time">Select time</string>
+
+    <!-- strings for healthy tips -->
+    <string name="healthy_tip_1_title">Eat a healthy diet</string>
+    <string name="tip_1">Eat a combination of different foods, including fruit, vegetables, legumes, nuts and whole grains.</string>
+    <string name="healthy_tip_2_title">Consume less salt and sugar</string>
+    <string name="tip_2">Filipinos consume twice the recommended amount of sodium, putting them at risk of high blood pressure.</string>
+    <string name="healthy_tip_3_title">Reduce intake of harmful fats</string>
+    <string name="tip_3">Fats consumed should be less than 30% of your total energy intake. This will help prevent unhealthy weight gain and NCDs.</string>
+    <string name="healthy_tip_4_title">Avoid harmful use of alcohol</string>
+    <string name="tip_4">There is no safe level for drinking alcohol</string>
 </resources>

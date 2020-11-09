@@ -15,7 +15,7 @@
     <string name="email_registration">Email Regisztráció</string>
     <string name="email">Email</string>
     <string name="confirm_password">Jelszó megerősítése</string>
-    <string name="cancel" > Megszünteti</string>
+    <string name="cancel"> Megszünteti</string>
     <string name="confirm">Megerősít</string>
     <string name="reset_password">Jelszó visszaállítása</string>
     <string name="sign_out">Kijelentkezés</string>
@@ -33,7 +33,6 @@
     <string name="field_phone">phone</string>
 
 
-
     <!-- Strings for home fragment -->
     <string name="register_pills">Tabletták regisztrálása</string>
     <string name="schedule_pill">Tabletták ütemezése</string>
@@ -47,6 +46,8 @@
     <string name="instruction">Tabletta utasítás</string>
     <string name="add">Hozzáadás</string>
     <string name="daily_usage">Napi használat: </string>
+    <string name="package_contains">Package Contains: </string>
+    <string name="nr_pills"> pills</string>
     <string name="numOfPillsInPackage">A csomagban lévő tabletták száma:</string>
 
     <!-- Dialog strings -->
@@ -154,4 +155,14 @@
     <string name="no_user_associated_with_email">Nincs felhasználó társítva az e-mailhez</string>
 
     <string name="select_time">Válassza ki az időt</string>
+
+    <!-- strings for healthy tips -->
+    <string name="healthy_tip_1_title">Eat a healthy diet</string>
+    <string name="tip_1">Eat a combination of different foods, including fruit, vegetables, legumes, nuts and whole grains.</string>
+    <string name="healthy_tip_2_title">Consume less salt and sugar</string>
+    <string name="tip_2">Filipinos consume twice the recommended amount of sodium, putting them at risk of high blood pressure.</string>
+    <string name="healthy_tip_3_title">Reduce intake of harmful fats</string>
+    <string name="tip_3">Fats consumed should be less than 30% of your total energy intake. This will help prevent unhealthy weight gain and NCDs.</string>
+    <string name="healthy_tip_4_title">Avoid harmful use of alcohol</string>
+    <string name="tip_4">There is no safe level for drinking alcohol</string>
 </resources>

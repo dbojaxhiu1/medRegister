@@ -54,7 +54,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Setting the date");
-                setTime();
+                setDate();
             }
         });
         editTextTime = findViewById(R.id.edit_text_time);
@@ -81,7 +81,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
-        setTitle("Schedule pill");
+        setTitle(R.string.schedule_pills_title);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
         int dose = Integer.parseInt(editTextDose.getText().toString());
 
         if (name.trim().isEmpty() || date.isEmpty() || time.isEmpty()) {
-            Toast.makeText(this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
             return;
         }
         Intent data = new Intent();
@@ -141,7 +141,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
     }
 
     private void setTime() {
-        setDate();
+        //setDate();
         final Calendar mCurrentTime = Calendar.getInstance();
         mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         mMinute = mCurrentTime.get(Calendar.MINUTE);
@@ -152,8 +152,13 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 mHour = hourOfDay;
                 mMinute = minute;
+                String sMinute;
+                if (minute < 10)
+                    sMinute = "0" + minute;
+                else
+                    sMinute = "" + minute;
 
-                editTextTime.setText(String.format(Locale.getDefault(), "%d:%d", hourOfDay, minute));
+                editTextTime.setText(String.format(Locale.getDefault(), "%d:%s", hourOfDay, sMinute));
 
                 Calendar c = Calendar.getInstance();
 
@@ -168,6 +173,7 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
         mTimePicker.show();
     }
 
+    /**/
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         monthOfYear++;

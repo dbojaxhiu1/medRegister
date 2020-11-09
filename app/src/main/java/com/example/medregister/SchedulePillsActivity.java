@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +63,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
                 adapter.setScheduledPills(schedulePills);
             }
         });
-        /* when I delete it doesn't cancel alarm, request ID is the problem here
+        // when I delete it doesn't cancel alarm, request ID is the problem here
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -76,7 +78,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
                 Toast.makeText(SchedulePillsActivity.this, R.string.scheduled_pill_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
-   */
+
     }
 
     @Override
