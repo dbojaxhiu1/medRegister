@@ -68,12 +68,12 @@ public class LoginActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(LoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.authentication_failed, Toast.LENGTH_SHORT).show();
                             hideDialog();
                         }
                     });
                 } else {
-                    Toast.makeText(LoginActivity.this, "You didn't fill in all the fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                     //check if email is verified
                     if (user.isEmailVerified()) {
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                        Toast.makeText(LoginActivity.this, "Authenticated with: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.authenticated_with) + user.getEmail(), Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(LoginActivity.this, SignedInActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } else {
-                        Toast.makeText(LoginActivity.this, "Email is not Verified\nCheck your Inbox", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, R.string.email_not_verified, Toast.LENGTH_SHORT).show();
                         FirebaseAuth.getInstance().signOut();
                     }
 

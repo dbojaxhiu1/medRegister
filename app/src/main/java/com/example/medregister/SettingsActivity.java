@@ -87,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
                             .setValue(mPhone.getText().toString());
                 }
 
-                Toast.makeText(SettingsActivity.this, "saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsActivity.this, R.string.saved, Toast.LENGTH_SHORT).show();
             }
         });
         resetPasswordLink.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +144,7 @@ public class SettingsActivity extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
 
-                            Toast.makeText(SettingsActivity.this, "No User Associated with that Email.",
+                            Toast.makeText(SettingsActivity.this, R.string.no_user_with_this_email,
                                     Toast.LENGTH_SHORT).show();
 
                         }
@@ -214,7 +214,7 @@ public class SettingsActivity extends AppCompatActivity {
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(SettingsActivity.this, "Signed out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SettingsActivity.this, R.string.signed_out, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

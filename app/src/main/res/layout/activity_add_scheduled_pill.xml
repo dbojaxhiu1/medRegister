@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddEditReminderActivity">
+    tools:context=".AddScheduledPillActivity">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,17 +23,46 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/edit_reminder_name"
+                android:id="@+id/edit_text_med_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_title"
+                android:hint="@string/med_name"
                 android:inputType="text" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <View
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/edit_text_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="@string/date" />
+
+            <EditText
+                android:id="@+id/edit_text_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="@string/time_scheduled" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -47,14 +77,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <EditText
-                android:id="@+id/date"
+                android:id="@+id/edit_text_dose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:editable="false"
-                android:hint="@string/date" />
+                android:hint="@string/dose_scheduled"
+                android:inputType="number" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/cancel_scheduled_pill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="schedule" />
 
 </LinearLayout>
