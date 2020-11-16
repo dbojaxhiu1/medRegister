@@ -137,6 +137,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
+        assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
 
     }

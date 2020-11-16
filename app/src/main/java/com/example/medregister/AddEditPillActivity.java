@@ -1,5 +1,6 @@
 package com.example.medregister;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class AddEditPillActivity extends AppCompatActivity {
     private static final String TAG = "AddEditPillActivity";
 
@@ -21,14 +24,13 @@ public class AddEditPillActivity extends AppCompatActivity {
     public static final String extra_usage = "com.example.medregister.EXTRA_USAGE";
     public static final String extra_package_contains = "com.example.medregister.EXTRA_PACKAGE_CONTAINS";
     public static final String extra_id = "com.example.medregister.EXTRA_ID";
-    //public static final String extra_date = "com.example.medregister.EXTRA_DATE";
 
     private EditText editTextPillName;
     private EditText editTextPillInstruction;
-    //private EditText editTextLastModified;
     private NumberPicker numberPickerUsage;
     private NumberPicker numberPickerPackage;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,6 @@ public class AddEditPillActivity extends AppCompatActivity {
         editTextPillInstruction = findViewById(R.id.edit_pill_instruction);
         numberPickerUsage = findViewById(R.id.number_picker_usage);
         numberPickerPackage = findViewById(R.id.number_picker_number_in_package);
-        //editTextLastModified = findViewById(R.id.edit_text_last_modified);
 
         numberPickerUsage.setMinValue(1);
         numberPickerUsage.setMaxValue(5);
@@ -48,7 +49,7 @@ public class AddEditPillActivity extends AppCompatActivity {
         numberPickerPackage.setMinValue(1);
         numberPickerPackage.setMaxValue(50);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
         addEditPillActivity();
     }
 
@@ -86,13 +87,11 @@ public class AddEditPillActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_pill:
-                savePill();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_pill) {
+            savePill();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void addEditPillActivity() {

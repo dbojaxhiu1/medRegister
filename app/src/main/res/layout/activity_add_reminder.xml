@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/edit_title"
-                android:inputType="text" />
+                android:inputType="text"
+                tools:ignore="Autofill" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -54,8 +55,10 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/date"
                 android:editable="false"
-                android:hint="@string/date" />
+                tools:ignore="Autofill,TextFields" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

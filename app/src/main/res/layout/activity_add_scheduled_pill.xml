@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/med_name"
-                android:inputType="text" />
+                android:inputType="text"
+                tools:ignore="Autofill" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -54,7 +55,8 @@
                 android:background="@android:color/transparent"
                 android:clickable="true"
                 android:editable="false"
-                android:hint="@string/time_scheduled" />
+                android:hint="@string/time_scheduled"
+                tools:ignore="Autofill,KeyboardInaccessibleWidget,TextFields" />
 
 
         </LinearLayout>
@@ -80,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/dose_scheduled"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="Autofill" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -88,8 +91,7 @@
         android:id="@+id/cancel_scheduled_pill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:text="Cancel" />
+        android:text="@string/cancel" />
 
 </LinearLayout>

@@ -40,6 +40,7 @@
 
     <!-- Strings for Register Pill activity -->
     <string name="register_new_pill">Register new pill</string>
+    <string name="delete_all_pills">Delete all pills</string>
     <string name="pill_name">Pill Name</string>
     <string name="instruction">Pill Instruction</string>
     <string name="add">ADD</string>
@@ -47,6 +48,11 @@
     <string name="package_contains">Package Contains: </string>
     <string name="nr_pills"> pills</string>
     <string name="numOfPillsInPackage">Number of pills in package:</string>
+    <string name="list_instruction">Instruction</string>
+    <string name="last_modified">Last modified:</string>
+    <string name="number_1">1</string>
+    <string name="paracetamol">Paracetamol</string>
+    <string name="dose_mg">500 mg</string>
 
     <!-- Dialog strings -->
     <string name="dialog_register_pill">RegisterPillDialog</string>

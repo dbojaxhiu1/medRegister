@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="1"
+            android:text="@string/number_1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_toLeftOf="@id/view_usage"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Pill Name"
+            android:text="@string/pill_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/view_pill_name"
-            android:text="Instruction"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:text="@string/list_instruction"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/view_package_contains"
@@ -47,14 +47,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view_instruction"
             android:text="@string/package_contains"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         <TextView
             android:id="@+id/last_modified_pill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/view_package_contains"
-            android:text="Last modified:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+            android:text="@string/last_modified"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

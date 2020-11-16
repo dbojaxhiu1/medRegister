@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,7 +33,6 @@ public class ToDoActivity extends AppCompatActivity {
     public static final int EDIT_REMINDER_REQUEST = 2;
 
     private ReminderViewModel reminderViewModel;
-    private RadioButton radioButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +41,6 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_todo);
         Log.d(TAG, "onCreate: started.");
         setTitle(R.string.to_do_activity_title);
-        radioButton = findViewById(R.id.radio_button_reminder);
         FloatingActionButton buttonAddReminder = findViewById(R.id.fob_add_reminder);
         buttonAddReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,28 +131,11 @@ public class ToDoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_all_reminders:
-                reminderViewModel.deleteAllReminders();
-                Toast.makeText(this, R.string.all_reminders_deleted, Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.delete_all_reminders) {
+            reminderViewModel.deleteAllReminders();
+            Toast.makeText(this, R.string.all_reminders_deleted, Toast.LENGTH_SHORT).show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
-    /* add in XML layout also:   android:onClick="onRadioButtonClicked"
-    public void onRadioButtonClicked(View view) {
-
-        boolean checked = ((RadioButton) view).isChecked();
-        switch (view.getId()) {
-            case R.id.radio_button_reminder:
-                if (checked) {
-                    radioButton.setChecked(true);
-                    Toast.makeText(this, "Radio Button checked", Toast.LENGTH_SHORT).show();
-                } else {
-                    radioButton.setChecked(false);
-                    Toast.makeText(this, "Radio button unchecked", Toast.LENGTH_SHORT).show();
-                }
-        }
-    }*/
 }

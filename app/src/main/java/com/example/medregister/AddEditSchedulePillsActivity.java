@@ -119,13 +119,11 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_scheduled_pill:
-                saveScheduledPill();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_scheduled_pill) {
+            saveScheduledPill();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -172,6 +170,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            assert alarmManager != null;
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
     }
@@ -181,6 +180,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
+        assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
     }
 

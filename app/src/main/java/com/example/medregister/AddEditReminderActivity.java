@@ -1,5 +1,6 @@
 package com.example.medregister;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddEditReminderActivity extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = "AddReminderActivity";
@@ -29,6 +31,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
     private String sDate;
     private int mHour, mYear, mMonth, mMinute, mDay;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
                 setDate();
             }
         });
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
         addEditReminderActivity();
     }
 
@@ -82,13 +85,11 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_reminder:
-                saveReminder();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_reminder) {
+            saveReminder();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void addEditReminderActivity() {

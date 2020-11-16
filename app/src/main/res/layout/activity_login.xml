@@ -32,7 +32,8 @@
                 android:layout_marginTop="20dp"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
-                android:maxLines="1" />
+                android:maxLines="1"
+                tools:ignore="Autofill" />
 
 
             <EditText
@@ -46,7 +47,7 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                tools:ignore="InvalidImeActionId" />
+                tools:ignore="Autofill,InvalidImeActionId" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -88,7 +89,8 @@
                     android:textColor="@color/blue5"
                     android:textSize="18sp"
                     android:layout_toEndOf="@id/link_register"
-                    android:layout_marginStart="119dp" />
+                    android:layout_marginStart="119dp"
+                    tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 

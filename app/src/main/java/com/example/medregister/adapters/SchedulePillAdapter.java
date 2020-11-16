@@ -35,7 +35,6 @@ public class SchedulePillAdapter extends RecyclerView.Adapter<SchedulePillAdapte
 
         final String dose = currentPill.getDose() + " mg";
         holder.textViewTime.setText(currentPill.getTime());
-        holder.textViewDate.setText(currentPill.getDateScheduled());
         holder.textViewName.setText(currentPill.getPillName());
         holder.textViewDose.setText(dose);
     }
@@ -57,14 +56,12 @@ public class SchedulePillAdapter extends RecyclerView.Adapter<SchedulePillAdapte
 
     class SchedulePillHolder extends RecyclerView.ViewHolder {
         private TextView textViewTime;
-        private TextView textViewDate;
         private TextView textViewName;
         private TextView textViewDose;
 
         public SchedulePillHolder(@NonNull View itemView) {
             super(itemView);
             textViewTime = itemView.findViewById(R.id.med_time);
-            textViewDate = itemView.findViewById(R.id.med_date);
             textViewName = itemView.findViewById(R.id.med_name);
             textViewDose = itemView.findViewById(R.id.dose_details);
 

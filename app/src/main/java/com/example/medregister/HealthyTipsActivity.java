@@ -1,5 +1,6 @@
 package com.example.medregister;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class HealthyTipsActivity extends AppCompatActivity {
     HealthyTipsAdapter healthyTipsAdapter;
     List<HealthyTip> healthyTips = new ArrayList<>();
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/delete_all_pills"
-        android:title="Delete all pills"
-        app:showAsAction="never"/>
+        android:title="@string/delete_all_pills"
+        app:showAsAction="never" />
 </menu>
