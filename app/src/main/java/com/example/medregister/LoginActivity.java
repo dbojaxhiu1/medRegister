@@ -28,19 +28,20 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     //Firebase
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private FirebaseAuth.AuthStateListener authStateListener;
     // widgets
-    private EditText mEmail, mPassword;
-    private ProgressBar mProgressBar;
+    private EditText userEmail, userPassword;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_login);
-        mEmail = (EditText) findViewById(R.id.email);
-        mPassword = (EditText) findViewById(R.id.password);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        // Get references to UI widgets
+        userEmail = (EditText) findViewById(R.id.email);
+        userPassword = (EditText) findViewById(R.id.password);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         setupFirebaseAuth();
 
@@ -48,20 +49,15 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //check if the fields are filled out
-                if (!isEmpty(mEmail.getText().toString())
-                        && !isEmpty(mPassword.getText().toString())) {
-                    Log.d(TAG, "onClick: attempting to authenticate.");
-
+                if (!isEmptyString(userEmail.getText().toString()) && !isEmptyString(userPassword.getText().toString())) {
+                    Log.d(TAG, "onClick: trying to authenticate.");
                     showDialog();
-
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(mEmail.getText().toString(),
-                            mPassword.getText().toString())
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(userEmail.getText().toString(),
+                            userPassword.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                                     hideDialog();
 
                                 }
@@ -82,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -110,19 +106,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // return true if the string is null
-    private boolean isEmpty(String string) {
+    private boolean isEmptyString(String string) {
         return string.equals("");
     }
 
 
     private void showDialog() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
     private void hideDialog() {
-        if (mProgressBar.getVisibility() == View.VISIBLE) {
-            mProgressBar.setVisibility(View.INVISIBLE);
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -133,28 +129,23 @@ public class LoginActivity extends AppCompatActivity {
     //for setting up firebase authentication
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-
                     //check if email is verified
                     if (user.isEmailVerified()) {
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                         Toast.makeText(LoginActivity.this, getString(R.string.authenticated_with) + user.getEmail(), Toast.LENGTH_LONG).show();
-
                         Intent intent = new Intent(LoginActivity.this, SignedInActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
-
                     } else {
                         Toast.makeText(LoginActivity.this, R.string.email_not_verified, Toast.LENGTH_SHORT).show();
                         FirebaseAuth.getInstance().signOut();
                     }
-
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -166,14 +157,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
+        FirebaseAuth.getInstance().addAuthStateListener(authStateListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
+        if (authStateListener != null) {
+            FirebaseAuth.getInstance().removeAuthStateListener(authStateListener);
         }
     }
 }

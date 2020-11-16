@@ -36,6 +36,7 @@ public class RegisterPillsActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_registerpills);
         Log.d(TAG, "onCreate: started.");
         setTitle(R.string.register_pills_title);

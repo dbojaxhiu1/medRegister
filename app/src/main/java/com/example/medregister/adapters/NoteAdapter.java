@@ -35,7 +35,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        // Inflate layout
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row_notes, parent, false);
         return new ViewHolder(view);
@@ -51,48 +51,54 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Note d = notesDataList.get(holder.getAdapterPosition());
-                final int noteId = d.getId();
-                String noteText = d.getText();
-
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialog_update_note);
-
-                int width = WindowManager.LayoutParams.MATCH_PARENT;
-                int height = WindowManager.LayoutParams.WRAP_CONTENT;
-                //layout
-                dialog.getWindow().setLayout(width, height);
-                dialog.show();
-
-                final EditText editText = dialog.findViewById(R.id.update_edit_text);
-                Button buttonUpdate = dialog.findViewById(R.id.button_update);
-
-                editText.setText(noteText);
-
-                buttonUpdate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        String updateText = editText.getText().toString().trim();
-                        database.NoteDao().update(noteId, updateText);
-                        notesDataList.clear();
-                        notesDataList.addAll(database.NoteDao().getAll());
-                        notifyDataSetChanged();
-                    }
-                });
+                editNote(holder.getAdapterPosition());
             }
         });
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Note d = notesDataList.get(holder.getAdapterPosition());
-                database.NoteDao().delete(d);
-                int position = holder.getAdapterPosition();
-                notesDataList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, notesDataList.size());
+                deleteNote(holder.getAdapterPosition());
             }
         });
+    }
+
+    public void editNote(int position) {
+        Note d = notesDataList.get(position);
+        final int noteId = d.getId();
+        String noteText = d.getText();
+
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_update_note);
+
+        int width = WindowManager.LayoutParams.MATCH_PARENT;
+        int height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //layout
+        dialog.getWindow().setLayout(width, height);
+        dialog.show();
+
+        final EditText editText = dialog.findViewById(R.id.update_edit_text);
+        Button buttonUpdate = dialog.findViewById(R.id.button_update);
+
+        editText.setText(noteText);
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                String updateText = editText.getText().toString().trim();
+                database.NoteDao().update(noteId, updateText);
+                notesDataList.clear();
+                notesDataList.addAll(database.NoteDao().getAllNotes());
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void deleteNote(int position) {
+        Note note = notesDataList.get(position);
+        database.NoteDao().delete(note);
+        notesDataList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, notesDataList.size());
     }
 
     @Override
@@ -107,10 +113,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Get references to UI widgets
             textView = itemView.findViewById(R.id.note_view);
             buttonEdit = itemView.findViewById(R.id.button_edit);
             buttonDelete = itemView.findViewById(R.id.button_delete);
         }
     }
 }
-

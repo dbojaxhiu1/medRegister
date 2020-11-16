@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -25,11 +26,12 @@ public class SignedInActivity extends AppCompatActivity {
 
 
     //Firebase
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_signedin);
         Log.d(TAG, "onCreate: started.");
 
@@ -73,39 +75,36 @@ public class SignedInActivity extends AppCompatActivity {
                 healthyTipsActivity();
             }
         });
-
-
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkAuthenticationState();
+        checkAuthState();
     }
 
     //checks if the user is authenticated
-    private void checkAuthenticationState() {
-        Log.d(TAG, "checkAuthenticationState: checking authentication state.");
+    private void checkAuthState() {
+        Log.d(TAG, "checkAuthState: checking authentication state.");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            Log.d(TAG, "checkAuthenticationState: user is null, navigating back to login screen.");
-
+            Log.d(TAG, "checkAuthState: user is null, going back to login screen.");
             Intent intent = new Intent(SignedInActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
             startActivity(intent);
             finish();
         } else {
-            Log.d(TAG, "checkAuthenticationState: user is authenticated.");
+            Log.d(TAG, "checkAuthState: user is authenticated.");
         }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.options_menu, menu);
         return true;
     }
 
@@ -155,7 +154,7 @@ public class SignedInActivity extends AppCompatActivity {
     private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -208,14 +207,14 @@ public class SignedInActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
+        FirebaseAuth.getInstance().addAuthStateListener(authStateListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
+        if (authStateListener != null) {
+            FirebaseAuth.getInstance().removeAuthStateListener(authStateListener);
         }
     }
 }

@@ -20,11 +20,16 @@ public class SchedulePill {
 
     private static int requestId = (int) System.currentTimeMillis();
 
-    public SchedulePill(String pillName, String dateScheduled, String time, int dose) {
+
+    public SchedulePill(String pillName, String time, int dose) {
         this.pillName = pillName;
-        this.dateScheduled = dateScheduled;
+        //this.dateScheduled = dateScheduled;
         this.dose = dose;
         this.time = time;
+    }
+
+    public static void setRequestId(int requestId) {
+        SchedulePill.requestId = requestId;
     }
 
     public static int getRequestId() {

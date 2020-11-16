@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/blue_button"
+                android:background="@color/blue1"
                 android:text="@string/sign_in"
                 android:textStyle="bold" />
 
@@ -68,39 +68,39 @@
                     android:id="@+id/link_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:text="@string/register"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
-
+                    android:textColor="@color/blue5"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/forgot_password"
-                    android:layout_width="wrap_content"
+                    android:layout_width="189dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/link_register"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
+                    android:layout_marginLeft="119dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toRightOf="@id/link_register"
+                    android:gravity="right"
+                    android:maxLines="1"
                     android:text="@string/forgot_password"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/resend_verification_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/forgot_password"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/resend_verification_email"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
+                    android:textColor="@color/blue5"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/link_register"
+                    android:layout_marginStart="119dp" />
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/resend_verification_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:text="@string/resend_verification_email"
+                android:textColor="@color/linkBlue"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </ScrollView>

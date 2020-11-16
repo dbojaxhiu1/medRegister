@@ -30,33 +30,32 @@ public class ResendVerificationDialog extends DialogFragment {
 
     private static final String TAG = "ResendVerificationDialo";
 
-    private EditText mConfirmPassword, mConfirmEmail;
-    private Context mContext;
+    private EditText userConfirmPassword, userConfirmEmail;
+    private Context context;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //inflate view
         View view = inflater.inflate(R.layout.dialog_resend_verification, container, false);
-        mConfirmPassword = (EditText) view.findViewById(R.id.confirm_password);
-        mConfirmEmail = (EditText) view.findViewById(R.id.confirm_email);
-        mContext = getActivity();
+        userConfirmPassword = (EditText) view.findViewById(R.id.confirm_password);
+        userConfirmEmail = (EditText) view.findViewById(R.id.confirm_email);
+        context = getActivity();
 
 
         TextView confirmDialog = (TextView) view.findViewById(R.id.dialogConfirm);
         confirmDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: attempting to resend verification email.");
-                if (!isEmpty(mConfirmEmail.getText().toString())
-                        && !isEmpty(mConfirmPassword.getText().toString())) {
+                Log.d(TAG, "onClick: trying to resend verification email.");
+                if (!isEmptyString(userConfirmEmail.getText().toString())
+                        && !isEmptyString(userConfirmPassword.getText().toString())) {
 
-                    authenticateAndResendEmail(mConfirmEmail.getText().toString(),
-                            mConfirmPassword.getText().toString());
+                    authenticateAndResendEmail(userConfirmEmail.getText().toString(),
+                            userConfirmPassword.getText().toString());
                 } else {
-                    Toast.makeText(mContext, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
@@ -73,7 +72,6 @@ public class ResendVerificationDialog extends DialogFragment {
 
 
     // will re-authenticate so we can send a verification email again
-
     private void authenticateAndResendEmail(String email, String password) {
         AuthCredential credential = EmailAuthProvider
                 .getCredential(email, password);
@@ -82,7 +80,7 @@ public class ResendVerificationDialog extends DialogFragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "onComplete: re-authenticate success.");
+                            Log.d(TAG, "onComplete: re-authentication successful.");
                             sendVerificationEmail();
                             FirebaseAuth.getInstance().signOut();
                             getDialog().dismiss();
@@ -91,7 +89,7 @@ public class ResendVerificationDialog extends DialogFragment {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(mContext, R.string.invalid_credentials, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.invalid_credentials, Toast.LENGTH_LONG).show();
                 getDialog().dismiss();
             }
         });
@@ -107,9 +105,9 @@ public class ResendVerificationDialog extends DialogFragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(mContext, R.string.sent_verification_email, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, R.string.sent_verification_email, Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(mContext, R.string.couldnt_send_verification_email, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, R.string.couldnt_send_verification_email, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -117,7 +115,7 @@ public class ResendVerificationDialog extends DialogFragment {
     }
 
     // return true if the string is null
-    private boolean isEmpty(String string) {
+    private boolean isEmptyString(String string) {
         return string.equals("");
     }
 }

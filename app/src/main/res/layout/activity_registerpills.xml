@@ -23,7 +23,7 @@
         android:layout_gravity="bottom|end"
         android:foregroundGravity="bottom"
         android:layout_margin="32dp"
-        android:src="@drawable/add_pill_icon"
-        app:backgroundTint="@color/blue3" />
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/blue1" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

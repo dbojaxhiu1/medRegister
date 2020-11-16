@@ -32,9 +32,10 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_add_reminder);
 
-
+        // Get references to UI widgets
         editTextReminderName = findViewById(R.id.edit_reminder_name);
         editTextDate = findViewById(R.id.date);
 
@@ -58,6 +59,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
             Toast.makeText(this, R.string.insert_reminder, Toast.LENGTH_SHORT).show();
             return;
         }
+        // create intent with additional info stored as extras
         Intent data = new Intent();
         data.putExtra(extra_reminder_name, textReminder);
         data.putExtra(extra_date, textDate);
@@ -115,11 +117,17 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
 
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        monthOfYear++;
         mDay = dayOfMonth;
-        mMonth = monthOfYear;
+        mMonth = monthOfYear++;
         mYear = year;
-        sDate = dayOfMonth + "/" + monthOfYear + "/" + year;
+        if (dayOfMonth < 10 && monthOfYear < 10)
+            sDate = "0" + dayOfMonth + "-" + "0" + monthOfYear + "-" + year;
+        else if (dayOfMonth < 10 && monthOfYear > 10)
+            sDate = "0" + dayOfMonth + "-" + monthOfYear + "-" + year;
+        else if (dayOfMonth > 10 && monthOfYear < 10)
+            sDate = dayOfMonth + "-" + "0" + monthOfYear + "-" + year;
+        else
+            sDate = dayOfMonth + "-" + monthOfYear + "-" + year;
         Toast.makeText(this, sDate, Toast.LENGTH_SHORT).show();
         editTextDate.setText(sDate);
     }

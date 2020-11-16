@@ -21,21 +21,26 @@ public class AddEditPillActivity extends AppCompatActivity {
     public static final String extra_usage = "com.example.medregister.EXTRA_USAGE";
     public static final String extra_package_contains = "com.example.medregister.EXTRA_PACKAGE_CONTAINS";
     public static final String extra_id = "com.example.medregister.EXTRA_ID";
+    //public static final String extra_date = "com.example.medregister.EXTRA_DATE";
 
     private EditText editTextPillName;
     private EditText editTextPillInstruction;
+    //private EditText editTextLastModified;
     private NumberPicker numberPickerUsage;
     private NumberPicker numberPickerPackage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_add_pill);
         Log.d(TAG, "onCreate: started.");
+        // Get references to UI widgets
         editTextPillName = findViewById(R.id.edit_pill_name);
         editTextPillInstruction = findViewById(R.id.edit_pill_instruction);
         numberPickerUsage = findViewById(R.id.number_picker_usage);
         numberPickerPackage = findViewById(R.id.number_picker_number_in_package);
+        //editTextLastModified = findViewById(R.id.edit_text_last_modified);
 
         numberPickerUsage.setMinValue(1);
         numberPickerUsage.setMaxValue(5);
@@ -57,6 +62,7 @@ public class AddEditPillActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.insert_pill_name_instruction, Toast.LENGTH_SHORT).show();
             return;
         }
+        // create intent with additional info stored as extras
         Intent data = new Intent();
         data.putExtra(extra_name, name);
         data.putExtra(extra_instruction, instruction);

@@ -40,6 +40,7 @@ public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
     @NonNull
     @Override
     public PillHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate layout
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row_pills, parent, false);
         return new PillHolder(itemView);
@@ -49,29 +50,13 @@ public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
     public void onBindViewHolder(@NonNull final PillHolder holder, int position) {
         final Pill currentPill = getItem(position);
         final String usage = "Daily usage: " + currentPill.getUsage();
-
-       // Date currentDate = new Date();
-        //Date getTime = currentPill.getCreationDate();
-
-        //long difference = currentDate.getTime() - getTime.getTime();
-        //long differenceDays = difference / (1000 * 60 * 60 * 24);
-
-        //Log.e("day", String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
-
-        //Log.e("day", String.valueOf((getTime.get(Calendar.DAY_OF_MONTH))-currentDate.get(Calendar.DAY_OF_MONTH)));
-
-        //if (currentDate.get(Calendar.DAY_OF_MONTH)<getTime.get(Calendar.DAY_OF_MONTH))
-        //{
-        //    int pillBefore = currentPill.getPackageContains() - currentPill.getUsage();
-        //
-        //    holder.viewPackageContains.setText(currentPill);
-        //}
-
         String packageString = "Package Contains: " + currentPill.getPackageContains() + " pills";
+
         holder.viewPillName.setText(currentPill.getName());
         holder.viewPillInstruction.setText(currentPill.getInstruction());
         holder.viewPillUsage.setText(usage);
         holder.viewPackageContains.setText(packageString);
+        holder.viewLastModified.setText(currentPill.getCreationDate());
     }
 
     public Pill getPillAt(int position) {
@@ -83,6 +68,7 @@ public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
         private TextView viewPillInstruction;
         private TextView viewPillUsage;
         private TextView viewPackageContains;
+        private TextView viewLastModified;
 
         public PillHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,7 +76,7 @@ public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
             viewPillInstruction = itemView.findViewById(R.id.view_instruction);
             viewPillUsage = itemView.findViewById(R.id.view_usage);
             viewPackageContains = itemView.findViewById(R.id.view_package_contains);
-
+            viewLastModified = itemView.findViewById(R.id.last_modified_pill);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,30 +93,10 @@ public class PillAdapter extends ListAdapter<Pill, PillAdapter.PillHolder> {
 
     public interface OnItemClickListener {
         void onItemClick(Pill pill);
-
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
-
-    /*Timer timer = new Timer();
-        timer.schedule(new
-
-        TimerTask() {
-
-        @Override
-        public void run () {
-            PillAdapter.this.runOnUiThread(new Runnable() {
-                public void run() {
-                    // update UI here
-                    int packageBefore = currentPill.getPackageContains();
-                    int packageAfter = packageBefore - currentPill.getUsage();
-                    holder.viewPillUsage.setText(packageAfter);
-                }
-            });
-        }
-    },0,10);*/
 }
 

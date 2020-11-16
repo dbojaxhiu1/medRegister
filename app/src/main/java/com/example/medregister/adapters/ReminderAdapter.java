@@ -39,6 +39,7 @@ public class ReminderAdapter extends ListAdapter<Reminder, ReminderAdapter.Remin
     @NonNull
     @Override
     public ReminderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate layout
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row_todo, parent, false);
         return new ReminderHolder(itemView);

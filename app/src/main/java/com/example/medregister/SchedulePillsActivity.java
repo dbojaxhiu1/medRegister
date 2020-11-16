@@ -29,30 +29,37 @@ public class SchedulePillsActivity extends AppCompatActivity {
 
     private static final String TAG = "SchedulePillsActivity";
     public static final int ADD_SCHEDULE_PILL_REQUEST = 1;
+    public static final int EDIT_SCHEDULE_PILL_REQUEST = 2;
     private SchedulePillViewModel schedulePillViewModel;
-    final int id = (int) System.currentTimeMillis();
+    final int request_id = (int) System.currentTimeMillis();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_schedule_pills);
         Log.d(TAG, "onCreate: started.");
         setTitle(R.string.schedule_pills_title);
 
+        //create a floating action button variable
         FloatingActionButton fob_schedule_pill = findViewById(R.id.fob_schedule_pill);
         fob_schedule_pill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SchedulePillsActivity.this, AddScheduledPillActivity.class);
+                Intent intent = new Intent(SchedulePillsActivity.this, AddEditSchedulePillsActivity.class);
                 startActivityForResult(intent, ADD_SCHEDULE_PILL_REQUEST);
             }
         });
 
+        //reference Recycler View
         RecyclerView recyclerView = findViewById(R.id.recyclerView_schedule_pill);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //call recycler view
         recyclerView.setHasFixedSize(true);
 
+        //adapter
         final SchedulePillAdapter adapter = new SchedulePillAdapter();
+        //pass adapter to recycler view
         recyclerView.setAdapter(adapter);
 
 
@@ -73,12 +80,23 @@ public class SchedulePillsActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                //cancelAlarm();
                 schedulePillViewModel.delete(adapter.getScheduledPillAt(viewHolder.getAdapterPosition()));
-                cancelAlarm();
                 Toast.makeText(SchedulePillsActivity.this, R.string.scheduled_pill_deleted, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
+        adapter.setOnItemClickListener(new SchedulePillAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(SchedulePill pill) {
+                Intent intent = new Intent(SchedulePillsActivity.this, AddEditSchedulePillsActivity.class);
+                intent.putExtra(AddEditSchedulePillsActivity.EXTRA_ID, pill.getId());
+                intent.putExtra(AddEditSchedulePillsActivity.EXTRA_NAME, pill.getPillName());
+                intent.putExtra(AddEditSchedulePillsActivity.EXTRA_TIME, pill.getTime());
+                intent.putExtra(AddEditSchedulePillsActivity.EXTRA_DOSE, pill.getDose());
+                startActivityForResult(intent, EDIT_SCHEDULE_PILL_REQUEST);
+            }
+        });
     }
 
     @Override
@@ -86,15 +104,30 @@ public class SchedulePillsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_SCHEDULE_PILL_REQUEST && resultCode == RESULT_OK) {
-            String name = data.getStringExtra(AddScheduledPillActivity.EXTRA_NAME);
-            String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
-            String time = data.getStringExtra(AddScheduledPillActivity.EXTRA_TIME);
-            int dose = data.getIntExtra(AddScheduledPillActivity.EXTRA_DOSE, 1);
+            String name = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_NAME);
+            //String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
+            String time = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_TIME);
+            int dose = data.getIntExtra(AddEditSchedulePillsActivity.EXTRA_DOSE, 1);
 
-            SchedulePill schedulePill = new SchedulePill(name, date, time, dose);
+            SchedulePill schedulePill = new SchedulePill(name, time, dose);
             schedulePillViewModel.insert(schedulePill);
 
             Toast.makeText(this, R.string.pill_scheduled, Toast.LENGTH_SHORT).show();
+        } else if (requestCode == EDIT_SCHEDULE_PILL_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(AddEditSchedulePillsActivity.EXTRA_ID, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Scheduled pill not updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String name = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_NAME);
+            //String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
+            String time = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_TIME);
+            int dose = data.getIntExtra(AddEditSchedulePillsActivity.EXTRA_DOSE, 1);
+
+            SchedulePill pill = new SchedulePill(name, time, dose);
+            pill.setId(id);
+            schedulePillViewModel.update(pill);
+            Toast.makeText(this, "Scheduled pill updated", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.pill_not_scheduled, Toast.LENGTH_SHORT).show();
         }
@@ -103,7 +136,8 @@ public class SchedulePillsActivity extends AppCompatActivity {
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
         alarmManager.cancel(pendingIntent);
+
     }
 }

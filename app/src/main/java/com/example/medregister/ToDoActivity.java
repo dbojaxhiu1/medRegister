@@ -39,6 +39,7 @@ public class ToDoActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_todo);
         Log.d(TAG, "onCreate: started.");
         setTitle(R.string.to_do_activity_title);

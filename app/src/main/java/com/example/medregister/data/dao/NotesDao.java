@@ -28,5 +28,5 @@ public interface NotesDao {
     void update(int sid, String sText);
 
     @Query("SELECT * FROM notes_table")
-    List<Note> getAll();
+    List<Note> getAllNotes();
 }

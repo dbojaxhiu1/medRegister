@@ -47,9 +47,9 @@ public abstract class PillDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            pillDao.insert(new Pill("Name 1", "Instruction 1", 1, 6));
-            pillDao.insert(new Pill("Name 2", "Instruction 2", 2, 7));
-            pillDao.insert(new Pill("Name 3", "Instruction 3", 3, 8));
+            //pillDao.insert(new Pill("Name 1", "Instruction 1", 1, 6,""));
+            //pillDao.insert(new Pill("Name 2", "Instruction 2", 2, 7));
+            //pillDao.insert(new Pill("Name 3", "Instruction 3", 3, 8));
             return null;
         }
     }

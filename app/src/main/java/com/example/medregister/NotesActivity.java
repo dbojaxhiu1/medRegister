@@ -22,60 +22,54 @@ public class NotesActivity extends AppCompatActivity {
 
     private static final String TAG = "NotesActivity";
     EditText editText;
-    Button buttonAdd, buttonReset;
-    RecyclerView recyclerView;
+    Button buttonAdd;
+    NoteDatabase database;
 
     List<Note> noteList = new ArrayList<>();
-    LinearLayoutManager linearLayoutManager;
-    NoteDatabase database;
-    NoteAdapter noteAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_notes);
         Log.d(TAG, "onCreate: started.");
         setTitle(getString(R.string.notes_title));
         editText = findViewById(R.id.edit_text_note);
         buttonAdd = findViewById(R.id.button_add_note);
-        buttonReset = findViewById(R.id.button_reset_note);
-        recyclerView = findViewById(R.id.note_recycler_view);
+
+        RecyclerView recyclerView = findViewById(R.id.note_recycler_view);
 
         database = NoteDatabase.getInstance(this);
-        noteList = database.NoteDao().getAll();
+        noteList = database.NoteDao().getAllNotes();
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        noteAdapter = new NoteAdapter(NotesActivity.this, noteList);
-        recyclerView.setAdapter(noteAdapter);
-
+        final NoteAdapter notesAdapter = new NoteAdapter(NotesActivity.this, noteList);
+        recyclerView.setAdapter(notesAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //call recycler view
+        recyclerView.setHasFixedSize(true);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String noteText = editText.getText().toString().trim();
-                if (!noteText.equals("")) {
-                    //checking when its empty
-                    Note notesData = new Note();
-                    notesData.setText(noteText);
-                    database.NoteDao().insert(notesData);
-
-                    editText.setText("");
-                    noteList.clear();
-                    noteList.addAll(database.NoteDao().getAll());
-                    noteAdapter.notifyDataSetChanged();
-
-                }
-            }
-        });
-
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database.NoteDao().reset(noteList);
-                noteList.clear();
-                noteList.addAll(database.NoteDao().getAll());
-                noteAdapter.notifyDataSetChanged();
+                addNote(notesAdapter);
             }
         });
     }
+    //will add note to the database
+    public void addNote(NoteAdapter noteAdapter) {
+        String noteText = editText.getText().toString().trim();
+        //checking if the string is empty
+        if (!noteText.equals("")) {
+            Note notesData = new Note();
+            notesData.setText(noteText);
+            database.NoteDao().insert(notesData);
+
+            editText.setText("");
+
+            noteList.clear();
+            noteList.addAll(database.NoteDao().getAllNotes());
+            noteAdapter.notifyDataSetChanged();
+        }
+    }
+
 }
+

@@ -17,11 +17,12 @@ public class AppInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_app_information);
         Log.d(TAG, "onCreate: started.");
         setTitle(getString(R.string.about_app_info));
 
-        //assign variables
+        //// Get references to UI widgets
         textViewVersionCode = findViewById(R.id.v_code);
         textViewVersionName = findViewById(R.id.v_name);
 
@@ -29,6 +30,6 @@ public class AppInformationActivity extends AppCompatActivity {
         textViewVersionCode.setText(String.valueOf(BuildConfig.VERSION_CODE));
 
         //will display version name to TextView
-        textViewVersionName.setText(String.valueOf(BuildConfig.VERSION_NAME));
+        textViewVersionName.setText(BuildConfig.VERSION_NAME);
     }
 }

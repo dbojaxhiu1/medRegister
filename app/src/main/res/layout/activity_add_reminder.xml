@@ -25,6 +25,7 @@
                 android:id="@+id/edit_reminder_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:hint="@string/edit_title"
                 android:inputType="text" />
         </LinearLayout>
@@ -51,6 +52,7 @@
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:clickable="true"
                 android:editable="false"
                 android:hint="@string/date" />
