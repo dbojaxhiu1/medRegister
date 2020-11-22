@@ -1,3 +1,6 @@
+![GitHub](https://img.shields.io/github/license/dbojaxhiu1/medRegister)
+
+
 # medRegister: Android Application for elderly people
 
 ## Application Description
