@@ -34,7 +34,7 @@
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignedInActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SettingsAndUserInfo" />
         <activity
             android:name=".RegisterPillsActivity"
             android:launchMode="singleTop" />

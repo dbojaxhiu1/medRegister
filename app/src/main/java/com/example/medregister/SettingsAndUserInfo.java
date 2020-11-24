@@ -27,9 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsAndUserInfo extends AppCompatActivity {
 
     private static final String TAG = "SettingsActivity";
 
@@ -58,15 +59,15 @@ public class SettingsActivity extends AppCompatActivity {
         save = (Button) findViewById(R.id.save_settings);
 
 
-        setupFirebaseAuth();
+        authentication();
         setCurrentUserEmail();
         inside();
-        hideSoftKeyboard();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     // save data in firebase database
     private void inside() {
-        getUserAccountData();
+        getUserInfo();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
                             .child(getString(R.string.field_phone))
                             .setValue(userPhone.getText().toString());
                 }
-                Toast.makeText(SettingsActivity.this, R.string.saved, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsAndUserInfo.this, R.string.saved, Toast.LENGTH_SHORT).show();
             }
         });
         resetPasswordLink.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +100,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     // Get user data, for account settings option
-    private void getUserAccountData() {
-        Log.d(TAG, "getUserAccountsData: getting the users account information");
+    private void getUserInfo() {
+        Log.d(TAG, "getUserInfo: getting the users information");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child(getString(R.string.db_users))
@@ -108,9 +109,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onDataChange(@NotNull DataSnapshot snapshot) {
                 for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
+                    assert user != null;
                     Log.d(TAG, "onDataChange: found user: " + user.toString());
                     userName.setText(user.getName());
                     userPhone.setText(user.getPhone());
@@ -118,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NotNull DatabaseError databaseError) {
             }
         });
         userEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -132,11 +134,11 @@ public class SettingsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: Password Reset Email sent.");
-                            Toast.makeText(SettingsActivity.this, "Sent Password Reset Link to Email", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsAndUserInfo.this, "Sent Password Reset Link to Email", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
 
-                            Toast.makeText(SettingsActivity.this, R.string.no_user_with_this_email, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsAndUserInfo.this, R.string.no_user_with_this_email, Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -146,7 +148,6 @@ public class SettingsActivity extends AppCompatActivity {
     // will set the email that is currently signed in, if there is one.
     private void setCurrentUserEmail() {
         Log.d(TAG, "setCurrentUserEmail: setting current user email to EditText field");
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Log.d(TAG, "setCurrentUserEmail: user is not null.");
@@ -155,11 +156,6 @@ public class SettingsActivity extends AppCompatActivity {
             userEmail.setText(user_email);
         }
     }
-
-    private void hideSoftKeyboard() {
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
 
     @Override
     protected void onResume() {
@@ -175,7 +171,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (user == null) {
             Log.d(TAG, "checkAuthenticationState: user is null, navigating back to login screen.");
-            Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SettingsAndUserInfo.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -185,7 +181,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     //for setting up firebase authentication
-    private void setupFirebaseAuth() {
+    private void authentication() {
         Log.d(TAG, "setupFirebaseAuth: started.");
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -198,8 +194,8 @@ public class SettingsActivity extends AppCompatActivity {
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(SettingsActivity.this, R.string.signed_out, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                    Toast.makeText(SettingsAndUserInfo.this, R.string.signed_out, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SettingsAndUserInfo.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }

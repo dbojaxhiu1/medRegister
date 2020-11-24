@@ -1,6 +1,5 @@
 package com.example.medregister;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 public class AddEditReminderActivity extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = "AddReminderActivity";
@@ -31,7 +29,6 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
     private String sDate;
     private int mHour, mYear, mMonth, mMinute, mDay;
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +46,7 @@ public class AddEditReminderActivity extends AppCompatActivity implements com.wd
                 setDate();
             }
         });
-        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         addEditReminderActivity();
     }
 

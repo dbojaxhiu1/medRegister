@@ -70,7 +70,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
                 adapter.setScheduledPills(schedulePills);
             }
         });
-        // when I delete it doesn't cancel alarm, request ID is the problem here
+
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -80,7 +80,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //cancelAlarm();
+                cancelAlarm();
                 schedulePillViewModel.delete(adapter.getScheduledPillAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(SchedulePillsActivity.this, R.string.scheduled_pill_deleted, Toast.LENGTH_SHORT).show();
             }
@@ -105,9 +105,8 @@ public class SchedulePillsActivity extends AppCompatActivity {
 
         if (requestCode == ADD_SCHEDULE_PILL_REQUEST && resultCode == RESULT_OK) {
             String name = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_NAME);
-            //String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
             String time = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_TIME);
-            int dose = data.getIntExtra(AddEditSchedulePillsActivity.EXTRA_DOSE, 1);
+            String dose = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_DOSE);
 
             SchedulePill schedulePill = new SchedulePill(name, time, dose);
             schedulePillViewModel.insert(schedulePill);
@@ -120,9 +119,8 @@ public class SchedulePillsActivity extends AppCompatActivity {
                 return;
             }
             String name = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_NAME);
-            //String date = data.getStringExtra(AddScheduledPillActivity.EXTRA_DATE);
             String time = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_TIME);
-            int dose = data.getIntExtra(AddEditSchedulePillsActivity.EXTRA_DOSE, 1);
+            String dose = data.getStringExtra(AddEditSchedulePillsActivity.EXTRA_DOSE);
 
             SchedulePill pill = new SchedulePill(name, time, dose);
             pill.setId(id);

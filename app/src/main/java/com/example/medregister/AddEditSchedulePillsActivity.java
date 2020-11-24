@@ -21,8 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.medregister.models.SchedulePill;
-
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -30,7 +28,6 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
 
     public static final String TAG = "AddScheduledPillActivit";
     public static final String EXTRA_NAME = "com.example.medregister.EXTRA_NAME";
-    public static final String EXTRA_DATE = "com.example.medregister.EXTRA_DATE";
     public static final String EXTRA_TIME = "com.example.medregister.EXTRA_TIME";
     public static final String EXTRA_DOSE = "com.example.medregister.EXTRA_DOSE";
     public static final String EXTRA_ID = "com.example.medregister.EXTRA_ID";
@@ -87,18 +84,16 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
 
     private void saveScheduledPill() {
         String name = editTextName.getText().toString();
-        //String date = editTextDate.getText().toString();
         String time = editTextTime.getText().toString();
-        int dose = Integer.parseInt(editTextDose.getText().toString());
+        String dose = editTextDose.getText().toString();
 
-        if (name.trim().isEmpty() || time.isEmpty()) {
+        if (name.trim().isEmpty() || time.isEmpty() || dose.isEmpty()) {
             Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
             return;
         }
         // create intent with additional info stored as extras
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
-        //data.putExtra(EXTRA_DATE, date);
         data.putExtra(EXTRA_TIME, time);
         data.putExtra(EXTRA_DOSE, dose);
 
@@ -163,7 +158,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
 
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
@@ -179,7 +174,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
     }

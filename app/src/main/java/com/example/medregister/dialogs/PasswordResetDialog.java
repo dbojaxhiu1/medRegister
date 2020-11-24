@@ -24,10 +24,10 @@ public class PasswordResetDialog extends DialogFragment {
 
     private static final String TAG = "PasswordResetDialog";
 
-    //widgets
+    // ui widgets
     private EditText userEmail;
 
-    //vars
+
     private Context context;
 
     @Nullable

@@ -8,15 +8,6 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-
-    <TextView
-        android:id="@+id/dialogTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/resend_verification_email"
-        android:textColor="@color/Black"
-        android:textSize="21sp" />
-
     <EditText
         android:id="@+id/confirm_email"
         android:layout_width="match_parent"

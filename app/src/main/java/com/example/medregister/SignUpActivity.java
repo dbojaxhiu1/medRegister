@@ -24,13 +24,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
 
-    private static final String DOMAIN_NAME = "gmail.com";
+    private static final String email_regex = "^[A-Za-z0-9+_.-]+@gmail\\.com$";
+    private static final String password_regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
-    //widgets
+    // ui widgets
     private EditText userEmail, userPassword, userConfirmPassword;
     private Button userSignUp;
     private ProgressBar progressBar;
@@ -58,10 +62,18 @@ public class SignUpActivity extends AppCompatActivity {
                     //check if user has a valid(@gmail.com) email address
                     if (isDomainGmail(userEmail.getText().toString())) {
                         //check if passwords match
-                        if (doStringsMatch(userPassword.getText().toString(), userConfirmPassword.getText().toString())) {
-                            registerNewEmail(userEmail.getText().toString(), userPassword.getText().toString());
+                        if (isPasswordStrongEnough(userPassword.getText().toString())) {
+                            if (stringCheck(userPassword.getText().toString(), userConfirmPassword.getText().toString())) {
+                                registerNewEmail(userEmail.getText().toString(), userPassword.getText().toString());
+                            } else {
+                                Toast.makeText(SignUpActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(SignUpActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
+                            if (isPasswordStrongEnough(userConfirmPassword.getText().toString())) {
+                                Toast.makeText(SignUpActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Password not strong enough", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     } else {
                         Toast.makeText(SignUpActivity.this, R.string.register_with_correct_email, Toast.LENGTH_SHORT).show();
@@ -72,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        hideSoftKeyboard();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     private void sendVerificationEmail() {
@@ -93,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void registerNewEmail(final String email, String password) {
-        showDialog();
+        progressBar.setVisibility(View.VISIBLE);
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
@@ -105,11 +117,8 @@ public class SignUpActivity extends AppCompatActivity {
                             Log.d(TAG, "onComplete: AuthState: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
                             sendVerificationEmail();
 
-                            //insert some default data
+                            //insert user id info of the registered user into the database
                             User user = new User();
-                            user.setName(email.substring(0, email.indexOf("@")));
-                            user.setPhone("1");
-                            user.setProfile_image("");
                             user.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
                             FirebaseDatabase.getInstance().getReference()
                                     .child(getString(R.string.db_users))
@@ -140,16 +149,22 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-
     // Returns True if the user's email contains '@gmail.com'
-
     private boolean isDomainGmail(String email) {
+        Pattern pattern = Pattern.compile(email_regex);
         Log.d(TAG, "isDomainGmail: verifying if email has the correct domain: " + email);
-        String domainEmail = email.substring(email.indexOf("@") + 1).toLowerCase();
-        Log.d(TAG, "isDomainGmail: user domain: " + domainEmail);
-        return domainEmail.equals(DOMAIN_NAME);
+        Matcher matcher = pattern.matcher(email);
+        Log.d(TAG, "isDomainGmail: user domain: " + matcher.matches());
+        return matcher.matches();
     }
 
+    private boolean isPasswordStrongEnough(String password) {
+        Pattern pattern = Pattern.compile(password_regex);
+        Log.d(TAG, "isPasswordStrongEnough: verifying if password has the right strength: " + password);
+        Matcher matcher = pattern.matcher(password);
+        Log.d(TAG, "isPasswordStrongEnough: user password: " + matcher.matches());
+        return matcher.matches();
+    }
 
     //Redirects the user to the login screen
     private void toLoginScreen() {
@@ -160,7 +175,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     // return true if strings match
-    private boolean doStringsMatch(String s1, String s2) {
+    private boolean stringCheck(String s1, String s2) {
         return s1.equals(s2);
     }
 
@@ -170,19 +185,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private void showDialog() {
-        progressBar.setVisibility(View.VISIBLE);
-
-    }
-
     private void hideDialog() {
         if (progressBar.getVisibility() == View.VISIBLE) {
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
-
-    private void hideSoftKeyboard() {
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
 }

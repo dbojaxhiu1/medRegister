@@ -6,8 +6,7 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
 
-    <string name="resend_verification_email">Resend Verification Email</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Password reset</string>
     <string name="register">Sign up</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
@@ -32,22 +31,22 @@
     <string name="field_phone">phone</string>
 
     <!-- Strings for home fragment -->
-    <string name="register_pills">Register Pills</string>
-    <string name="schedule_pill">Schedule Pills</string>
+    <string name="register_pills">Register Medications</string>
+    <string name="schedule_pill">Schedule Medications</string>
     <string name="notes">Notes</string>
     <string name="to_do">To do</string>
     <string name="healthy_tips">Healthy Tips</string>
 
     <!-- Strings for Register Pill activity -->
-    <string name="register_new_pill">Register new pill</string>
-    <string name="delete_all_pills">Delete all pills</string>
-    <string name="pill_name">Pill Name</string>
-    <string name="instruction">Pill Instruction</string>
+    <string name="register_new_pill">Register new medication</string>
+    <string name="delete_all_pills">Delete all medications</string>
+    <string name="pill_name">Medication name</string>
+    <string name="instruction">Medication Instruction</string>
     <string name="add">ADD</string>
     <string name="daily_usage">Daily usage: </string>
     <string name="package_contains">Package Contains: </string>
     <string name="nr_pills"> pills</string>
-    <string name="numOfPillsInPackage">Number of pills in package:</string>
+    <string name="numOfPillsInPackage">Content of medication in package:</string>
     <string name="list_instruction">Instruction</string>
     <string name="last_modified">Last modified:</string>
     <string name="number_1">1</string>
@@ -122,21 +121,21 @@
     <string name="no_user_with_this_email">No User Associated with that Email</string>
     <string name="signed_out">Signed out</string>
 
-    <string name="schedule_pills_title">Schedule Pills</string>
-    <string name="pill_scheduled">Pill scheduled</string>
-    <string name="pill_not_scheduled">Pill not scheduled</string>
-    <string name="scheduled_pill_deleted">Scheduled pill intake deleted</string>
+    <string name="schedule_pills_title">Schedule medications</string>
+    <string name="pill_scheduled">Medication scheduled</string>
+    <string name="pill_not_scheduled">Medication not scheduled</string>
+    <string name="scheduled_pill_deleted">Scheduled medication intake deleted</string>
 
-    <string name="register_pills_title">Register Pills</string>
-    <string name="pill_deleted">Pill Deleted</string>
-    <string name="pill_saved">Pill saved</string>
-    <string name="pill_couldnt_update">Pill couldn\'t be updated</string>
-    <string name="pill_updated">Pill updated</string>
-    <string name="pill_not_saved">Pill not saved</string>
-    <string name="all_pills_deleted">All pills deleted</string>
+    <string name="register_pills_title">Register Medication</string>
+    <string name="pill_deleted">Medication Deleted</string>
+    <string name="pill_saved">Medication saved</string>
+    <string name="pill_couldnt_update">Medication couldn\'t be updated</string>
+    <string name="pill_updated">Medication updated</string>
+    <string name="pill_not_saved">Medication not saved</string>
+    <string name="all_pills_deleted">All medications deleted</string>
 
     <string name="passwords_dont_match">Passwords do not match</string>
-    <string name="register_with_correct_email">Please Register with correct Email</string>
+    <string name="register_with_correct_email">Please Register with a GMAIL domain address</string>
     <string name="fill_all_fields">Please fill all the necessary fields</string>
     <string name="sent_verification_email">Sent Verification Email</string>
     <string name="couldnt_send_verification_email">Couldn\'t Send Verification Email</string>
@@ -150,9 +149,9 @@
     <string name="healthy_tips_title">Healthy Tips</string>
     <string name="about_app_info">About</string>
 
-    <string name="insert_pill_name_instruction">Please insert the pill name and instruction</string>
-    <string name="edit_pill">Edit Pill</string>
-    <string name="add_pill">Add Pill</string>
+    <string name="insert_pill_name_instruction">Please insert the medication name and instruction</string>
+    <string name="edit_pill">Edit Medication</string>
+    <string name="add_pill">Add Medication</string>
 
     <string name="invalid_credentials">Invalid Credentials.\nReset your password and try again</string>
     <string name="password_reset_link_sent">Password Reset Link Sent to Email</string>

@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="340dp"
-                android:background="@color/linkBlue"
+                android:background="@drawable/rounded_button"
                 android:text="@string/save"
                 android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="400dp"
-                android:background="@color/white"
+                android:background="@drawable/rounded_button"
                 android:text="@string/change_password"
                 android:textStyle="bold" />
 

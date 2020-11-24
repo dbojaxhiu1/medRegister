@@ -7,7 +7,6 @@
     <string name="action_sign_in">Jelentkezzen be vagy regisztráljon</string>
     <string name="action_sign_in_short">Bejelentkezés</string>
 
-    <string name="resend_verification_email">Igazoló e-mail újraküldése</string>
     <string name="forgot_password">Elfelejtette a jelszavát</string>
     <string name="register">Regisztráció</string>
     <string name="sign_in">Bejelentkezés</string>

@@ -26,6 +26,6 @@ public interface SchedulePillDao {
     @Query("DELETE FROM schedule_table")
     void deleteAllScheduledPills();
 
-    @Query("SELECT * FROM schedule_table ORDER BY dateScheduled DESC")
+    @Query("SELECT * FROM schedule_table ORDER BY time ASC")
     LiveData<List<SchedulePill>> getAllScheduledPills();
 }

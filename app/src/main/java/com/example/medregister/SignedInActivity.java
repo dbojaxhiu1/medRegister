@@ -35,7 +35,7 @@ public class SignedInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signedin);
         Log.d(TAG, "onCreate: started.");
 
-        setupFirebaseAuth();
+        authentication();
 
         ConstraintLayout registerPills = (ConstraintLayout) findViewById(R.id.registerPillButton);
         registerPills.setOnClickListener(new View.OnClickListener() {
@@ -86,17 +86,17 @@ public class SignedInActivity extends AppCompatActivity {
 
     //checks if the user is authenticated
     private void checkAuthState() {
-        Log.d(TAG, "checkAuthState: checking authentication state.");
+        Log.d(TAG, "Checking authentication state.");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            Log.d(TAG, "checkAuthState: user is null, going back to login screen.");
+            Log.d(TAG, "User is null, going back to login screen.");
             Intent intent = new Intent(SignedInActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         } else {
-            Log.d(TAG, "checkAuthState: user is authenticated.");
+            Log.d(TAG, "User is authenticated.");
         }
     }
 
@@ -115,7 +115,7 @@ public class SignedInActivity extends AppCompatActivity {
                 signOut(this);
                 return true;
             case R.id.optionAccountSettings:
-                Intent intent = new Intent(SignedInActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(SignedInActivity.this, SettingsAndUserInfo.class);
                 startActivity(intent);
                 return true;
             case R.id.optionAppInformation:
@@ -151,8 +151,8 @@ public class SignedInActivity extends AppCompatActivity {
     }
 
     //for setting up firebase authentication
-    private void setupFirebaseAuth() {
-        Log.d(TAG, "setupFirebaseAuth: started.");
+    private void authentication() {
+        Log.d(TAG, "Firebase Authentication: started.");
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -160,10 +160,10 @@ public class SignedInActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // user is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.d(TAG, "signed_in:" + user.getUid());
                 } else {
                     //user is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Log.d(TAG, "signed_out");
                     Intent intent = new Intent(SignedInActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
