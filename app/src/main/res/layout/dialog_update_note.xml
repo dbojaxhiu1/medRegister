@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:orientation="vertical">
 
     <EditText
+        android:id="@+id/update_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/update_edit_text"
+        android:background="@android:color/transparent"
+        android:gravity="top"
         android:hint="@string/enter_text"
-        android:padding="12dp"
         android:lines="6"
-        android:gravity="top" />
+        android:padding="12dp"
+        tools:ignore="Autofill,TextFields" />
+
+    <TextView
+        android:id="@+id/last_modified_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_modified"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <Button
+        android:id="@+id/button_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_update"
-        android:text="@string/update_text"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:text="@string/update_text" />
 
 </LinearLayout>

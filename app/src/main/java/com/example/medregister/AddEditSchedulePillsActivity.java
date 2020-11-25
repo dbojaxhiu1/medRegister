@@ -12,52 +12,43 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddScheduledPillActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddEditSchedulePillsActivity extends AppCompatActivity {
 
     public static final String TAG = "AddScheduledPillActivit";
     public static final String EXTRA_NAME = "com.example.medregister.EXTRA_NAME";
-    public static final String EXTRA_DATE = "com.example.medregister.EXTRA_DATE";
     public static final String EXTRA_TIME = "com.example.medregister.EXTRA_TIME";
     public static final String EXTRA_DOSE = "com.example.medregister.EXTRA_DOSE";
-
+    public static final String EXTRA_ID = "com.example.medregister.EXTRA_ID";
 
     private EditText editTextName;
-    private EditText editTextDate;
     private EditText editTextTime;
     private EditText editTextDose;
     private String sDate;
-    private int mHour, mYear, mMonth, mMinute, mDay;
+    private int mHour, mMinute;
     final int id = (int) System.currentTimeMillis();
+    public static int broadcastCode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_add_scheduled_pill);
 
+        // Get references to UI widgets
         editTextName = findViewById(R.id.edit_text_med_name);
-        editTextDate = findViewById(R.id.edit_text_date);
-        editTextDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Setting the date");
-                setDate();
-            }
-        });
         editTextTime = findViewById(R.id.edit_text_time);
+        editTextDose = findViewById(R.id.edit_text_dose);
+
         editTextTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,22 +57,8 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
             }
         });
 
-        Button buttonCancelAlarm = findViewById(R.id.cancel_scheduled_pill);
-        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelAlarm();
-                finish();
-            }
-        });
-
-        editTextDose = findViewById(R.id.edit_text_dose);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        if (getSupportActionBar() != null) {
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
-        setTitle(R.string.schedule_pills_title);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        addEditScheduledPill();
     }
 
     @Override
@@ -89,23 +66,25 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
         cancelAlarm();
         finish();
     }
-
     private void saveScheduledPill() {
         String name = editTextName.getText().toString();
-        String date = editTextDate.getText().toString();
         String time = editTextTime.getText().toString();
-        int dose = Integer.parseInt(editTextDose.getText().toString());
+        String dose = editTextDose.getText().toString();
 
-        if (name.trim().isEmpty() || date.isEmpty() || time.isEmpty()) {
+        if (name.trim().isEmpty() || time.isEmpty() || dose.isEmpty()) {
             Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
             return;
         }
+        // create intent with additional info stored as extras
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
-        data.putExtra(EXTRA_DATE, date);
         data.putExtra(EXTRA_TIME, time);
         data.putExtra(EXTRA_DOSE, dose);
 
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if (id != -1) {
+            data.putExtra(EXTRA_ID, id);
+        }
         setResult(RESULT_OK, data);
         finish();
     }
@@ -119,29 +98,15 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_scheduled_pill:
-                saveScheduledPill();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_scheduled_pill) {
+            saveScheduledPill();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-    public void setDate() {
-        Calendar now = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
-                this,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.setMinDate(Calendar.getInstance());
-        datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
-    }
 
     private void setTime() {
-        //setDate();
         final Calendar mCurrentTime = Calendar.getInstance();
         mHour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         mMinute = mCurrentTime.get(Calendar.MINUTE);
@@ -166,36 +131,28 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
                 c.set(Calendar.MINUTE, minute);
                 c.set(Calendar.SECOND, 0);
                 startAlarm(c);
+                Log.d(TAG, "onTimeSet: Alarm started");
 
             }
-        }, mHour, mMinute, false);//No 24 hour time
+        }, mHour, mMinute, false);
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
 
-    /**/
-    @Override
-    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        monthOfYear++;
-        mDay = dayOfMonth;
-        mMonth = monthOfYear;
-        mYear = year;
-        sDate = dayOfMonth + "/" + monthOfYear + "/" + year;
-        Toast.makeText(this, sDate, Toast.LENGTH_SHORT).show();
-        editTextDate.setText(sDate);
-    }
 
     public void startAlarm(Calendar c) {
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        broadcastCode++;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,broadcastCode, intent, 0);
 
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            assert alarmManager != null;
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
     }
@@ -203,8 +160,23 @@ public class AddScheduledPillActivity extends AppCompatActivity implements DateP
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        broadcastCode++;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, broadcastCode, intent, 0);
+        assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
     }
+
+    public void addEditScheduledPill() {
+        Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle(R.string.edit_scheduled_medication);
+            editTextName.setText(intent.getStringExtra(EXTRA_NAME));
+            editTextTime.setText(intent.getStringExtra(EXTRA_TIME));
+            editTextDose.setText(intent.getStringExtra(EXTRA_DOSE));
+        } else {
+            setTitle(R.string.schedule_pill_title);
+        }
+    }
+
 
 }

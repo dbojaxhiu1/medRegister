@@ -12,36 +12,30 @@ public class SchedulePill {
 
     private String pillName;
 
-    private String dateScheduled;
 
     private String time;
 
-    private int dose;
+    private String dose;
 
     private static int requestId = (int) System.currentTimeMillis();
 
-    public SchedulePill(String pillName, String dateScheduled, String time, int dose) {
+
+    public SchedulePill(String pillName, String time, String dose) {
         this.pillName = pillName;
-        this.dateScheduled = dateScheduled;
         this.dose = dose;
         this.time = time;
+    }
+
+    public static void setRequestId(int requestId) {
+        SchedulePill.requestId = requestId;
     }
 
     public static int getRequestId() {
         return requestId;
     }
 
-
     public void setPillName(String pillName) {
         this.pillName = pillName;
-    }
-
-    public void setDateScheduled(String dateScheduled) {
-        this.dateScheduled = dateScheduled;
-    }
-
-    public void setDose(int dose) {
-        this.dose = dose;
     }
 
     public String getTime() {
@@ -64,11 +58,11 @@ public class SchedulePill {
         return pillName;
     }
 
-    public String getDateScheduled() {
-        return dateScheduled;
+    public String getDose() {
+        return dose;
     }
 
-    public int getDose() {
-        return dose;
+    public void setDose(String dose) {
+        this.dose = dose;
     }
 }

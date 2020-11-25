@@ -24,31 +24,33 @@ public class PasswordResetDialog extends DialogFragment {
 
     private static final String TAG = "PasswordResetDialog";
 
-    //widgets
-    private EditText mEmail;
+    // ui widgets
+    private EditText userEmail;
 
-    //vars
-    private Context mContext;
+
+    private Context context;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //inflate view
         View view = inflater.inflate(R.layout.dialog_resetpassword, container, false);
-        mEmail = (EditText) view.findViewById(R.id.email_password_reset);
-        mContext = getActivity();
+        userEmail = (EditText) view.findViewById(R.id.email_password_reset);
+        context = getActivity();
 
+        // confirm dialog, will send reset password to users email, if it exists
         TextView confirmDialog = (TextView) view.findViewById(R.id.dialogConfirm);
         confirmDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isEmpty(mEmail.getText().toString())) {
-                    Log.d(TAG, "onClick: attempting to send reset link to: " + mEmail.getText().toString());
-                    sendPasswordResetEmail(mEmail.getText().toString());
+                if (!isEmptyString(userEmail.getText().toString())) {
+                    Log.d(TAG, "onClick: sending reset link to: " + userEmail.getText().toString());
+                    sendPasswordResetEmail(userEmail.getText().toString());
                     getDialog().dismiss();
                 }
-
             }
         });
+        // cancel dialog, back to log in activity
         TextView cancelDialog = (TextView) view.findViewById(R.id.dialogCancel);
         cancelDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,7 @@ public class PasswordResetDialog extends DialogFragment {
     }
 
 
-    // Will send a password reset link to the email provided
+    // Will send a password reset link to the email provided by the user
     public void sendPasswordResetEmail(String email) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -69,12 +71,10 @@ public class PasswordResetDialog extends DialogFragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: Password Reset Email sent.");
-                            Toast.makeText(mContext, R.string.password_reset_link_sent,
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.password_reset_link_sent, Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
-                            Toast.makeText(mContext, R.string.no_user_associated_with_email,
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.no_user_associated_with_email, Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -82,7 +82,7 @@ public class PasswordResetDialog extends DialogFragment {
     }
 
     // return true if the string is null
-    private boolean isEmpty(String string) {
+    private boolean isEmptyString(String string) {
         return string.equals("");
     }
 }

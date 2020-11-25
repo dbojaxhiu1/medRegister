@@ -1,5 +1,6 @@
 package com.example.medregister;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
 
 public class AddEditPillActivity extends AppCompatActivity {
     private static final String TAG = "AddEditPillActivity";
@@ -27,11 +30,14 @@ public class AddEditPillActivity extends AppCompatActivity {
     private NumberPicker numberPickerUsage;
     private NumberPicker numberPickerPackage;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inflate view
         setContentView(R.layout.activity_add_pill);
         Log.d(TAG, "onCreate: started.");
+        // Get references to UI widgets
         editTextPillName = findViewById(R.id.edit_pill_name);
         editTextPillInstruction = findViewById(R.id.edit_pill_instruction);
         numberPickerUsage = findViewById(R.id.number_picker_usage);
@@ -43,7 +49,7 @@ public class AddEditPillActivity extends AppCompatActivity {
         numberPickerPackage.setMinValue(1);
         numberPickerPackage.setMaxValue(50);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
         addEditPillActivity();
     }
 
@@ -57,6 +63,7 @@ public class AddEditPillActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.insert_pill_name_instruction, Toast.LENGTH_SHORT).show();
             return;
         }
+        // create intent with additional info stored as extras
         Intent data = new Intent();
         data.putExtra(extra_name, name);
         data.putExtra(extra_instruction, instruction);
@@ -80,13 +87,11 @@ public class AddEditPillActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_pill:
-                savePill();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_pill) {
+            savePill();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void addEditPillActivity() {

@@ -15,6 +15,7 @@ public class NotificationHelper extends ContextWrapper {
     public static final String channelID = "channelID";
     public static final String channelName = "Channel Name";
     private NotificationManager notificationManager;
+    final int id = (int) System.currentTimeMillis();
 
     public NotificationHelper(Context base) {
         super(base);
@@ -38,7 +39,7 @@ public class NotificationHelper extends ContextWrapper {
 
     public NotificationCompat.Builder getChannelNotification() {
         Intent resultIntent = new Intent(this, SchedulePillsActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, id, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle("MedRegister")
                 .setContentText(getString(R.string.notification_text))

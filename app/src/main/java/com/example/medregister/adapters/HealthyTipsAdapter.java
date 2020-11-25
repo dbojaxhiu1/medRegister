@@ -38,13 +38,14 @@ public class HealthyTipsAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        // Inflate layout
         View itemView = LayoutInflater.from(container.getContext())
-                .inflate(R.layout.list_cards, container, false);
+                .inflate(R.layout.list_healthy_tips, container, false);
 
         ImageView imageHealthyTip;
         TextView title;
         TextView tip;
-
+        // Get references to UI widgets
         imageHealthyTip = itemView.findViewById(R.id.image_healthy_tip);
         title = itemView.findViewById(R.id.title_healthy_tip);
         tip = itemView.findViewById(R.id.tip_text);

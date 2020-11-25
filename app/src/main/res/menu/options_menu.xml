@@ -11,5 +11,4 @@
         android:id="@+id/optionSignOut"
         android:title="@string/sign_out" />
 
-
 </menu>

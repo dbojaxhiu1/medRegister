@@ -34,34 +34,19 @@ public class LoginActivityTest {
 
     @Test
     public void loginActivityTest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
-                        childAtPosition(
-                                allOf(withId(R.id.email_login_form),
-                                        childAtPosition(
-                                                withId(R.id.login_form),
-                                                0)),
-                                1)));
+        ViewInteraction appCompatEditText = onView(allOf(withId(R.id.email), childAtPosition(
+                allOf(withId(R.id.email_login_form), childAtPosition(withId(R.id.login_form), 0)), 1)));
+
         appCompatEditText.perform(scrollTo(), replaceText("diari99@gmail.com"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                allOf(withId(R.id.email_login_form),
-                                        childAtPosition(
-                                                withId(R.id.login_form),
-                                                0)),
-                                2)));
+        ViewInteraction appCompatEditText2 = onView(allOf(withId(R.id.password), childAtPosition(allOf(withId(R.id.email_login_form),
+                childAtPosition(withId(R.id.login_form), 0)), 2)));
+
         appCompatEditText2.perform(scrollTo(), replaceText("password"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.email_sign_in_button), withText("Sign In"),
-                        childAtPosition(
-                                allOf(withId(R.id.email_login_form),
-                                        childAtPosition(
-                                                withId(R.id.login_form),
-                                                0)),
-                                3)));
+        ViewInteraction appCompatButton = onView(allOf(withId(R.id.email_sign_in_button), withText("Sign In"), childAtPosition(
+                allOf(withId(R.id.email_login_form), childAtPosition(withId(R.id.login_form), 0)), 3)));
+
         appCompatButton.perform(scrollTo(), click());
     }
 

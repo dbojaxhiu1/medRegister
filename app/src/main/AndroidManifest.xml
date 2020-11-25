@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AddScheduledPillActivity"
+            android:name=".AddEditSchedulePillsActivity"
             android:parentActivityName=".SchedulePillsActivity" />
         <activity android:name=".AppInformationActivity" />
         <activity
@@ -32,9 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".SignedInActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SettingsAndUserInfo" />
         <activity
             android:name=".RegisterPillsActivity"
             android:launchMode="singleTop" />

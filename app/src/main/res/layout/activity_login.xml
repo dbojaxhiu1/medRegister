@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -25,38 +26,77 @@
                 android:contentDescription="@string/pill_logo"
                 android:src="@drawable/circle_cropped" />
 
-            <EditText
-                android:id="@+id/email"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/ic_email" />
 
-            <EditText
-                android:id="@+id/password"
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                tools:ignore="InvalidImeActionId" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="18dp"
+                    android:drawablePadding="10dp"
+                    android:src="@drawable/ic_lock" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleDrawable="@drawable/visibility_icon_selector"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorAccent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:hint="@string/password"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        tools:ignore="Autofill,InvalidImeActionId" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/blue_button"
+                android:background="@drawable/rounded_button"
                 android:text="@string/sign_in"
+                android:textAppearance="@android:style/TextAppearance.Large"
                 android:textStyle="bold" />
+
 
             <RelativeLayout
                 android:id="@+id/relLayout1"
@@ -68,36 +108,28 @@
                     android:id="@+id/link_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:text="@string/register"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
-
+                    android:textColor="@color/blue5"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/forgot_password"
-                    android:layout_width="wrap_content"
+                    android:layout_width="189dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/link_register"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
+                    android:layout_marginStart="119dp"
+                    android:layout_marginLeft="119dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_toEndOf="@id/link_register"
+                    android:layout_toRightOf="@id/link_register"
+                    android:gravity="right"
+                    android:maxLines="1"
                     android:text="@string/forgot_password"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/resend_verification_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/forgot_password"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/resend_verification_email"
-                    android:textColor="@color/linkBlue"
-                    android:textSize="16sp" />
+                    android:textColor="@color/blue5"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 

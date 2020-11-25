@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.medregister.data.dao.PillDao;
 import com.example.medregister.models.Pill;
 
-@Database(entities = {Pill.class}, version = 9, exportSchema = false)
+@Database(entities = {Pill.class}, version = 11, exportSchema = false)
 public abstract class PillDatabase extends RoomDatabase {
 
     private static PillDatabase database;
@@ -23,7 +23,8 @@ public abstract class PillDatabase extends RoomDatabase {
     public static synchronized PillDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    PillDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration()
+                    PillDatabase.class, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }
@@ -47,9 +48,9 @@ public abstract class PillDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            pillDao.insert(new Pill("Name 1", "Instruction 1", 1, 6));
-            pillDao.insert(new Pill("Name 2", "Instruction 2", 2, 7));
-            pillDao.insert(new Pill("Name 3", "Instruction 3", 3, 8));
+            //pillDao.insert(new Pill("Name 1", "Instruction 1", 1, 6,""));
+            //pillDao.insert(new Pill("Name 2", "Instruction 2", 2, 7));
+            //pillDao.insert(new Pill("Name 3", "Instruction 3", 3, 8));
             return null;
         }
     }

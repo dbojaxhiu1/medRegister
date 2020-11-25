@@ -30,6 +30,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="70dp"
                 android:src="@drawable/pill_logo"
+                tools:ignore="ContentDescription"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
@@ -39,7 +40,8 @@
                 android:layout_below="@+id/textHeader"
                 android:layout_marginTop="130dp"
                 android:hint="@string/name_settings"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="Autofill" />
 
             <EditText
                 android:id="@+id/input_phonenumber"
@@ -48,7 +50,8 @@
                 android:layout_below="@+id/textHeader"
                 android:layout_marginTop="170dp"
                 android:hint="@string/phone_number_settings"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="Autofill" />
 
             <EditText
                 android:id="@+id/input_email"
@@ -57,7 +60,8 @@
                 android:layout_below="@+id/textHeader"
                 android:layout_marginTop="210dp"
                 android:editable="false"
-                android:hint="@string/prompt_email" />
+                android:hint="@string/prompt_email"
+                tools:ignore="Autofill,TextFields" />
 
             <Button
                 android:id="@+id/save_settings"
@@ -65,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="340dp"
-                android:background="@drawable/blue_button"
+                android:background="@drawable/rounded_button"
                 android:text="@string/save"
                 android:textStyle="bold" />
 
@@ -75,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="400dp"
-                android:background="@color/white"
+                android:background="@drawable/rounded_button"
                 android:text="@string/change_password"
                 android:textStyle="bold" />
 

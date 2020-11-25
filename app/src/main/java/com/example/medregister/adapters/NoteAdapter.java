@@ -35,7 +35,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        // Inflate layout
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row_notes, parent, false);
         return new ViewHolder(view);
@@ -44,55 +44,65 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        Note notes = notesDataList.get(position);
+        final Note notes = notesDataList.get(position);
         database = NoteDatabase.getInstance(context);
         holder.textView.setText(notes.getText());
 
         holder.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Note d = notesDataList.get(holder.getAdapterPosition());
-                final int noteId = d.getId();
-                String noteText = d.getText();
+                editNote(holder.getAdapterPosition());
 
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialog_update_note);
-
-                int width = WindowManager.LayoutParams.MATCH_PARENT;
-                int height = WindowManager.LayoutParams.WRAP_CONTENT;
-                //layout
-                dialog.getWindow().setLayout(width, height);
-                dialog.show();
-
-                final EditText editText = dialog.findViewById(R.id.update_edit_text);
-                Button buttonUpdate = dialog.findViewById(R.id.button_update);
-
-                editText.setText(noteText);
-
-                buttonUpdate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        String updateText = editText.getText().toString().trim();
-                        database.NoteDao().update(noteId, updateText);
-                        notesDataList.clear();
-                        notesDataList.addAll(database.NoteDao().getAll());
-                        notifyDataSetChanged();
-                    }
-                });
             }
         });
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Note d = notesDataList.get(holder.getAdapterPosition());
-                database.NoteDao().delete(d);
-                int position = holder.getAdapterPosition();
-                notesDataList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, notesDataList.size());
+                deleteNote(holder.getAdapterPosition());
             }
         });
+    }
+
+    public void editNote(int position) {
+        final Note note = notesDataList.get(position);
+        final int noteId = note.getId();
+        String noteText = note.getText();
+
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_update_note);
+
+        int width = WindowManager.LayoutParams.MATCH_PARENT;
+        int height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //layout
+        dialog.getWindow().setLayout(width, height);
+        dialog.show();
+
+        final EditText editText = dialog.findViewById(R.id.update_edit_text);
+        Button buttonUpdate = dialog.findViewById(R.id.button_update);
+
+        editText.setText(noteText);
+        final TextView textView = dialog.findViewById(R.id.last_modified_note);
+        String noteCreatedOn = "Created on: " + note.getCreationDate();
+        textView.setText(noteCreatedOn);
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                String updateText = editText.getText().toString().trim();
+                database.NoteDao().update(noteId, updateText);
+                notesDataList.clear();
+                notesDataList.addAll(database.NoteDao().getAllNotes());
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void deleteNote(int position) {
+        Note note = notesDataList.get(position);
+        database.NoteDao().delete(note);
+        notesDataList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, notesDataList.size());
     }
 
     @Override
@@ -104,13 +114,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         TextView textView;
         ImageView buttonEdit, buttonDelete;
+        TextView viewLastModified;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Get references to UI widgets
             textView = itemView.findViewById(R.id.note_view);
             buttonEdit = itemView.findViewById(R.id.button_edit);
             buttonDelete = itemView.findViewById(R.id.button_delete);
+            viewLastModified = itemView.findViewById(R.id.last_modified_note);
         }
     }
 }
-
