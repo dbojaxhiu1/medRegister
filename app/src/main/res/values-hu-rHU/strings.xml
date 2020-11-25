@@ -65,6 +65,9 @@
 
     <!-- strings for To do activity -->
     <string name="edit_text">Új emlékeztető hozzáadása</string>
+    <string name="schedule_pill_title">Schedule medication</string>
+    <string name="edit_scheduled_medication">Edit scheduled medication</string>
+
     <string name="edit_title">Emlékeztető</string>
     <string name="date">Dátum</string>
     <string name="delete_all_reminders">Az összes emlékeztető törlése</string>

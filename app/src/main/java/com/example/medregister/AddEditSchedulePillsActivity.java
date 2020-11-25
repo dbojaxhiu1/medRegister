@@ -12,13 +12,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
@@ -38,6 +36,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
     private String sDate;
     private int mHour, mMinute;
     final int id = (int) System.currentTimeMillis();
+    public static int broadcastCode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +57,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonCancelAlarm = findViewById(R.id.cancel_scheduled_pill);
-        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelAlarm();
-                finish();
-            }
-        });
-
-
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        if (getSupportActionBar() != null) {
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         addEditScheduledPill();
     }
 
@@ -81,7 +66,6 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         cancelAlarm();
         finish();
     }
-
     private void saveScheduledPill() {
         String name = editTextName.getText().toString();
         String time = editTextTime.getText().toString();
@@ -147,6 +131,7 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
                 c.set(Calendar.MINUTE, minute);
                 c.set(Calendar.SECOND, 0);
                 startAlarm(c);
+                Log.d(TAG, "onTimeSet: Alarm started");
 
             }
         }, mHour, mMinute, false);
@@ -154,11 +139,13 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         mTimePicker.show();
     }
 
+
     public void startAlarm(Calendar c) {
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        broadcastCode++;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,broadcastCode, intent, 0);
 
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
@@ -170,11 +157,11 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
         }
     }
 
-
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        broadcastCode++;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, broadcastCode, intent, 0);
         assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
     }
@@ -182,12 +169,12 @@ public class AddEditSchedulePillsActivity extends AppCompatActivity {
     public void addEditScheduledPill() {
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
-            setTitle("Edit scheduled pill");
+            setTitle(R.string.edit_scheduled_medication);
             editTextName.setText(intent.getStringExtra(EXTRA_NAME));
             editTextTime.setText(intent.getStringExtra(EXTRA_TIME));
             editTextDose.setText(intent.getStringExtra(EXTRA_DOSE));
         } else {
-            setTitle("Schedule pill");
+            setTitle(R.string.schedule_pill_title);
         }
     }
 

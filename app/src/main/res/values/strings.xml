@@ -122,6 +122,8 @@
     <string name="signed_out">Signed out</string>
 
     <string name="schedule_pills_title">Schedule medications</string>
+    <string name="schedule_pill_title">Schedule medication</string>
+    <string name="edit_scheduled_medication">Edit scheduled medication</string>
     <string name="pill_scheduled">Medication scheduled</string>
     <string name="pill_not_scheduled">Medication not scheduled</string>
     <string name="scheduled_pill_deleted">Scheduled medication intake deleted</string>

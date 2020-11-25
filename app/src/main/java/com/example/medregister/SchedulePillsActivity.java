@@ -25,6 +25,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import static com.example.medregister.AddEditSchedulePillsActivity.broadcastCode;
+
 public class SchedulePillsActivity extends AppCompatActivity {
 
     private static final String TAG = "SchedulePillsActivity";
@@ -32,6 +34,7 @@ public class SchedulePillsActivity extends AppCompatActivity {
     public static final int EDIT_SCHEDULE_PILL_REQUEST = 2;
     private SchedulePillViewModel schedulePillViewModel;
     final int request_id = (int) System.currentTimeMillis();
+    //public int broadcastCode =;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,11 +135,11 @@ public class SchedulePillsActivity extends AppCompatActivity {
     }
 
     private void cancelAlarm() {
+        //broadcastCode--;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, SchedulePill.getRequestId(), intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, broadcastCode, intent, 0);
         assert alarmManager != null;
         alarmManager.cancel(pendingIntent);
-
     }
 }

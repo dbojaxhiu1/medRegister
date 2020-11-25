@@ -44,7 +44,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        Note notes = notesDataList.get(position);
+        final Note notes = notesDataList.get(position);
         database = NoteDatabase.getInstance(context);
         holder.textView.setText(notes.getText());
 
@@ -52,6 +52,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 editNote(holder.getAdapterPosition());
+
             }
         });
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +64,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     public void editNote(int position) {
-        Note d = notesDataList.get(position);
-        final int noteId = d.getId();
-        String noteText = d.getText();
+        final Note note = notesDataList.get(position);
+        final int noteId = note.getId();
+        String noteText = note.getText();
 
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_update_note);
@@ -80,6 +81,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         Button buttonUpdate = dialog.findViewById(R.id.button_update);
 
         editText.setText(noteText);
+        final TextView textView = dialog.findViewById(R.id.last_modified_note);
+        String noteCreatedOn = "Created on: " + note.getCreationDate();
+        textView.setText(noteCreatedOn);
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +114,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         TextView textView;
         ImageView buttonEdit, buttonDelete;
+        TextView viewLastModified;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -117,6 +122,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             textView = itemView.findViewById(R.id.note_view);
             buttonEdit = itemView.findViewById(R.id.button_edit);
             buttonDelete = itemView.findViewById(R.id.button_delete);
+            viewLastModified = itemView.findViewById(R.id.last_modified_note);
         }
     }
 }

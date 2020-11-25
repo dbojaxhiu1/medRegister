@@ -17,6 +17,13 @@
         android:padding="12dp"
         tools:ignore="Autofill,TextFields" />
 
+    <TextView
+        android:id="@+id/last_modified_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_modified"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
     <Button
         android:id="@+id/button_update"
         android:layout_width="match_parent"
