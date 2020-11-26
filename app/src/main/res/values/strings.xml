@@ -3,7 +3,6 @@
 
     <!-- Strings related to login, register new account, reset password, account settings -->
     <string name="prompt_email">Email</string>
-    <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
 
     <string name="forgot_password">Password reset</string>
@@ -19,9 +18,6 @@
     <string name="reset_password">Reset Password</string>
     <string name="sign_out">Sign out</string>
     <string name="account_settings">Account Settings</string>
-    <string name="current_password">Current Password</string>
-    <string name="new_password">New Password</string>
-    <string name="confirm_new_password">Confirm New Password</string>
     <string name="save">Save</string>
     <string name="change_password">Change Password</string>
     <string name="name_settings">Name</string>
@@ -38,28 +34,17 @@
     <string name="healthy_tips">Healthy Tips</string>
 
     <!-- Strings for Register Pill activity -->
-    <string name="register_new_pill">Register new medication</string>
     <string name="delete_all_pills">Delete all medications</string>
     <string name="pill_name">Medication name</string>
     <string name="instruction">Medication Instruction</string>
-    <string name="add">ADD</string>
     <string name="daily_usage">Daily usage: </string>
     <string name="package_contains">Package Contains: </string>
-    <string name="nr_pills"> pills</string>
     <string name="numOfPillsInPackage">Content of medication in package:</string>
     <string name="list_instruction">Instruction</string>
     <string name="last_modified">Last modified:</string>
     <string name="number_1">1</string>
     <string name="paracetamol">Paracetamol</string>
     <string name="dose_mg">500 mg</string>
-
-    <!-- Dialog strings -->
-    <string name="dialog_register_pill">RegisterPillDialog</string>
-
-
-    <string name="dialog_delete">DELETE</string>
-    <string name="dialog_cancel">Cancel</string>
-    <string name="intent_pill">intent_pill</string>
 
     <!-- strings for To do activity -->
     <string name="edit_text">Add new reminder</string>
@@ -73,29 +58,19 @@
     <string name="version_name">Version Name</string>
 
     <!-- strings for Schedule Pill  activity -->
-    <string name="schedule_pill_extended_fob">Schedule Pill</string>
     <string name="med_name">Medication name</string>
-    <string name="every_day">Every day</string>
-    <string name="monday">M</string>
-    <string name="tuesday">T</string>
-    <string name="wednesday">W</string>
-    <string name="thursday">T</string>
-    <string name="friday">F</string>
-    <string name="saturday">S</string>
-    <string name="sunday">S</string>
     <string name="time_scheduled">Time</string>
     <string name="dose_scheduled">Dose (in mg)</string>
 
     <!-- strings for Notes activity -->
     <string name="new_note">Enter new note</string>
     <string name="add_note">Add</string>
-    <string name="reset_all_notes">Reset</string>
     <string name="enter_text">Enter text</string>
     <string name="update_text">Update</string>
+    <string name="created_on">Created on: </string>
 
 
     <!-- strings for notifications -->
-    <string name="notification_title">MedRegister</string>
     <string name="notification_text">It\'s time to take the medication!</string>
 
 
@@ -117,7 +92,6 @@
     <string name="dialog_no">No</string>
 
     <string name="saved">Saved</string>
-    <string name="sent_reset_password_link">Sent Password Reset Link to Email</string>
     <string name="no_user_with_this_email">No User Associated with that Email</string>
     <string name="signed_out">Signed out</string>
 
@@ -155,11 +129,8 @@
     <string name="edit_pill">Edit Medication</string>
     <string name="add_pill">Add Medication</string>
 
-    <string name="invalid_credentials">Invalid Credentials.\nReset your password and try again</string>
     <string name="password_reset_link_sent">Password Reset Link Sent to Email</string>
     <string name="no_user_associated_with_email">No User is Associated with that Email</string>
-
-    <string name="select_time">Select time</string>
 
     <!-- strings for healthy tips -->
     <string name="healthy_tip_1_title">Eat a healthy diet</string>
