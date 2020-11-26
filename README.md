@@ -18,5 +18,3 @@ The user has to register a new account in order to log in. The user can register
 
 ## Author
 Diar Bojaxhi / [@dbojaxhiu1](https://github.com/dbojaxhiu1)
-
-testing...
