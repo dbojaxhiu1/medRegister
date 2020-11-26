@@ -81,7 +81,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         Button buttonUpdate = dialog.findViewById(R.id.button_update);
 
         editText.setText(noteText);
-        final TextView textView = dialog.findViewById(R.id.last_modified_note);
+        final TextView textView = dialog.findViewById(R.id.created_on);
         String noteCreatedOn = "Created on: " + note.getCreationDate();
         textView.setText(noteCreatedOn);
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +98,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     public void deleteNote(int position) {
-        Note note = notesDataList.get(position);
-        database.NoteDao().delete(note);
-        notesDataList.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, notesDataList.size());
+        try {
+            Note note = notesDataList.get(position);
+            database.NoteDao().delete(note);
+            notesDataList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, notesDataList.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -110,11 +114,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return notesDataList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         ImageView buttonEdit, buttonDelete;
-        TextView viewLastModified;
+        TextView viewCreateOn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -122,7 +126,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             textView = itemView.findViewById(R.id.note_view);
             buttonEdit = itemView.findViewById(R.id.button_edit);
             buttonDelete = itemView.findViewById(R.id.button_delete);
-            viewLastModified = itemView.findViewById(R.id.last_modified_note);
+            viewCreateOn = itemView.findViewById(R.id.created_on);
         }
     }
 }

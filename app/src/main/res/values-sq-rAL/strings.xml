@@ -3,7 +3,6 @@
 
     <!-- Strings related to login, register new account, reset password, account settings -->
     <string name="prompt_email">Email</string>
-    <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
 
     <string name="forgot_password">Keni harruar passwordin?</string>
@@ -19,9 +18,6 @@
     <string name="reset_password">Nderroni passwordin</string>
     <string name="sign_out">Dilni nga llogaria</string>
     <string name="account_settings">Te dhenat</string>
-    <string name="current_password">Passwordi aktual</string>
-    <string name="new_password">Passwordi i ri</string>
-    <string name="confirm_new_password">Konfirmoni passwordin e ri</string>
     <string name="save">Ruani</string>
     <string name="change_password">Nderroni Passwordin</string>
     <string name="name_settings">Emri</string>
@@ -38,28 +34,17 @@
     <string name="healthy_tips">Keshilla shendeti</string>
 
     <!-- Strings for Register Pill activity -->
-    <string name="register_new_pill">Ruani nje hape te ri</string>
     <string name="delete_all_pills">Fshini te gjithe hapat</string>
     <string name="pill_name">Emri i hapave</string>
     <string name="instruction">Keshilla per marrjen e hapave</string>
-    <string name="add">Shto</string>
     <string name="daily_usage">Konsumimi ditor: </string>
     <string name="package_contains">Paketimi permban: </string>
-    <string name="nr_pills"> hapa</string>
     <string name="numOfPillsInPackage">Numri i hapave ne paketim:</string>
     <string name="list_instruction">Keshilla</string>
     <string name="last_modified">Last modified:</string>
     <string name="number_1">1</string>
     <string name="paracetamol">Paracetamol</string>
     <string name="dose_mg">500 mg</string>
-
-    <!-- Dialog strings -->
-    <string name="dialog_register_pill">RegisterPillDialog</string>
-
-
-    <string name="dialog_delete">Fshij</string>
-    <string name="dialog_cancel">Dil</string>
-    <string name="intent_pill">intent_pill</string>
 
     <!-- strings for To do activity -->
     <string name="edit_text">Shto nje shenim te ri</string>
@@ -73,29 +58,20 @@
     <string name="version_name">Emri i versionit</string>
 
     <!-- strings for Schedule Pill  activity -->
-    <string name="schedule_pill_extended_fob">Orari i hapave</string>
     <string name="med_name">Emri i hapave</string>
-    <string name="every_day">Qdo dite</string>
-    <string name="monday">H</string>
-    <string name="tuesday">M</string>
-    <string name="wednesday">M</string>
-    <string name="thursday">E</string>
-    <string name="friday">P</string>
-    <string name="saturday">Sh</string>
-    <string name="sunday">D</string>
     <string name="time_scheduled">Koha</string>
     <string name="dose_scheduled">Dosa (ne mg)</string>
 
     <!-- strings for Notes activity -->
     <string name="new_note">Shto nje shenim te ri</string>
     <string name="add_note">Shto</string>
-    <string name="reset_all_notes">Fshij</string>
     <string name="enter_text">Shkruj tekst</string>
     <string name="update_text">Fresko</string>
+    <string name="created_on">U krijua me: </string>
+
 
 
     <!-- strings for notifications -->
-    <string name="notification_title">MedRegister</string>
     <string name="notification_text">Eshte koha per te marre hapat!</string>
 
 
@@ -120,7 +96,6 @@
     <string name="dialog_no">Jo</string>
 
     <string name="saved">Saved</string>
-    <string name="sent_reset_password_link">Sent Password Reset Link to Email</string>
     <string name="no_user_with_this_email">No User Associated with that Email</string>
     <string name="signed_out">Signed out</string>
 
@@ -156,11 +131,8 @@
     <string name="edit_pill">Freskoni hapin</string>
     <string name="add_pill">Shtoni hapin</string>
 
-    <string name="invalid_credentials">Te dhenat jane gabim. Ju lutem kontrolloni passwordin nese esht i duhuri</string>
     <string name="password_reset_link_sent">Linku per nderrimin e passwordit esht derguar ne email</string>
     <string name="no_user_associated_with_email">Nuk ka perdorues me kete email</string>
-
-    <string name="select_time">Zgjidhe kohen</string>
 
     <!-- strings for healthy tips -->
     <string name="healthy_tip_1_title">Ha nje diet te shendetshme</string>

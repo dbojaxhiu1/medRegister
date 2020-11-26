@@ -18,10 +18,10 @@
         tools:ignore="Autofill,TextFields" />
 
     <TextView
-        android:id="@+id/last_modified_note"
+        android:id="@+id/created_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/last_modified"
+        android:text="@string/created_on"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <Button
