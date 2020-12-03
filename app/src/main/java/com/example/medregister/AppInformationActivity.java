@@ -22,7 +22,7 @@ public class AppInformationActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started.");
         setTitle(getString(R.string.about_app_info));
 
-        //// Get references to UI widgets
+        // Get references to UI widgets
         textViewVersionCode = findViewById(R.id.v_code);
         textViewVersionName = findViewById(R.id.v_name);
 
