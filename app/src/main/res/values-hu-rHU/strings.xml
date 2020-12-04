@@ -121,6 +121,8 @@
     <string name="couldnt_send_verification_email">Nem sikerült elküldeni az ellenőrző e-mailt</string>
     <string name="something_wrong">Valami elromlott.</string>
     <string name="unable_to_register">Nem lehet regisztrálni</string>
+    <string name="password_not_strong_enough">Password not strong enough</string>
+
 
     <string name="notes_title">Megjegyzések</string>
     <string name="authentication_failed">Hitelesítés nem sikerült</string>

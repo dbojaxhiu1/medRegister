@@ -119,6 +119,8 @@
     <string name="couldnt_send_verification_email">Nuk mundem ta dergonim emailin e verifikimit</string>
     <string name="something_wrong">Diqka ndodhi gabimisht.</string>
     <string name="unable_to_register">Nuk munde te regjistrohesh</string>
+    <string name="password_not_strong_enough">Password not strong enough</string>
+
 
     <string name="notes_title">Shenimet</string>
     <string name="authentication_failed">Lidhja deshtoi</string>

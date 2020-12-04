@@ -111,12 +111,13 @@
     <string name="all_pills_deleted">All medications deleted</string>
 
     <string name="passwords_dont_match">Passwords do not match</string>
-    <string name="register_with_correct_email">Please Register with a GMAIL domain address</string>
+    <string name="register_with_correct_email">Please Register with a correct address</string>
     <string name="fill_all_fields">Please fill all the necessary fields</string>
     <string name="sent_verification_email">Sent Verification Email</string>
     <string name="couldnt_send_verification_email">Couldn\'t Send Verification Email</string>
     <string name="something_wrong">Something went wrong.</string>
     <string name="unable_to_register">Unable to Register</string>
+    <string name="password_not_strong_enough">Password not strong enough</string>
 
     <string name="notes_title">Notes</string>
     <string name="authentication_failed">Authentication Failed</string>

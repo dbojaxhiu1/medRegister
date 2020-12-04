@@ -31,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
 
-    private static final String email_regex = "^[A-Za-z0-9+_.-]+@gmail\\.com$";
+    private static final String email_regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     private static final String password_regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
     // ui widgets
@@ -67,16 +67,20 @@ public class SignUpActivity extends AppCompatActivity {
                                 registerNewEmail(userEmail.getText().toString(), userPassword.getText().toString());
                             } else {
                                 Toast.makeText(SignUpActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
+                                userPassword.setError(getString(R.string.passwords_dont_match));
                             }
                         } else {
                             if (isPasswordStrongEnough(userConfirmPassword.getText().toString())) {
                                 Toast.makeText(SignUpActivity.this, R.string.passwords_dont_match, Toast.LENGTH_SHORT).show();
+                                userPassword.setError(getString(R.string.passwords_dont_match));
                             } else {
-                                Toast.makeText(SignUpActivity.this, "Password not strong enough", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.password_not_strong_enough), Toast.LENGTH_SHORT).show();
+                                userConfirmPassword.setError(getString(R.string.password_not_strong_enough));
                             }
                         }
                     } else {
                         Toast.makeText(SignUpActivity.this, R.string.register_with_correct_email, Toast.LENGTH_SHORT).show();
+                        userEmail.setError(getString(R.string.register_with_correct_email));
                     }
                 } else {
                     Toast.makeText(SignUpActivity.this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
