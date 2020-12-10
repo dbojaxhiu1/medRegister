@@ -20,11 +20,28 @@ public abstract class PillDatabase extends RoomDatabase {
 
     public abstract PillDao pillDao();
 
+    /*
+    static Migration migration = new Migration(7,10){
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            //create new table
+            database.execSQL("CREATE TABLE 'pills_table' (instruction TEXT, name TEXT, packageContains INTEGER, usage INTEGER, creationDate TEXT," +
+                    " id INTEGER PRIMARY KEY NOT NULL)");
+            //copy the data
+            database.execSQL("INSERT INTO 'pills_table'(instruction,name,packageContains,usage,creationDate,id) SELECT instruction,name,packageContains,usage,creationDate,id FROM 'pill_table'");
+            //remove the old table
+            database.execSQL("DROP TABLE 'pill_table'");
+            //change the table name to the correct one
+            database.execSQL("ALTER TABLE 'pills_table' RENAME TO 'pill_table'");
+
+        }
+    };*/
+
     public static synchronized PillDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
                     PillDatabase.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
+                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }

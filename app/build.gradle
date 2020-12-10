@@ -60,6 +60,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:truth:1.0.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //firebase database
     implementation 'com.google.firebase:firebase-database:19.3.1'
@@ -76,5 +77,4 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation 'androidx.room:room-runtime:2.2.5'
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-
 }

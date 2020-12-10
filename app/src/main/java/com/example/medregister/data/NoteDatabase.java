@@ -10,7 +10,7 @@ import com.example.medregister.data.dao.NotesDao;
 import com.example.medregister.models.Note;
 
 //Database entities
-@Database(entities = {Note.class}, version = 4, exportSchema = false)
+@Database(entities = {Note.class}, version = 5, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
     //database instances
     private static NoteDatabase database;
@@ -20,7 +20,9 @@ public abstract class NoteDatabase extends RoomDatabase {
 
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext()
-                    , NoteDatabase.class, DATABASE_NAME).allowMainThreadQueries().fallbackToDestructiveMigration()
+                    , NoteDatabase.class, DATABASE_NAME)
+                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return database;

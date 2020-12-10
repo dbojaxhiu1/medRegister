@@ -20,10 +20,6 @@ public interface NotesDao {
     @Delete
     void delete(Note notesData);
 
-    //delete all queries
-    @Delete
-    void reset(List<Note> notesData);
-
     @Query("UPDATE notes_table SET text = :sText WHERE id =:sid")
     void update(int sid, String sText);
 

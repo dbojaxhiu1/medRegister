@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.medregister.data.dao.ReminderDao;
 import com.example.medregister.models.Reminder;
 
-@Database(entities = {Reminder.class}, version = 7, exportSchema = false)
+@Database(entities = {Reminder.class}, version = 8, exportSchema = false)
 public abstract class ReminderDatabase extends RoomDatabase {
 
     private static ReminderDatabase database;
@@ -23,8 +23,9 @@ public abstract class ReminderDatabase extends RoomDatabase {
     public static synchronized ReminderDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(),
-                    ReminderDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration()
-                   // .addCallback(roomCallback)
+                    ReminderDatabase.class, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
+                   //.addCallback(roomCallback)
                     .build();
         }
         return database;

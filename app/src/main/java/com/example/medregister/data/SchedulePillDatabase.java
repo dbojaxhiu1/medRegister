@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.medregister.data.dao.SchedulePillDao;
 import com.example.medregister.models.SchedulePill;
 
-@Database(entities = {SchedulePill.class}, version = 1, exportSchema = false)
+@Database(entities = {SchedulePill.class}, version = 2, exportSchema = false)
 public abstract class SchedulePillDatabase extends RoomDatabase {
 
     private static SchedulePillDatabase database;
