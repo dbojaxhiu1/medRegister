@@ -10,8 +10,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationHelper notificationHelper = new NotificationHelper(context);
-        NotificationCompat.Builder helperChannelNotification = notificationHelper.getChannelNotification();
-        notificationHelper.getManager().notify(1, helperChannelNotification.build());
+        Notification notification = new Notification(context);
+        NotificationCompat.Builder helperChannelNotification = notification.getChannelNotification();
+        notification.getManager().notify(1, helperChannelNotification.build());
     }
 }

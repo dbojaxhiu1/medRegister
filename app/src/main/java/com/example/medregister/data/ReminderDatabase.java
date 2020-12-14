@@ -25,7 +25,6 @@ public abstract class ReminderDatabase extends RoomDatabase {
             database = Room.databaseBuilder(context.getApplicationContext(),
                     ReminderDatabase.class, DATABASE_NAME)
                     .fallbackToDestructiveMigration()
-                   //.addCallback(roomCallback)
                     .build();
         }
         return database;
@@ -48,7 +47,7 @@ public abstract class ReminderDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            reminderDao.insert(new Reminder("New reminder 1", "2000/02/02"));
+            //reminderDao.insert(new Reminder("New reminder 1", "2000/02/02"));
             //reminderDao.insert(new Reminder("New reminder 2", new Date(2010, 1, 3)));
             //reminderDao.insert(new Reminder("New reminder 3", new Date(2020, 02, 03)));
             return null;

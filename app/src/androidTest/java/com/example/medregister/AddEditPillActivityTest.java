@@ -25,8 +25,6 @@ public class AddEditPillActivityTest {
     private AddEditPillActivity addEditPillActivity = null;
     private String pillName = "Paracetamol";
     private String pillInstruction = "Every morning";
-    private int dailyUsage = 1;
-    private int packageContains = 50;
 
     @Before
     public void setUp() throws Exception {
@@ -44,15 +42,6 @@ public class AddEditPillActivityTest {
         closeSoftKeyboard();
         onView(withId(R.id.edit_pill_instruction)).perform(typeText(pillInstruction));
         closeSoftKeyboard();
-
-        //openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        //onView(withId(R.id.save_pill)).perform(click());
-
-
-        //assertThat(Iterables.getOnlyElement(Intents.getIntents())).hasComponentClass(
-          //      RegisterPillsActivity.class);
-        //onView(withId(R.id.number_picker_usage)).perform(typeText(String.valueOf(dailyUsage)));
-        //onView(withId(R.id.number_picker_number_in_package)).perform(typeText(String.valueOf(packageContains)));
 
     }
 

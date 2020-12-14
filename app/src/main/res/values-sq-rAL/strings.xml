@@ -8,18 +8,18 @@
     <string name="forgot_password">Keni harruar passwordin?</string>
     <string name="register">Regjistrohu</string>
     <string name="sign_in">Lidhu</string>
-    <string name="password">Passwordi</string>
+    <string name="password">Fjalkalimi</string>
     <string name="pill_logo">pill Logo</string>
     <string name="email_registration">Regjistrimi i emailit</string>
     <string name="email">Email</string>
-    <string name="confirm_password">Konfirmoni passwordin</string>
+    <string name="confirm_password">Konfirmoni fjalkalimin</string>
     <string name="cancel" tools:ignore="ButtonCase">Dil</string>
     <string name="confirm">Konfirmo</string>
-    <string name="reset_password">Nderroni passwordin</string>
+    <string name="reset_password">Ndërroni fjalkalimin</string>
     <string name="sign_out">Dilni nga llogaria</string>
-    <string name="account_settings">Te dhenat</string>
+    <string name="account_settings">Të dhënat</string>
     <string name="save">Ruani</string>
-    <string name="change_password">Nderroni Passwordin</string>
+    <string name="change_password">Ndërroni fjalkalimin</string>
     <string name="name_settings">Emri</string>
     <string name="phone_number_settings">Numri i telefonit</string>
     <string name="db_users">field_users</string>
@@ -27,30 +27,30 @@
     <string name="field_phone">phone</string>
 
     <!-- Strings for home fragment -->
-    <string name="register_pills">Regjistroni hapat</string>
-    <string name="schedule_pill">Beni orarin per hapa</string>
-    <string name="notes">Shenime</string>
-    <string name="to_do">Kujtese</string>
-    <string name="healthy_tips">Keshilla shendeti</string>
+    <string name="register_pills">Regjistroni barin</string>
+    <string name="schedule_pill">Bëni orarin për barnat</string>
+    <string name="notes">Shënime</string>
+    <string name="to_do">Përkujtim</string>
+    <string name="healthy_tips">Këshilla shëndeti</string>
 
     <!-- Strings for Register Pill activity -->
-    <string name="delete_all_pills">Fshini te gjithe hapat</string>
-    <string name="pill_name">Emri i hapave</string>
-    <string name="instruction">Keshilla per marrjen e hapave</string>
+    <string name="delete_all_pills">Fshini të gjithë barnat</string>
+    <string name="pill_name">Emri i barit</string>
+    <string name="instruction">Këshilla për marrjen e barnave</string>
     <string name="daily_usage">Konsumimi ditor: </string>
-    <string name="package_contains">Paketimi permban: </string>
-    <string name="numOfPillsInPackage">Numri i hapave ne paketim:</string>
-    <string name="list_instruction">Keshilla</string>
+    <string name="package_contains">Paketimi përmban: </string>
+    <string name="numOfPillsInPackage">Numri i hapave në paketim:</string>
+    <string name="list_instruction">Këshilla</string>
     <string name="last_modified">Last modified:</string>
     <string name="number_1">1</string>
     <string name="paracetamol">Paracetamol</string>
     <string name="dose_mg">500 mg</string>
 
     <!-- strings for To do activity -->
-    <string name="edit_text">Shto nje shenim te ri</string>
-    <string name="edit_title">Kujtese</string>
+    <string name="edit_text">Shto një shënim të ri</string>
+    <string name="edit_title">Përkujtim</string>
     <string name="date">Data</string>
-    <string name="delete_all_reminders">Fshij te gjitha </string>
+    <string name="delete_all_reminders">Fshij të gjitha </string>
 
     <!-- strings for App Information activity -->
     <string name="app_information">Informacioni</string>
@@ -58,40 +58,40 @@
     <string name="version_name">Emri i versionit</string>
 
     <!-- strings for Schedule Pill  activity -->
-    <string name="med_name">Emri i hapave</string>
+    <string name="med_name">Emri i barit</string>
     <string name="time_scheduled">Koha</string>
-    <string name="dose_scheduled">Dosa (ne mg)</string>
+    <string name="dose_scheduled">Doza (në mg)</string>
 
     <!-- strings for Notes activity -->
-    <string name="new_note">Shto nje shenim te ri</string>
+    <string name="new_note">Shto një shënim të ri</string>
     <string name="add_note">Shto</string>
-    <string name="enter_text">Shkruj tekst</string>
+    <string name="enter_text">Shkruaj tekstin</string>
     <string name="update_text">Fresko</string>
-    <string name="created_on">U krijua me: </string>
+    <string name="created_on">U krijua më: </string>
 
 
 
     <!-- strings for notifications -->
-    <string name="notification_text">Eshte koha per te marre hapat!</string>
+    <string name="notification_text">Është koha peër të marre barnat!</string>
 
 
     <!-- strings for toast messages -->
     <string name="to_do_activity_title">To Do Activity</string>
-    <string name="reminder_deleted">Shenimi u fshi</string>
-    <string name="reminder_saved">Shenimi u ruajt</string>
-    <string name="reminder_couldnt_update">Shenimi nuk mundi te freskohej</string>
-    <string name="reminder_updated">Shenimi u freskua</string>
-    <string name="reminder_not_saved">Shenimi nuk u ruajt</string>
-    <string name="all_reminders_deleted">Te gjitha shenimet u fshine</string>
-    <string name="insert_reminder">Ju lutem shtoni shenimin</string>
-    <string name="edit_reminder">Freskoni shenimin</string>
-    <string name="add_reminder">Shtoni shenimin</string>
+    <string name="reminder_deleted">Shënimi u fshi</string>
+    <string name="reminder_saved">Shënimi u ruajt</string>
+    <string name="reminder_couldnt_update">Shënimi nuk mundi te freskohej</string>
+    <string name="reminder_updated">Shënimi u freskua</string>
+    <string name="reminder_not_saved">Shënimi nuk u ruajt</string>
+    <string name="all_reminders_deleted">Të gjitha shënimet u fshinë</string>
+    <string name="insert_reminder">Ju lutem shtoni shënimin</string>
+    <string name="edit_reminder">Freskoni shënimin</string>
+    <string name="add_reminder">Shtoni shënimin</string>
 
     <string name="schedule_pill_title">Schedule medication</string>
     <string name="edit_scheduled_medication">Edit scheduled medication</string>
 
     <string name="dialog_sign_out">Dilni</string>
-    <string name="dialog_sign_out_message">A jeni te sigurt qe doni te dilmni ?</string>
+    <string name="dialog_sign_out_message">A jeni të sigurt që doni të dilni ?</string>
     <string name="dialog_yes">Po</string>
     <string name="dialog_no">Jo</string>
 
@@ -104,45 +104,45 @@
     <string name="pill_not_scheduled">Hapat nuk u aranzhuan</string>
     <string name="scheduled_pill_deleted">Aranzhimi u fshi</string>
 
-    <string name="register_pills_title">Register Pills</string>
-    <string name="pill_deleted">Hapa u fshi</string>
-    <string name="pill_saved">Hapa u ruajt</string>
-    <string name="pill_couldnt_update">Hapa nuk mundi te freskohet</string>
-    <string name="pill_updated">Hapi u freskua</string>
-    <string name="pill_not_saved">Hapi nuk u ruajt</string>
-    <string name="all_pills_deleted">Te gjitha hapat u fshine</string>
+    <string name="register_pills_title">Regjistro barnat</string>
+    <string name="pill_deleted">Bari u fshi</string>
+    <string name="pill_saved">Bari u ruajt</string>
+    <string name="pill_couldnt_update">Bari nuk mundi të freskohet</string>
+    <string name="pill_updated">Bari u freskua</string>
+    <string name="pill_not_saved">Bari nuk u ruajt</string>
+    <string name="all_pills_deleted">Të gjitha barnat u fshinë</string>
 
-    <string name="passwords_dont_match">Passwordet nuk jane te njejta</string>
+    <string name="passwords_dont_match">Fjalkalimet nuk janë të njejta</string>
     <string name="register_with_correct_email">Ju lutem regjistrohuni me emailin e duhur</string>
-    <string name="fill_all_fields">Ju lutem mbushni te gjitha hapsirat</string>
+    <string name="fill_all_fields">Ju lutem mbushni të gjitha hapësirat</string>
     <string name="sent_verification_email">Emaili i verifikimit u dergua</string>
-    <string name="couldnt_send_verification_email">Nuk mundem ta dergonim emailin e verifikimit</string>
+    <string name="couldnt_send_verification_email">Nuk mundeshim ta dergonim emailin e verifikimit</string>
     <string name="something_wrong">Diqka ndodhi gabimisht.</string>
-    <string name="unable_to_register">Nuk munde te regjistrohesh</string>
+    <string name="unable_to_register">Nuk mundë te regjistrohesh</string>
     <string name="password_not_strong_enough">Password not strong enough</string>
 
 
-    <string name="notes_title">Shenimet</string>
+    <string name="notes_title">Shënimet</string>
     <string name="authentication_failed">Lidhja deshtoi</string>
     <string name="authenticated_with">I lidhur me: </string>
-    <string name="email_not_verified">Emaili nuk eshte i verifikuar, kontrolloni emailin tuaj</string>
-    <string name="healthy_tips_title">Keshillat e shendetit</string>
+    <string name="email_not_verified">Emaili nuk është i verifikuar, kontrolloni emailin tuaj</string>
+    <string name="healthy_tips_title">Këshillat e shëndetit</string>
     <string name="about_app_info">Informacioni</string>
 
     <string name="insert_pill_name_instruction">Ju lutem shkruani emrin dhe instruksionet</string>
-    <string name="edit_pill">Freskoni hapin</string>
-    <string name="add_pill">Shtoni hapin</string>
+    <string name="edit_pill">Freskoni barin</string>
+    <string name="add_pill">Shtoni barin</string>
 
-    <string name="password_reset_link_sent">Linku per nderrimin e passwordit esht derguar ne email</string>
-    <string name="no_user_associated_with_email">Nuk ka perdorues me kete email</string>
+    <string name="password_reset_link_sent">Linku për ndërrimin e passwordit është dërguar në email</string>
+    <string name="no_user_associated_with_email">Nuk ka përdorues me këtë email</string>
 
     <!-- strings for healthy tips -->
-    <string name="healthy_tip_1_title">Ha nje diet te shendetshme</string>
-    <string name="tip_1">Eat a combination of different foods, including fruit, vegetables, legumes, nuts and whole grains.</string>
-    <string name="healthy_tip_2_title">Konsumo me pak kripe dhe sheqer</string>
-    <string name="tip_2">Filipinos consume twice the recommended amount of sodium, putting them at risk of high blood pressure.</string>
+    <string name="healthy_tip_1_title">Ha një diet të shendetshme</string>
+    <string name="tip_1">Ha ushqim te kombinuar, te perbere nga peme, perime, bishtajor dhe drithera integrale.</string>
+    <string name="healthy_tip_2_title">Konsumo më pak kripë dhe sheqer</string>
+    <string name="tip_2">Filipinet konsumojne dy herë me shume sesa sasia e rekomanduar e kripes, duke i vene ata ne rrezik per tension te larte.</string>
     <string name="healthy_tip_3_title">Redukto perdorimin e yndyrave</string>
-    <string name="tip_3">Fats consumed should be less than 30% of your total energy intake. This will help prevent unhealthy weight gain and NCDs.</string>
+    <string name="tip_3">Konsumimi i yndyrnave duhet te jete me pak se 30% i energjise totale ditore. Kjo ndihmon mos shtimin e peshes ne menyre jo te shendetshme.</string>
     <string name="healthy_tip_4_title">Ndalo perdorimin e alkoolit</string>
     <string name="tip_4">Nuk ka nivel te sigurt te perdorimit te alkoolit</string>
 </resources>

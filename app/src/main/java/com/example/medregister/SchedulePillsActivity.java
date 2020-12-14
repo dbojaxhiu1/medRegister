@@ -34,7 +34,6 @@ public class SchedulePillsActivity extends AppCompatActivity {
     public static final int EDIT_SCHEDULE_PILL_REQUEST = 2;
     private SchedulePillViewModel schedulePillViewModel;
     final int request_id = (int) System.currentTimeMillis();
-    //public int broadcastCode =;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

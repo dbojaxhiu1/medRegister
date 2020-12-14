@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.incremental":"true"]
+            }
+        }
     }
 
     buildTypes {
@@ -69,6 +74,7 @@ dependencies {
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
 
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     implementation platform('com.google.firebase:firebase-bom:26.0.0')
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"

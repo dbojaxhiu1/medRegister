@@ -11,13 +11,13 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-public class NotificationHelper extends ContextWrapper {
-    public static final String channelID = "channelID";
-    public static final String channelName = "Channel Name";
+public class Notification extends ContextWrapper {
+    public static final String chId = "id";
+    public static final String chName = "name";
     private NotificationManager notificationManager;
     final int id = (int) System.currentTimeMillis();
 
-    public NotificationHelper(Context base) {
+    public Notification(Context base) {
         super(base);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel();
@@ -26,7 +26,7 @@ public class NotificationHelper extends ContextWrapper {
 
     @TargetApi(Build.VERSION_CODES.O)
     private void createChannel() {
-        NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel channel = new NotificationChannel(chId, chName, NotificationManager.IMPORTANCE_HIGH);
         getManager().createNotificationChannel(channel);
     }
 
@@ -38,9 +38,9 @@ public class NotificationHelper extends ContextWrapper {
     }
 
     public NotificationCompat.Builder getChannelNotification() {
-        Intent resultIntent = new Intent(this, SchedulePillsActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, id, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return new NotificationCompat.Builder(getApplicationContext(), channelID)
+        Intent intent = new Intent(this, SchedulePillsActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return new NotificationCompat.Builder(getApplicationContext(), chId)
                 .setContentTitle("MedRegister")
                 .setContentText(getString(R.string.notification_text))
                 .setSmallIcon(R.drawable.ic_pill)

@@ -47,9 +47,9 @@ public abstract class SchedulePillDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
-            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
-            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
+//            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
+//            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
+//            schedulePillDao.insert(new SchedulePill("Name 2","11:11","2"));
             return null;
         }
     }
