@@ -21,6 +21,9 @@ The user has to sign up with a new account in order to log in. After everything 
 
 
 ## Screenshots
+<img width="200" alt="Screen Shot 2022-09-22 at 4 25 43 PM" src="https://user-images.githubusercontent.com/42176779/191794838-579adb45-688a-405c-a8ae-3fe101fa46c3.png">    <img width="200" alt="Screen Shot 2022-09-22 at 4 32 21 PM" src="https://user-images.githubusercontent.com/42176779/191813664-c9253940-bf3e-48e3-b4dd-6decf2d0cba4.png">    <img width="200" alt="Screen Shot 2022-09-22 at 4 26 11 PM" src="https://user-images.githubusercontent.com/42176779/191813848-a0c977e2-3fc4-4a9a-8f2c-4ebcd39a62e9.png">    <img width="200" alt="Screen Shot 2022-09-22 at 4 26 46 PM" src="https://user-images.githubusercontent.com/42176779/191813945-b1ac3cfa-1789-4e35-9d38-c0f5ab61caff.png">    <img width="200" alt="Screen Shot 2022-09-22 at 4 28 40 PM" src="https://user-images.githubusercontent.com/42176779/191813981-356b21bb-0737-43fa-bd15-102971441228.png">   <img width="200" alt="Screen Shot 2022-09-22 at 4 29 53 PM" src="https://user-images.githubusercontent.com/42176779/191814161-3c007886-db06-4234-b0da-21a11871b896.png">   <img width="200" alt="Screen Shot 2022-09-22 at 4 30 40 PM" src="https://user-images.githubusercontent.com/42176779/191814424-074e2496-f541-4c0d-a579-56d1f16ebcce.png">   <img width="200" alt="Screen Shot 2022-09-22 at 4 31 21 PM" src="https://user-images.githubusercontent.com/42176779/191814551-05ab653f-e23f-470b-bc94-3371aba91d94.png">
+
+
 
 ## System Requirements
 
